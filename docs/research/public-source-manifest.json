@@ -1,0 +1,52 @@
+[
+  {
+    "id": "sdk-home",
+    "url_read": "http://115.159.82.89/",
+    "retrieved_date": "2026-11-13",
+    "timezone": "Asia/Shanghai",
+    "main_commit_at_retrieval": null,
+    "sha256": "0240836eef0c198702dd4c583ff1b96b5da5220df9c456df084b53aadfab011d",
+    "bytes": 9018,
+    "verification": "document_read_only; not compiled or run"
+  },
+  {
+    "id": "calblas-readme",
+    "url_read": "http://115.159.82.89/git/calculet/calBLAS/raw/branch/main/README.md",
+    "retrieved_date": "2026-11-13",
+    "timezone": "Asia/Shanghai",
+    "main_commit_at_retrieval": "32d2bb83d7160a593eaab67aa02e5dddbc8706cf",
+    "sha256": "3ebae7e6a8cd747374080cf89d55cf89d9a6af9ca4bfb21b6558e217cd75024c",
+    "bytes": 16562,
+    "verification": "document_read_only; not compiled or run"
+  },
+  {
+    "id": "calblas-status",
+    "url_read": "http://115.159.82.89/git/calculet/calBLAS/raw/branch/main/STATUS.md",
+    "retrieved_date": "2026-11-13",
+    "timezone": "Asia/Shanghai",
+    "main_commit_at_retrieval": "32d2bb83d7160a593eaab67aa02e5dddbc8706cf",
+    "sha256": "d04bbb090d9a4fe7d71d9e19d3d8b8a0b87d01ec7bcf1d77f502329200f42290",
+    "bytes": 5148,
+    "verification": "document_read_only; not compiled or run"
+  },
+  {
+    "id": "caldnn-readme",
+    "url_read": "http://115.159.82.89/git/calculet/calDNN/raw/branch/main/README.md",
+    "retrieved_date": "2026-11-13",
+    "timezone": "Asia/Shanghai",
+    "main_commit_at_retrieval": "1e06c41c557a469a9acc7566acb9f7e2c7f7ca62",
+    "sha256": "39ec15be70f272934a8c2c5da6b5a0bba20de3ed2bd58ecd12dbaa32a310a0d7",
+    "bytes": 4000,
+    "verification": "document_read_only; not compiled or run"
+  },
+  {
+    "id": "npu-syntax",
+    "url_read": "http://115.159.82.89/git/calculet/npu/raw/branch/main/SYNTAX.md",
+    "retrieved_date": "2026-11-13",
+    "timezone": "Asia/Shanghai",
+    "main_commit_at_retrieval": "172aad2611c86ead4071356fbaca3cf6facd2917",
+    "sha256": "3e7118c5a644039cda0dcdc83cb2e5bf8f82573aeceb64b837b19561b7a35edb",
+    "bytes": 10560,
+    "verification": "document_read_only; not compiled or run"
+  }
+]

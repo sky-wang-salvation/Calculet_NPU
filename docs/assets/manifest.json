@@ -1,0 +1,37 @@
+[
+  {
+    "original_name": "原粒NPU开发者生态挑战.pdf",
+    "path": "challenge.pdf",
+    "sha256": "882cf524f42d815f9f53fc31ab5b850191466579dcda047801bca70ab47b9e06",
+    "provenance": "用户于 2026-11-13 提供；用户说明本次提供资料不涉及未公开内容",
+    "verification": "材料原件；设备参数尚未经真机验证"
+  },
+  {
+    "original_name": "bfa5e8f5e3939720fd932b35be401ac2.png",
+    "path": "workstation-spec.png",
+    "sha256": "ca1316914546f436dad03263152caac00fac48b8c77e2967555d8cb56fb086d0",
+    "provenance": "用户于 2026-11-13 提供；用户说明本次提供资料不涉及未公开内容",
+    "verification": "材料原件；设备参数尚未经真机验证"
+  },
+  {
+    "original_name": "fd186328ab24d7faa383cd858f0ecd4a.png",
+    "path": "edge-spec.png",
+    "sha256": "8ba36043728e26c8da7bc1d96b448ecc246760e932bf149f999a37221be5b3f2",
+    "provenance": "用户于 2026-11-13 提供；用户说明本次提供资料不涉及未公开内容",
+    "verification": "材料原件；设备参数尚未经真机验证"
+  },
+  {
+    "original_name": "3f63947af3ed21a22a3af5af8d33a0ac.jpg",
+    "path": "workstation-poster.jpg",
+    "sha256": "4a0d31c33c402ded8162cc465477a8b24e90f86086cf5171d946a70c6c0db6a6",
+    "provenance": "用户于 2026-11-13 提供；用户说明本次提供资料不涉及未公开内容",
+    "verification": "材料原件；设备参数尚未经真机验证"
+  },
+  {
+    "original_name": "16c4987cb00e8d4bd7abec423760fc45.png",
+    "path": "edge-poster.png",
+    "sha256": "fda6ba9c96fb762c8a61bdea486d21a83110d5e619b58619d0d34397823fe4c1",
+    "provenance": "用户于 2026-11-13 提供；用户说明本次提供资料不涉及未公开内容",
+    "verification": "材料原件；设备参数尚未经真机验证"
+  }
+]
