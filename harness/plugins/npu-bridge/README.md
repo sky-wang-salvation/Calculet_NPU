@@ -1,44 +1,67 @@
 # Calculet NPU bridge for DeepSeek Harness
 
-这是可执行的第一版 Harness 插件：把后续 NPU 服务公布的生成能力变成 Agent 工具。已完成本机安装、编译、协议测试和官方 Cordis 工具注册验证；NPU 模型服务仍在独立测试，本插件没有执行模型推理。
+原生插件将受控 NPU 服务的生成与部署能力暴露为 Harness 工具。固定宿主为 `@deepseek-ai/dsh@0.2.2-rc.3`，包名 `dsh-calculet-npu`。采用官方 bundle、配置 schema、`defineTool` 和 Cordis 注册，不修改上游 Agent 循环。
 
-固定宿主为 `@deepseek-ai/dsh@0.2.2-rc.3`，插件名为 `dsh-calculet-npu`。使用官方 bundle、配置 schema、`defineTool` 和 `ctx.tools.register`，没有改动上游 Agent 循环。
+## 工具
 
 | 工具 | 行为 |
 | --- | --- |
-| `npu_status` | 未配置时返回 `not_configured`；接入后读取服务能力声明 |
-| `npu_list_models` | 只列出后端公布的模型；未配置时返回空列表 |
-| `npu_generate` | 仅向声明就绪的模型提交支持的任务 |
-| `npu_get_job` | 查询后端任务和产物引用 |
-| `npu_wait_job` | 有时限地等待已有任务；到时或查询中断保留 ID，可恢复查询，不取消或重新提交 |
+| `npu_status` | 未配置时返回未接入；接入后读取能力声明，不代表实际推理完成 |
+| `npu_list_models` | 列出后端公布的能力，未配置时为空 |
+| `npu_generate` | 向声明就绪的模型提交支持的生成任务 |
+| `npu_get_job` | 查询生成任务状态和产物 |
+| `npu_wait_job` | 有时限地查询生成任务，不取消或重复提交 |
+| `npu_plan_deployment` | 根据明确参数形成固定 TaskSpec，取得计划及阻塞项，不启动模型 |
+| `npu_apply_deployment` | 提交原计划ID、摘要及稳定幂等键；服务独立核对权限与绑定 |
+| `npu_get_deployment_job` | 查询部署阶段、证据与错误，区分失败、阻塞和待核对 |
+| `npu_wait_deployment_job` | 限时等待部署任务；到时保留ID，不重新部署 |
 
-生成与查询结果现在输出可读的状态、执行模式、错误和产物链接。PNG/JPEG/WebP/GIF 附带 Markdown 图片引用，供 Agent 回复复用；原生工具卡是否内联渲染由宿主决定。本机联调台提供实际图片预览和下载。
+## 部署支持范围
 
-## 无模型账号的本机联调
+第一版只支持 `sd35-medium` / `sd35-qproj-hybrid-smoke-v1`：256×256、batch 1、4 steps、guidance 1、无T5、每步首层Q投影在NPU。其余声明模块在CPU；`coreMigrationComplete=false`，验收等级为 `hybrid-smoke`。
 
-构建后运行 `npm run harness:test-service`，打开 `http://127.0.0.1:3081/`。
-联调台通过真实 Cordis 注册的五项插件工具执行请求，提供约 3 秒成功、预设失败及约 15 秒慢任务三种场景。
-固定 PNG 内有 TEST 标记；始终声明 `simulation`，不执行模型或 NPU。
-跟踪到时或停止后保留任务 ID，刷新页面可继续查询。任务只存内存，服务重启会清空。
+规划工具默认 seed 为20261115；prompt和seed通过结构化参数传递，prompt按服务合同去掉首尾空白。它会把完整spec返回供核对，不会把未支持分辨率、全NPU要求、额外T5或未知字段静默忽略。当前不支持任意模型安装、自动算子迁移、训练或正式画质发布。
 
-运行 `npm run test:integration` 可自动检查工具到 HTTP 服务、异步终态、产物内容和下载响应。
-Windows 安装、启动和验收见 [Windows 联调指南](../../docs/windows-integration.md)。
+计划必须在服务端重新核对之后才能执行。工具中的 `ready` 不代替设备授权；客户端也不能通过一个布尔字段提升权限。收到结果未知或 `reconciling` 时，应核对原任务，不另造幂等键盲目重跑。
 
-预留文生图、文生视频、图生视频三种协议任务；**这不表示现在已有三种可用模型**。图生视频要求后端预先提供输入产物 ID，当前没有上传工具。训练、模型安装、作业取消、自进化和专用图片展示卡尚未实现。
+详见[部署接口合同](../../docs/deployment-integration-contract.md)和[第五题验收合同](../../docs/deployment-acceptance.md)。
 
-配置 `backendURL` 留空即可验证加载；无需 NPU 服务，也不会退回其他生成服务。API Token 通过宿主 secret 配置保存，不写入仓库。默认单次 HTTP 请求超时 15 秒；长生成任务应立即返回任务句柄，随后轮询。
+## 配置与结果
 
-- [本机安装与验证](../../docs/local-development.md)
-- [后端接口草案](../../docs/backend-contract.md)
-- [GitHub 进度审查](../../docs/progress-review-20261114.md)
+`backendURL` 留空时九项工具可以注册，但不会自动使用演示或云端后端。`apiToken` 通过宿主 secret 配置保存，不写入仓库。默认单次 HTTP 请求超时15秒；长任务需立即返回任务句柄，之后轮询。
 
-从仓库的 `harness/` 目录运行：
+客户端检查协议版本、任务/计划身份、固定范围、产物同源地址和等待期间的一致性。成功部署要求输出PNG、JSON证据索引及结构化验收状态；这些检查不构成独立硅片执行认证，真机结果仍需原始证据。
+
+展示会标明 `simulation`、`hardware`（服务/适配器声明，需核对证据）或 `not_run`。数值 `METRICS_ONLY` 与正式验收通过不能混用。PNG附Markdown图片引用；部署服务提供短期、仅绑定单个产物的签名URL，不将API令牌放入链接。普通GET读取已由跨层测试覆盖，服务重启或链接过期后需重新查询任务获取新链接。官方聊天中的实际图片呈现仍需单独验证。
+
+## 原有固定图片联调台
+
+`npm run harness:test-service` 启动的仍是旧生成协议夹具，打开 `http://127.0.0.1:3081/` 可测试原五项生成链路工具。它只提供TEST图片和预设成功/失败/慢任务，始终为simulation，任务只在内存中。它不实现新增部署端点，也不是模型后端。
+
+## 检查
+
+在仓库 `harness/` 下运行：
 
 ```bash
-npm ci --cache .local/npm-cache
+npm ci --ignore-scripts --cache .local/npm-cache
+```
+
+```bash
 npm run build
+```
+
+```bash
 npm run typecheck
+```
+
+```bash
 npm test
 ```
 
-HTTP 测试只使用回环地址上的测试夹具，不执行或模拟任何生成模型。测试返回的 `simulation` 标签只用于验证协议字段，不能计入 NPU 成绩。
+```bash
+npm run test:integration
+```
+
+插件测试包含部署DSL、响应一致性、异步跟踪及九项原生工具注册；原联调测试读取固定PNG，不执行模型或NPU。官方聊天的自然语言选择还需实际配置获准规划模型并验证，不能以直接调用注册工具代替。
+
+[宿主安装与profile](../../docs/local-development.md) · [生成后端合同](../../docs/backend-contract.md) · [历史Windows联调](../../docs/windows-integration.md)

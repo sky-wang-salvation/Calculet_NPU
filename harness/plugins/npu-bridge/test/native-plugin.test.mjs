@@ -5,7 +5,7 @@ import SystemPrompt from '@deepseek-ai/dsh-system-prompt'
 import Tools from '@deepseek-ai/dsh-tools'
 import * as bridge from '../lib/index.js'
 
-test('real Cordis registry loads five tools, applies defaults, and unloads cleanly', async t => {
+test('real Cordis registry loads nine tools, applies defaults, and unloads cleanly', async t => {
   const ctx = new Context()
   t.after(() => ctx.fiber.dispose())
   await ctx.plugin(SystemPrompt).await()
@@ -13,7 +13,8 @@ test('real Cordis registry loads five tools, applies defaults, and unloads clean
   const fork = ctx.plugin(bridge, {})
   await fork.await()
   assert.deepEqual(ctx.tools.schemas().map(row => row.name).sort(),
-    ['npu_status', 'npu_list_models', 'npu_generate', 'npu_get_job', 'npu_wait_job'].sort())
+    ['npu_status', 'npu_list_models', 'npu_generate', 'npu_get_job', 'npu_wait_job',
+      'npu_plan_deployment', 'npu_apply_deployment', 'npu_get_deployment_job', 'npu_wait_deployment_job'].sort())
   const exec = { signal: new AbortController().signal }
   const status = await ctx.tools.get('npu_status').execute({}, exec)
   assert.equal(status.state, 'not_configured')
@@ -21,6 +22,11 @@ test('real Cordis registry loads five tools, applies defaults, and unloads clean
   assert.deepEqual(await ctx.tools.get('npu_list_models').execute({}, exec), { source: 'not_configured', models: [] })
   await assert.rejects(ctx.tools.get('npu_generate').execute({
     modelId: 'absent', task: 'text-to-image', prompt: 'test',
+  }, exec), error => error.code === 'BACKEND_NOT_CONFIGURED')
+  await assert.rejects(ctx.tools.get('npu_plan_deployment').execute({ prompt: 'test' }, exec), error => error.code === 'BACKEND_NOT_CONFIGURED')
+  await assert.rejects(ctx.tools.get('npu_plan_deployment').execute({ prompt: 'test', requireFullNpu: true }, exec), error => error.code === 'UNSUPPORTED_DEPLOYMENT_PROFILE')
+  await assert.rejects(ctx.tools.get('npu_apply_deployment').execute({
+    planId: 'plan-1', planDigest: 'a'.repeat(64), idempotencyKey: 'key-1',
   }, exec), error => error.code === 'BACKEND_NOT_CONFIGURED')
   await fork.dispose()
   assert.equal(ctx.tools.schemas().length, 0)

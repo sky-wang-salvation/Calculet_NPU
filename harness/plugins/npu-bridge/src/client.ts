@@ -1,15 +1,12 @@
 import { BridgeError, identifier, parseCapabilities, parseJob } from './protocol.js'
 import type { Capabilities, GenerateRequest, Job } from './protocol.js'
-import { setTimeout as delay } from 'node:timers/promises'
+import { makeDeploymentSpec, parseDeploymentPlan, parseDeploymentJob, deploymentDigest } from './deployment.js'
+import type { DeploymentInput, DeploymentPlan, DeploymentJob, ApplyDeploymentInput } from './deployment.js'
+import { pollJob } from './polling.js'
+import type { PollResult } from './polling.js'
 
-export interface WaitResult {
-  jobId: string
-  completed: boolean
-  timedOut: boolean
-  elapsedMs: number
-  job?: Job
-  queryError?: { code: string; message: string }
-}
+export type WaitResult = PollResult<Job>
+export type DeploymentWaitResult = PollResult<DeploymentJob>
 
 export interface BackendConfig {
   backendURL: string
@@ -79,42 +76,48 @@ export class NpuClient {
     return job
   }
 
-  /** Only polls GET: a stopped wait never cancels or resubmits a model job. */
+  async planDeployment(input: DeploymentInput, signal: AbortSignal): Promise<DeploymentPlan> {
+    const spec = makeDeploymentSpec(input, this.config.maxPromptChars)
+    const plan = parseDeploymentPlan(await this.request('v1/deployment-plans', signal, { spec }))
+    if (JSON.stringify(plan.spec) !== JSON.stringify(spec)) {
+      throw new BridgeError('INVALID_BACKEND_RESPONSE', 'The returned plan changed the requested task specification.')
+    }
+    return plan
+  }
+
+  async applyDeployment(input: ApplyDeploymentInput, signal: AbortSignal): Promise<DeploymentJob> {
+    identifier(input.planId)
+    identifier(input.idempotencyKey)
+    deploymentDigest(input.planDigest)
+    const job = parseDeploymentJob(await this.request('v1/deployment-jobs', signal, input), this.requireBase())
+    if (job.planId !== input.planId) throw new BridgeError('INVALID_BACKEND_RESPONSE', 'The deployment job does not belong to the submitted plan.')
+    return job
+  }
+
+  async getDeploymentJob(jobId: string, signal: AbortSignal): Promise<DeploymentJob> {
+    const job = parseDeploymentJob(await this.request(`v1/deployment-jobs/${encodeURIComponent(identifier(jobId))}`, signal), this.requireBase())
+    if (job.id !== jobId) throw new BridgeError('INVALID_BACKEND_RESPONSE', 'The requested and returned deployment identifiers differ.')
+    return job
+  }
+
   async waitJob(jobId: string, signal: AbortSignal, maxWaitMs = 30000, pollIntervalMs = 1000): Promise<WaitResult> {
-    identifier(jobId)
-    if (!Number.isSafeInteger(maxWaitMs) || maxWaitMs < 1 || maxWaitMs > 60000
-      || !Number.isSafeInteger(pollIntervalMs) || pollIntervalMs < 10 || pollIntervalMs > 10000) {
-      throw new BridgeError('INVALID_REQUEST', 'maxWaitMs must be 1–60000; pollIntervalMs must be 10–10000 milliseconds.')
-    }
-    signal.throwIfAborted()
-    this.requireBase()
-    const started = performance.now()
-    const deadline = AbortSignal.timeout(maxWaitMs)
-    const combined = AbortSignal.any([signal, deadline])
-    let job: Job | undefined
-    const result = (completed: boolean, timedOut: boolean): WaitResult => ({
-      jobId, completed, timedOut, elapsedMs: Math.round(performance.now() - started),
-      ...(job ? { job } : {}),
+    return pollJob({
+      jobId, signal, maxWaitMs, pollIntervalMs, ensureConfigured: () => { this.requireBase() },
+      query: nextSignal => this.getJob(jobId, nextSignal),
+      sameIdentity: (previous, next) => next.modelId === previous.modelId && next.task === previous.task
+        && (previous.executionKind === 'not_run' || next.executionKind === previous.executionKind),
+      terminal: job => ['succeeded', 'failed', 'cancelled'].includes(job.status),
     })
-    try {
-      while (true) {
-        const next = await this.getJob(jobId, combined)
-        if (job && (next.modelId !== job.modelId || next.task !== job.task
-          || (job.executionKind !== 'not_run' && next.executionKind !== job.executionKind))) {
-          throw new BridgeError('INVALID_BACKEND_RESPONSE', 'The job identity or execution mode changed while polling.')
-        }
-        job = next
-        if (['succeeded', 'failed', 'cancelled'].includes(job.status)) return result(true, false)
-        await delay(pollIntervalMs, undefined, { signal: combined })
-      }
-    } catch (cause) {
-      signal.throwIfAborted()
-      if (deadline.aborted) return result(false, true)
-      if (cause instanceof BridgeError) return {
-        ...result(false, false), queryError: { code: cause.code, message: cause.message },
-      }
-      throw cause
-    }
+  }
+
+  async waitDeploymentJob(jobId: string, signal: AbortSignal, maxWaitMs = 30000, pollIntervalMs = 1000): Promise<DeploymentWaitResult> {
+    return pollJob({
+      jobId, signal, maxWaitMs, pollIntervalMs, ensureConfigured: () => { this.requireBase() },
+      query: nextSignal => this.getDeploymentJob(jobId, nextSignal),
+      sameIdentity: (previous, next) => next.planId === previous.planId && next.profileId === previous.profileId
+        && (previous.executionKind === 'not_run' || next.executionKind === previous.executionKind),
+      terminal: job => ['succeeded', 'failed', 'blocked', 'reconciling'].includes(job.status),
+    })
   }
 
   private requireBase(): URL {
@@ -122,7 +125,7 @@ export class NpuClient {
     return this.base
   }
 
-  private async request(path: string, signal: AbortSignal, body?: GenerateRequest): Promise<unknown> {
+  private async request(path: string, signal: AbortSignal, body?: object): Promise<unknown> {
     signal.throwIfAborted()
     const url = new URL(path, this.requireBase())
     const timeout = AbortSignal.timeout(this.config.timeoutMs)
