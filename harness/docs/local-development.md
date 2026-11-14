@@ -10,19 +10,20 @@
 | DeepSeek Harness | `@deepseek-ai/dsh@0.2.2-rc.3` |
 | 上游源码依据 | tag `dsh-v0.2.2-rc.3`，commit `38a6a5c965aa99ab525161efb7cc5cf1fe62fced` |
 | 官方插件安装工具 | pnpm `11.28.5` |
-| 插件 | 本仓库 `plugins/npu-bridge`，版本 `0.1.0` |
-| 专用 profile | `calculet`，位于本项目 `.local/dsh-home/profiles/` |
+| 插件 | 本仓库 `harness/plugins/npu-bridge`，版本 `0.1.0` |
+| 专用 profile | `calculet`，位于 `harness/.local/dsh-home/profiles/` |
 | 本机界面 | `http://127.0.0.1:3080`，启动时提供本地认证地址 |
 
 本机通过 npm 安装官方预构建发行包，包内附带对应模块源码；没有完成整个上游 monorepo 的源码检出/构建。没有更改系统 Node、全局 Harness 配置或现有账号。
 
-当前 Mac 的 Node 位于工作区父目录 `.tools/node-v24.22.3-darwin-arm64/bin/`。双击仓库根目录的 `Start Calculet Harness.command` 会使用该 Node 启动并打开官方界面。已经运行时无需再启动第二份服务。首次聊天需要用户自行配置模型账号/API Key；当前隔离 profile 未配置模型凭据。
+当前 Mac 的 Node 位于工作区父目录 `.tools/node-v24.22.3-darwin-arm64/bin/`。双击 `harness/Start Calculet Harness.command` 会使用该 Node 启动并打开官方界面。已经运行时无需再启动第二份服务。首次聊天需要用户自行配置模型账号/API Key；当前隔离 profile 未配置模型凭据。
 
 ## 其他电脑复现
 
-安装 Node 24.9 以上的 24.x 版本及 pnpm 11.28.5，然后在仓库根目录运行：
+安装 Node 24.9 以上的 24.x 版本及 pnpm 11.28.5，然后从仓库根目录进入 `harness/` 运行：
 
 ```bash
+cd harness
 npm ci --cache .local/npm-cache
 npm run build
 npm run typecheck
@@ -45,11 +46,15 @@ npm run harness:config
 npm run harness
 ```
 
-启动器固定使用仓库下的 `.local/dsh-home`，叠加 `scripts/harness/local.patch.yml`。它关闭此 profile 的 session-log 上传和 telemetry exporter，保留本地运行。正常模型 API 调用会向所配置模型服务发送对话；非公开 SDK 资料仍须按赛事授权处理。
+启动器固定使用 `harness/` 下的 `.local/dsh-home`，叠加 `scripts/local.patch.yml`。它关闭此 profile 的 session-log 上传和 telemetry exporter，保留本地运行。正常模型 API 调用会向所配置模型服务发送对话；非公开 SDK 资料仍须按赛事授权处理。
 
-NPU 服务就绪后，将 `scripts/harness/npu.patch.example.yml` 复制到 `.local/npu.patch.yml`，在该本地文件填写真实 `backendURL` 和可选 `apiToken`，重启即可。启动器自动应用这个覆盖层，其余字段仍按 schema 校验。不要把填过 Token 的文件上传。未填写地址时，插件仍保持“未接入”。
+NPU 服务就绪后，将 `scripts/npu.patch.example.yml` 复制到 `.local/npu.patch.yml`，在该本地文件填写真实 `backendURL` 和可选 `apiToken`，重启即可。启动器自动应用这个覆盖层，其余字段仍按 schema 校验。不要把填过 Token 的文件上传。未填写地址时，插件仍保持“未接入”。
 
 npm 11.19 提示部分依赖安装脚本未运行。本机已检查并运行官方 `dsh-subprocess-local/scripts/ensure-spawn-helper.mjs`（恢复随包附带的 spawn-helper 执行位）；Web 启动已验证。还没有验证 Harness shell/PTY 等通用工具，不能推断全部宿主功能都通过。
+
+## 目录迁移说明（2026-11-14）
+
+Harness 的文档、源码、启动脚本和 npm 配置已统一到 `harness/`。上文命令及相对路径均以该目录为工作目录。旧工作副本根目录下的 `.local/` 和 `node_modules/` 不会自动迁移；请在新目录重新安装依赖并初始化 profile。已有 profile 如需保留，应先备份，再迁移到 `harness/.local/dsh-home`，并按上文命令重新安装新路径下的插件。凭据与本地运行数据仍不提交。
 
 ## 官方开发方式的实际选择
 

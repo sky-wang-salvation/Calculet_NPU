@@ -8,8 +8,8 @@
     "build": "npm run build --workspace dsh-calculet-npu",
     "typecheck": "npm run typecheck --workspace dsh-calculet-npu",
     "test": "npm run test --workspace dsh-calculet-npu",
-    "harness": "node scripts/harness/launch.mjs",
-    "harness:config": "node scripts/harness/launch.mjs --dump-config"
+    "harness": "node scripts/launch.mjs",
+    "harness:config": "node scripts/launch.mjs --dump-config"
   },
   "dependencies": {
     "@deepseek-ai/dsh": "0.2.2-rc.3"

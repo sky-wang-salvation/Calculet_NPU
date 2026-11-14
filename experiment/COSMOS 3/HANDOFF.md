@@ -8,7 +8,7 @@
 2. [原部署最新快照 schedule_02](schedule_02.md)：了解 Nano-Sim-Auto 路线已经报告的测试和待办。
 3. [Edge 研究入口](research/cosmos3_edge_npu_20261114/README.md)和[完整报告](research/cosmos3_edge_npu_20261114/调研报告.md)：了解新候选的架构、缺口和估算。
 4. [算子支持表](research/cosmos3_edge_npu_20261114/operator_support.csv)：逐项创建可执行探针，所有行目前仍是 `not_run`。
-5. [Harness 设计交接](../../docs/harness/HANDOFF.md)：用户需求、已排除方向和下一步应确认的价值。
+5. [Harness 设计交接](../../harness/docs/HANDOFF.md)：用户需求、已排除方向和下一步应确认的价值。
 
 ## 2. 必须区分的两个型号
 

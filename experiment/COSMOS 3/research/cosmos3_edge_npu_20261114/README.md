@@ -22,7 +22,7 @@
 - [第三方来源索引](SOURCE_REFERENCES.md)：仅提供原始链接和缓存哈希，不附第三方源码、架构图或论文副本。
 - [资源估算输入](estimator_inputs.json)：从原配置提取的必要数值，与完整上游配置分开。
 - [公开版校验记录](validation_report.json)
-- [DeepSeek Harness 方案章节](../../../../docs/harness/README.md)
+- [DeepSeek Harness 方案章节](../../../../harness/README.md)
 
 ## 无第三方缓存时复算
 

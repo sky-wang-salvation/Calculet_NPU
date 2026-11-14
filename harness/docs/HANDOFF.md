@@ -2,7 +2,7 @@
 
 ## 1. 给下一位协作者的起点
 
-先读 [README](README.md) 与 [本机开发交接](local-development.md)，再读 [讨论与取舍](discussion-and-decisions.md)。用户随后授权开始本机开发，第一版插件已实现；最终用户场景仍未确定。
+先读 [README](../README.md) 与 [本机开发交接](local-development.md)，再读 [讨论与取舍](discussion-and-decisions.md)。用户随后授权开始本机开发，第一版插件已实现；最终用户场景仍未确定。
 
 用户方向：做 DeepSeek Harness 与少见 NPU 的桥梁；需要能使用已部署模型，也能利用适配知识推进新模型。用户反复要求真实使用场景，并明确否定将固定安装、补丁或记忆封装当成主要独立价值。
 

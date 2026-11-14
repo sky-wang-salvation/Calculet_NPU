@@ -3,7 +3,7 @@ node_modules/
 .env
 .env.*
 !.env.example
-plugins/*/lib/
+harness/plugins/*/lib/
 *.tgz
 .DS_Store
 test-results/

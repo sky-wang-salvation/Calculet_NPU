@@ -1,6 +1,6 @@
 # 用户场景与验收：从任务结果看 NPU 价值
 
-完整场景表与五题解释见 [13-scenarios-and-value.md](../research/13-scenarios-and-value.md)。本页保留便于交接的简表；所有场景仍是候选设计。
+完整场景表与五题解释见 [13-scenarios-and-value.md](../../docs/research/13-scenarios-and-value.md)。本页保留便于交接的简表；所有场景仍是候选设计。
 
 ## 1. 问题—方案—设备工作—验收
 
