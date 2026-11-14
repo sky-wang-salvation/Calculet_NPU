@@ -1,0 +1,15 @@
+Usage: docc calbin from-calvx [OPTIONS] --out <OUT> <DIR>
+
+Arguments:
+  <DIR>
+
+Options:
+      --network <NETWORK>
+      --max-seq-len <MAX_SEQ_LEN>  [default: 32768]
+      --ddr <DDR>                  [default: 0xc0000000,0x2fe851000]
+      --sram <SRAM>                [default: 0x8000000,0x11c0000]
+      --arg <VALUE>
+  -o, --out <OUT>
+      --entries <ENTRIES>          [default: 0x0a210000,0x4a210000]
+      --no-params
+  -h, --help                       Print help

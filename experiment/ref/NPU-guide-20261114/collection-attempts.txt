@@ -1,0 +1,17 @@
+Collection date: 2026-11-14
+Scope: public HTTP endpoints only; no SSH connection or board access.
+This record transcribes the command/error fields returned by the collection tools. It is not an HTTP response-body archive.
+
+Attempt 1
+Command: curl --fail --show-error --silent --max-time 20 --max-filesize 262144 http://115.159.82.89/ -o <new-evidence-directory>/vendor-site/index.html
+Exit code: 22
+Complete curl error returned:
+curl: (22) The requested URL returned error: 502
+Result: no successful vendor-page snapshot was collected.
+
+Attempt 2
+Command: curl --fail --show-error --silent --max-time 20 --max-filesize 65536 http://115.159.82.89/git/api/v1/repos/calculet/npu/branches/main
+Exit code: 22
+Complete curl error returned:
+curl: (22) The requested URL returned error: 502
+Result: no current vendor npu commit ID was independently obtained.

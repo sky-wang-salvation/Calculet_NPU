@@ -1,0 +1,69 @@
+{
+  "prepared_on": "2026-11-14",
+  "purpose": "Evidence and provenance for experiment/NPU-guide.md",
+  "repository_baseline": {
+    "repository": "sky-wang-salvation/Calculet_NPU",
+    "commit": "f58950d64d6a33166caa9c54e6679d42c288e4f9",
+    "documents_read": [
+      "experiment/01-setup.md",
+      "experiment/02-guide.md"
+    ],
+    "classification": "Published team documentation, not vendor-original evidence or independent board verification"
+  },
+  "help_transcripts": [
+    {
+      "file": "help/docc-calbin-from-calvx.txt",
+      "command": "docc calbin from-calvx --help",
+      "source": "Complete help text supplied in the team's Linux terminal transcript",
+      "collection_method": "Transcription of the supplied help output; shell prompt omitted",
+      "independently_executed_during_manual_preparation": false
+    },
+    {
+      "file": "help/docc-calbin-doctor.txt",
+      "command": "docc calbin doctor --help",
+      "source": "Complete help text supplied in the team's Linux terminal transcript",
+      "collection_method": "Transcription of the supplied help output; shell prompt omitted",
+      "independently_executed_during_manual_preparation": false
+    },
+    {
+      "file": "help/dort-calbin-run.txt",
+      "command": "dort calbin run --help",
+      "source": "Complete help text supplied in the team's Linux terminal transcript",
+      "collection_method": "Transcription of the supplied help output; shell prompt omitted; original source symbols retained",
+      "independently_executed_during_manual_preparation": false
+    }
+  ],
+  "historical_reports": [
+    {
+      "file": "reports/tiny-doctor.txt",
+      "command": "docc calbin doctor target/tiny-native-output",
+      "source": "Complete doctor output supplied in the team's Linux terminal transcript",
+      "collection_method": "Transcription of the supplied report; shell prompt omitted; original source symbols retained",
+      "independently_executed_during_manual_preparation": false,
+      "limitations": "Historical static package inspection, not board execution or numerical correctness"
+    }
+  ],
+  "vendor_collection": {
+    "record": "collection-attempts.txt",
+    "attempted_urls": [
+      "http://115.159.82.89/",
+      "http://115.159.82.89/git/api/v1/repos/calculet/npu/branches/main"
+    ],
+    "observed_result": "Both requests failed with curl exit 22 and HTTP 502",
+    "successful_current_vendor_snapshot": false,
+    "current_vendor_source_commit_verified": false
+  },
+  "integrity": {
+    "manifest": "MANIFEST.sha256",
+    "meaning": "Checksums of the archived files in this directory; excludes the manifest itself",
+    "checkout_bytes": "A scoped .gitattributes disables automatic text newline conversion for this evidence directory only",
+    "limitations": "Checksums verify these archived file bytes, not original terminal byte identity, SDK authenticity, model correctness, or NPU execution"
+  },
+  "validation_boundary": {
+    "new_environment_replay": false,
+    "ssh_connection": false,
+    "device_access": false,
+    "npu_execution": false,
+    "default_cli_values": "Historical values from the supplied help; each installation must check its own help before use"
+  }
+}

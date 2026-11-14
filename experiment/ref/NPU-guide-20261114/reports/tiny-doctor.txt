@@ -1,0 +1,30 @@
+calbin target/tiny-native-output
+  模型    tiny-native-input  type=llm  n_batch=1  max_seq_len=32768  设备=["ks1"]
+  保留区  dram_rsvd  0x00c0000000  12860067840 字节
+  保留区  sram_rsvd  0x0008000000  18612224 字节
+  保留区  sync_rsvd  0x000a080000  20 字节
+  权重块  param_blk0.bin 1 片，共 6221824 字节
+  权重块  param_blk1.bin 1 片，共 6221824 字节
+  子模型  1 个
+  ── tiny-native-input  type=llm_decode  mchip=mchip  utype=[cpu,ccu]
+     ccu   ccu0_chip0.elf         dram  chip 00000000 00000000 00000001  47624 字节
+     ccu   ccu1_chip0.elf         dram  chip 00000000 00000000 00000001  35608 字节
+     ccu   ccu0_chip1.elf         dram  chip 00000000 00000000 00000002  47576 字节
+     ccu   ccu1_chip1.elf         dram  chip 00000000 00000000 00000002  35608 字节
+     cpu   cpu_chip0_ping.bin     chip 00000000 00000000 00000001  7 条：broadcast_data×1 data_moving×4 end×1 uniop×1
+     cpu   cpu_chip0_pong.bin     chip 00000000 00000000 00000001  7 条：broadcast_data×1 data_moving×4 end×1 uniop×1
+     cpu   cpu_chip1_ping.bin     chip 00000000 00000000 00000002  5 条：data_moving×4 end×1
+     cpu   cpu_chip1_pong.bin     chip 00000000 00000000 00000002  5 条：data_moving×4 end×1
+     pld_  4 份（⚠ 不在清单里，按文件名扫出来的），共 1064 字节
+     张量  输入 2  输出 1  icsr 2
+  文件    16 个，共 12613529 字节
+   ⭐ model manifest                              1 个  485 字节
+   ⭐ submodel manifest                           1 个  932 字节
+   ⭐ param/kv blob                               2 个  12443648 字节
+   ⭐ CCU ELF                                     4 个  166416 字节
+   ⭐ CPU command stream                          4 个  984 字节
+      pld_ stream (dort only)                     4 个  1064 字节
+  检查    ⛔ 拒收 0 条  ⚠ 警告 3 条  ⛔ 解不开的稳态流 0 份
+   ⚠  tensor `in_input_ids` in submodel `tiny-native-input` gives ping and pong the same address 0xc05f0000; the two must differ or a second inference overwrites the first
+   ⚠  tensor `in_position_ids` in submodel `tiny-native-input` gives ping and pong the same address 0xc0600000; the two must differ or a second inference overwrites the first
+   ⚠  tensor `out_outputs_0` in submodel `tiny-native-input` gives ping and pong the same address 0xc0610000; the two must differ or a second inference overwrites the first

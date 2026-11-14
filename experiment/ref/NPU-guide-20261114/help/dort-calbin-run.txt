@@ -1,0 +1,90 @@
+⭐⭐⭐ 在板子上**真跑**：部署、喂输入、等完成、读输出。
+
+🚨 这是 `dort` 里唯一会让 CCU 动起来的子命令，其余都是看状态。
+
+Usage: dort calbin run [OPTIONS] --calbin <CALBIN>
+
+Options:
+  -f, --calbin <CALBIN>
+          calbin 目录，或打成一个文件的 calbin
+
+  -j, --json
+          以 JSON 格式输出（对所有子命令生效）
+
+  -i, --index <INDEX>
+          只看这一个设备（下标，如 0）；默认列出全部
+
+  -m, --model <MODEL>
+          模型名；不给就列出全部模型然后退出
+
+      --deploy-only
+          只部署，不推理
+
+      --dump-layout
+          ⭐ 部署后打印设备上各 section 的实际落点。
+
+          🚨 没有它，一次「deploy completed」看不出是真部署了还是部署了 0 字节。
+
+      --raw-in <FILE>
+          ⭐⭐ 裸字节模式：把这个文件原样写进输入张量，跑一次，输出原样写出。
+
+          ⚠ 默认那条路是 LLM 专用的（token 平面 + 位置平面）；一个单算子包的 输入就是一段 bf16，⛔ 没有平面。
+
+      --raw-out <FILE>
+          裸字节模式的输出落到哪个文件。
+
+          [default: /tmp/raw_out.bin]
+
+      --in-tensor <IN_TENSOR>
+          输入张量名。
+
+          [default: in]
+
+      --out-tensor <OUT_TENSOR>
+          输出张量名。
+
+          [default: out]
+
+      --tokens <TOKENS>
+          ⭐ LLM：prompt 的 token id，逗号分隔（`--tokens 9707,11,1879`）。
+
+          [default: 1]
+
+  -s, --steps <STEPS>
+          ⭐ LLM：一共出几个 token。1 = 只跑 prefill；更多就要 `-d`。
+
+          [default: 1]
+
+  -d, --decode-model <DECODE_MODEL>
+          LLM：decode 子模型名（`--steps` > 1 时要）。
+
+      --in-tokens <IN_TOKENS>
+          LLM：token 输入张量名。⚠ 名字随模型走（`inputs[0]` / `input_ids`）。
+
+          [default: inputs[0]]
+
+      --in-positions <IN_POSITIONS>
+          LLM：位置输入张量名（`inputs[1]` / `position_ids`）。
+
+          [default: inputs[1]]
+
+      --out-logits <OUT_LOGITS>
+          LLM：logits 输出张量名。
+
+          [default: outputs[0]]
+
+      --dump-out <DIR>
+          LLM：每步把输出张量（`--out-logits`）原样写进这个目录（`<tag>-<步>.bin`：prefill-0、decode-1 …）； 整步程序调试时把中间张量拷进输出张量再读回，⛔ 走裸字节模式（它不设 `cur_seq_len` 两个 CSR）。
+
+      --board-lock <BOARD_LOCK>
+          板锁文件；`external` = 外面已经 `flock` 住了（⛔ 再拿同一个文件会等自己的父进程）。
+
+          [default: /opt/data/locks/board.lock]
+
+      --lock-wait <LOCK_WAIT>
+          等板锁的上限（秒）。
+
+          [default: 900]
+
+  -h, --help
+          Print help (see a summary with '-h')

@@ -1,0 +1,15 @@
+Checks that a calbin is complete, and prints what is in it.
+
+Complete means: the manifests parse, calrt would load it (every rule `calbin` knows, refusals and warnings both listed), every file the manifests name is there, and every steady command stream decodes. The report is the model line, the reservations and weight blocks, and per submodel its CCU images, command streams, shared libraries and tensors.
+
+Exit status is failure when anything is refused or a stream does not decode; warnings alone do not fail it.
+
+Usage: docc calbin doctor <DIR|FILE>
+
+Arguments:
+  <DIR|FILE>
+
+
+Options:
+  -h, --help
+          Print help (see a summary with '-h')
