@@ -4,6 +4,66 @@
 
 **本手册是团队公开维护的操作指南，不是厂商官方手册，也不代表任意模型已经迁移成功。** 文中将命令的含义、执行位置、前置条件、检查方式和停止条件分开说明。
 
+<a id="cuda-migration"></a>
+## 0. NVIDIA / CUDA 用户先看：命令与迁移对照
+
+已有 NVIDIA 开发经验时，可以先按本节找到相同任务在 Calculet 流程中的位置，再跳到正文执行完整步骤。**这是任务与职责对照，不是将命令名、API 或文件后缀替换后就能运行的兼容说明。**
+
+表内 NVIDIA 命令是常见用法示意，本次没有执行；`kernel.cu`、`kernel.ptx`、`./app`、`app.py` 是示例文件名，`...` 与 `<...>` 是省略和占位，不能原样当作完整脚本复制。CUDA Runtime、cuBLAS、cuDNN 是编程接口或库，不是 shell 命令。
+
+### 0.1 按熟悉的 NVIDIA 操作定位 NPU 入口
+
+| 任务 | NVIDIA / CUDA 侧常见做法 | Calculet NPU 侧入口 | 对应关系与迁移注意 |
+| --- | --- | --- | --- |
+| 核对编译器 | `nvcc --version` | `rustc +calculet --version --verbose`；另查 `command -v docc dort` | **近似职责**。这是不同工具的版本，不能只看默认 `rustc` 或把工具路径当版本证明；见[安装验收](#setup) |
+| 查看设备与状态 | `nvidia-smi`、`nvidia-smi -L` | 先用本机 `dort --help` 查受支持的设备查询子命令 | **固定等价命令尚未核实**。`--help` 本身不产生设备状态报告，不把它冒充 NPU 版 `nvidia-smi`；见[设备授权](#authorization) |
+| 选择设备 | `CUDA_VISIBLE_DEVICES=2,1 python app.py` | 已获授权的 `dort calbin run ... --index <分配下标>` | **只对照选择任务**。CUDA 变量还控制进程内可见性和枚举顺序；NPU 下标不能按 CUDA 逻辑编号直接照搬 |
+| 配置开发环境 | CUDA Toolkit、主机编译器及项目依赖 | `rustup`、配套 `calculet`、`docc/dort` 与平级 SDK 源码 | **不同工具链**。装好 CUDA 或 PyTorch 不代表 NPU 工具链已经安装；见[环境准备](#prerequisites) |
+| 编译设备代码 | `nvcc -c kernel.cu -o kernel.o` | `cargo build -p tiny --lib --target dopamine-unknown-none-elf` | **近似编译阶段，不同源码与产物**。CUDA kernel 不能交给 cargo 原样编译；这里是 tiny 示例，见[cargo 说明](#cargo) |
+| 查看设备侧中间表示 | `nvcc --ptx kernel.cu -o kernel.ptx` | 检查本次生成的 `tiny.cvx` | **仅作理解类比**。PTX 与 CalVX 不互通，不存在改后缀即可转换的结论 |
+| 准备完整执行入口 | 主机 `main`、CUDA 调用与设备 kernel 的配套构建 | tiny 使用 `--features step`，实际模型还需程序声明、图/计划与主机编排 | **不是单条编译命令的替换**。能编 kernel 不等于已有完整模型入口；见[完整程序](#cargo) |
+| 设备原生产物生成 | `nvcc --cubin kernel.ptx -o kernel.cubin` 等 CUDA 构建阶段 | `docc calbin from-calvx <输入目录> --out <新输出路径>` | **职责部分相近，包不等价**。docc 流程还组织权重、清单、命令流等；`.cubin` 不是 calbin，见[打包](#docc) |
+| 复用算子库 | cuBLAS / cuDNN | 按职责理解 `calBLAS` / `calDNN`，核对实际算子、shape、dtype 与接入方式 | **不是 API/ABI 兼容承诺**。不能改链接库名就复用所有实现 |
+| 启动一次计算 | `./app` 或项目的 `python app.py` 通过 CUDA Runtime 启动计算 | `dort calbin run` 配合实际包、设备与模型名 | **近似启动职责**。`cargo run -p tiny-pack` 是 CPU helper，不是在 NPU 推理；见[运行参数](#dort-options) |
+| 准备输入和读回输出 | 应用通过 CUDA Runtime 等接口组织传输、调用和同步 | 匹配包接口的 LLM 参数或适用的 `--raw-in/--raw-out`，必要时使用专用主机程序 | **不能逐个 API 机械对应**。raw 模式不会自动补齐多输入或 LLM 状态；见[模式边界](#raw-mode) |
+| 检查部署包结构 | 按具体 CUDA 应用核对链接、文件与依赖，没有统一的跨项目单条命令 | `docc calbin doctor <包>` | **NPU 包的离线检查**。它不启动模型，也不证明设备数值正确；见[doctor](#doctor) |
+| 查运行时内存错误 | `compute-sanitizer --tool memcheck ./app` | 本手册尚未核实可直接对应的 NPU 动态检查器 | **不是 doctor 的对应功能**。Compute Sanitizer 随应用运行检查 CUDA 访问等行为，doctor 检查包结构 |
+| 分析性能 | `nsys profile ./app` | 先获取平台支持的 NPU 测量方法；保留实际部署、执行与输出日志 | **固定等价 profiler 命令尚未核实**。`--dump-layout`、doctor、总墙钟时间都不能直接当 NPU 核内性能分析 |
+| 建立正确性基线 | 原项目的 CPU/框架参考与固定输入，具体程序由项目决定 | tiny 的 `tiny-ref`，或真实模型自己的参考程序 | **相同验证原则**。没有通用“CPU 参考命令”自动替代所有模型；见[输出比较](#outputs) |
+
+NVIDIA 侧定义已按官方文档核对，短原文和来源见[对照依据](#nvidia-sources)；Calculet 侧仍以本手册已有的 SDK 帮助转录与团队记录为基础，没有因此新增真机验证结论。
+
+### 0.2 先建立正确的编译链路模型
+
+```text
+CUDA 侧的职责示意：
+  CUDA 源码与主机代码 → 编译/链接、可能的 PTX 与设备原生代码 → 应用与 CUDA Runtime → GPU 执行
+
+Calculet 侧的本手册流程：
+  Rust kernel 与完整程序声明 → CalVX → docc 原生生成与 calbin → dort/配套主机程序 → NPU 执行
+```
+
+这是为解释职责而拆分的示意；CUDA 可以采用不同的提前编译、即时编译和打包方式，并非每个项目都显式留下独立 `.ptx` 文件。CalVX 与 PTX 处在可类比的位置，不代表两者指令集、二进制、内存模型或同步语义兼容。
+
+`calbin` 也不是“把 CUDA 可执行文件换个后缀”：源程序、算子语义、张量布局、真实权重和运行接口都要匹配目标实现。默认 tiny kernel 编译、启用 `step`、docc 打包和 dort 上板是不同阶段。
+
+### 0.3 最容易误判的四个对应关系
+
+1. **`nvidia-smi` 显示的 CUDA 版本不等于 `nvcc` 版本。** 驱动支持的 CUDA 能力与已安装工具包可能不同；迁移时分别记录驱动/运行环境、编译器和库。同理，NPU 设备报告不能代替 SDK 工具链版本记录。
+2. **`CUDA_VISIBLE_DEVICES` 不等于 NPU 的 `--index`。** NVIDIA 官方文档说明，`CUDA_VISIBLE_DEVICES=2,1` 后，CUDA 进程内逻辑设备 `0` 对应原设备 `2`；不要将该逻辑编号、PCI 顺序、芯粒编号和 NPU 运行器下标混为一谈。CUDA 环境变量也不是 NPU 设备选择协议。
+3. **`doctor` 不等于 Compute Sanitizer。** 前者可离线检查 calbin，后者的 memcheck 是 CUDA 应用的运行时检查；doctor 无拒收不能推出没有越界、竞争或数值错误，尤其不能忽略 ping/pong 同址警告。
+4. **`--dump-layout` 不等于 Nsight Systems。** 前者显示实际部署落点，Nsight 的 `profile` 会启动应用进行分析。CPU/主机时间线即使能采集，也不能在没有专门支持的证据时直接解释成 NPU kernel 内部耗时。
+
+### 0.4 从 NVIDIA 工程迁移时按什么顺序推进
+
+1. **先保留原工程基线。** 固定模型、源码、真实权重、输入 shape/dtype、随机配置与参考输出，而不是先替换全部依赖。
+2. **保留可复用的主机逻辑，识别不可直接复用的核心计算。** 预处理、后处理和参考程序可以按项目条件复用；CUDA/Triton kernel、CUDA 扩展和设备专用布局需要面向目标实现适配。不能假定把 `.cuda()` 改成 `.npu()` 就已取得完整兼容后端。
+3. **按 Calculet 链路做最小离线验证。** 从 tiny 学会完整程序、权重与原生包的组织，再验证真实模型所需算子和子图；不是把 tiny 的测试权重当成目标模型。
+4. **在授权窗口验证真实 NPU 计算。** 核对设备、包和输入，执行受控单次计算并读回结果；已有静态检查不能代替这一步。
+5. **先正确，再扩大规模与优化。** 对照同一基线检查数值与可重复性，再使用已确认的测量口径分析瓶颈，不把改命令后“能启动”当成迁移完成。
+
+完整迁移方法见 [02-guide.md](02-guide.md)，本手册下文继续按实际命令解释操作细节。
+
 ## 阅读前必须知道的边界
 
 - 团队已发布的 tiny 记录包含 CPU 参考、CalVX 编译、原生打包和离线检查；该记录不包含 tiny 的 NPU 数值正确性与性能验证。
@@ -14,6 +74,7 @@
 
 ## 目录
 
+0. [NVIDIA / CUDA 用户先看：命令与迁移对照](#cuda-migration)
 1. [先分清在哪里运行](#locations)
 2. [工具与文件分别是什么](#concepts)
 3. [Linux 命令入门与复制规则](#shell)
@@ -1022,3 +1083,18 @@ CPU 参考中 `exp`、`rsqrt` 等实现可能与 NPU 近似指令不同。不能
 - [完整程序打包约定的 SDK 示例](http://115.159.82.89/git/calculet/calBLAS/src/branch/main/examples/minimax_h3/README.md)
 
 这些是资料入口，不代表本次已成功取得最新内容。服务恢复或工具更新后，应补充实际版本及完整输出，再调整指南；不把记忆中的命令、目录名称或其他环境的报告当成本环境已经验证的事实。
+
+<a id="nvidia-sources"></a>
+### 19.3 前置 NVIDIA / CUDA 对照的依据
+
+2026-11-14 补充对照时，通过 HTTPS 取得下列 NVIDIA 官方文档，核对相关定义，并保存短引文与源页面完整 SHA-256；没有执行表内的 CUDA 命令，也没有重新安装或运行 Calculet SDK。NVIDIA 资料只能证明 NVIDIA 侧定义，不能据此推出另一款 NPU 的接口或工具兼容。
+
+| 编号与官方入口 | 核对内容 | 可复核的短原文 |
+| --- | --- | --- |
+| N1：[NVCC 文档](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html) | 版本选项、PTX 与 cubin 的设备侧输出 | [节选第 6～12 行](ref/NVIDIA-comparison-20261114/EXCERPTS.txt#L6-L12) |
+| N2：[NVIDIA-SMI 文档](https://docs.nvidia.com/deploy/nvidia-smi/index.html) | GPU 枚举、驱动报告的 CUDA 能力与工具包版本的区别 | [节选第 14～20 行](ref/NVIDIA-comparison-20261114/EXCERPTS.txt#L14-L20) |
+| N3：[CUDA 环境变量](https://docs.nvidia.com/cuda/cuda-programming-guide/05-appendices/environment-variables.html) | `CUDA_VISIBLE_DEVICES` 的可见性和枚举顺序 | [节选第 22～27 行](ref/NVIDIA-comparison-20261114/EXCERPTS.txt#L22-L27) |
+| N4：[Compute Sanitizer 文档](https://docs.nvidia.com/compute-sanitizer/ComputeSanitizer/index.html) | memcheck 属于运行时检查，不是包清单检查 | [节选第 29～33 行](ref/NVIDIA-comparison-20261114/EXCERPTS.txt#L29-L33) |
+| N5：[Nsight Systems 文档](https://docs.nvidia.com/nsight-systems/UserGuide/index.html) | `profile` 启动应用并进行分析 | [节选第 35～39 行](ref/NVIDIA-comparison-20261114/EXCERPTS.txt#L35-L39) |
+
+新对照的 [SOURCES.json](ref/NVIDIA-comparison-20261114/SOURCES.json) 记录 URL、取回方式、完整 HTML 字节数和哈希；[MANIFEST.sha256](ref/NVIDIA-comparison-20261114/MANIFEST.sha256) 覆盖本目录的归档文件。完整页面仅用于本地复核，不在资料仓库中整页再分发；短引文按空白规范化保存，不宣称是完整原文镜像。前版 Calculet 帮助与历史证据保留原样。

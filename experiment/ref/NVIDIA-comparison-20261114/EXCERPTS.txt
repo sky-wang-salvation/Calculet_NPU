@@ -1,0 +1,44 @@
+NVIDIA comparison: short source excerpts
+Collected on: 2026-11-14
+Method: public HTML downloaded with HTTPS; quoted text extracted with whitespace normalization.
+Scope: short excerpts, not complete vendor pages. No CUDA or NPU application was executed.
+
+[N1] NVIDIA CUDA Compiler Driver NVCC
+URL: https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html
+Sections: 4.2.8.22 --version; 4.2.2.9 --cubin; 4.2.2.10 --ptx.
+Raw HTML SHA256: 6c9720e69697e86c105bfbc901c6131ddb1daf5fed21df7901735fa1676b901c
+Quote: Print version information on this tool.
+Quote: Compile all .cu and .ptx input files to device-only .cubin files.
+Quote: Compile all .cu input files to device-only .ptx files.
+
+[N2] NVIDIA System Management Interface
+URL: https://docs.nvidia.com/deploy/nvidia-smi/index.html
+Sections: LIST OPTIONS; CUDA version reporting.
+Raw HTML SHA256: 94d1737cdff11b5ef89b121e97365706feeb8ccc18978fecec571bdbbe6ec9ed
+Quote: List each of the NVIDIA GPUs in the system, along with their UUIDs.
+Quote: This is the latest CUDA version supported by the driver.
+Quote: This is usually, but not always, the version of the CUDA toolkit installed on the system.
+
+[N3] CUDA Programming Guide: Environment Variables
+URL: https://docs.nvidia.com/cuda/cuda-programming-guide/05-appendices/environment-variables.html
+Section: 5.2.1.1 CUDA_VISIBLE_DEVICES.
+Raw HTML SHA256: 429234350b70d813f75d68ef5ab1ff71cc24c47a5acad0cd7751ed602a7e3a50
+Quote: The environment variable controls which GPU devices are visible to a CUDA application and in what order they are enumerated.
+Quote: The enumeration order of the GPU devices determines the ordinal values.
+
+[N4] NVIDIA Compute Sanitizer
+URL: https://docs.nvidia.com/compute-sanitizer/ComputeSanitizer/index.html
+Sections: What is Memcheck?; Using Memcheck.
+Raw HTML SHA256: acf087903ada8211fb86a73eb11a5bbd90fcb840aed3d29332b10aa6be11c35e
+Quote: The memcheck tool is a run time error detection tool for CUDA applications.
+
+[N5] NVIDIA Nsight Systems User Guide
+URL: https://docs.nvidia.com/nsight-systems/UserGuide/index.html
+Section: CLI Command Switches.
+Raw HTML SHA256: 55c048476ded375d7f00a16ab960e9d3047aa452bcb3fbede2f462dce8ebf1b0
+Quote fragment: launch your application and begin analysis
+
+Interpretation boundary
+NVIDIA documentation establishes the NVIDIA-side command meaning only.
+Calculet-side facts rely on the separately archived SDK help and published team records.
+A similar workflow role does not establish API, binary, memory, synchronization, or performance-tool compatibility.

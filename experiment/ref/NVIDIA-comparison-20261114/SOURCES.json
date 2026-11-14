@@ -1,0 +1,62 @@
+{
+  "prepared_on": "2026-11-14",
+  "purpose": "NVIDIA/CUDA comparison at the beginning of experiment/03-NPU-guide.md",
+  "repository_baseline": "c405a0b48ed05d919c7fb85c30651e69fb64ca20",
+  "sources": [
+    {
+      "id": "N1",
+      "title": "NVIDIA CUDA Compiler Driver NVCC",
+      "url": "https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html",
+      "local_review_file": "nvcc/page.html",
+      "raw_html_bytes": 445083,
+      "raw_html_sha256": "6c9720e69697e86c105bfbc901c6131ddb1daf5fed21df7901735fa1676b901c"
+    },
+    {
+      "id": "N2",
+      "title": "NVIDIA System Management Interface",
+      "url": "https://docs.nvidia.com/deploy/nvidia-smi/index.html",
+      "local_review_file": "smi/page.html",
+      "raw_html_bytes": 235840,
+      "raw_html_sha256": "94d1737cdff11b5ef89b121e97365706feeb8ccc18978fecec571bdbbe6ec9ed"
+    },
+    {
+      "id": "N3",
+      "title": "CUDA Programming Guide: Environment Variables",
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/05-appendices/environment-variables.html",
+      "local_review_file": "cuda-env/page.html",
+      "raw_html_bytes": 83005,
+      "raw_html_sha256": "429234350b70d813f75d68ef5ab1ff71cc24c47a5acad0cd7751ed602a7e3a50"
+    },
+    {
+      "id": "N4",
+      "title": "NVIDIA Compute Sanitizer",
+      "url": "https://docs.nvidia.com/compute-sanitizer/ComputeSanitizer/index.html",
+      "local_review_file": "sanitizer/page.html",
+      "raw_html_bytes": 207478,
+      "raw_html_sha256": "acf087903ada8211fb86a73eb11a5bbd90fcb840aed3d29332b10aa6be11c35e"
+    },
+    {
+      "id": "N5",
+      "title": "NVIDIA Nsight Systems User Guide",
+      "url": "https://docs.nvidia.com/nsight-systems/UserGuide/index.html",
+      "local_review_file": "nsys/page.html",
+      "raw_html_bytes": 1314852,
+      "raw_html_sha256": "55c048476ded375d7f00a16ab960e9d3047aa452bcb3fbede2f462dce8ebf1b0"
+    }
+  ],
+  "collection": {
+    "transport": "HTTPS with normal TLS certificate validation",
+    "download_result": "curl completed successfully with --fail and --location for each page",
+    "excerpts": "EXCERPTS.txt",
+    "excerpt_method": "HTML text extraction, whitespace normalization, and short exact quotations",
+    "raw_html_location": "Local source-review scratch directory outside this repository; complete vendor pages are not redistributed here",
+    "raw_html_integrity": "Each retained source page is independently checked against the byte count and SHA256 above"
+  },
+  "limitations": {
+    "installed_cuda_version_verified": false,
+    "cuda_commands_executed": false,
+    "new_calculet_sdk_execution": false,
+    "board_access": false,
+    "meaning": "This evidence supports NVIDIA command documentation and an explicitly qualified conceptual comparison, not a cross-vendor equivalence or tested model migration"
+  }
+}
