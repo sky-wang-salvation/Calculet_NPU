@@ -1,0 +1,25 @@
+{
+  "name": "calculet-npu-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["plugins/npu-bridge"],
+  "scripts": {
+    "build": "npm run build --workspace dsh-calculet-npu",
+    "typecheck": "npm run typecheck --workspace dsh-calculet-npu",
+    "test": "npm run test --workspace dsh-calculet-npu",
+    "harness": "node scripts/harness/launch.mjs",
+    "harness:config": "node scripts/harness/launch.mjs --dump-config"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh": "0.2.2-rc.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "playwright": "^1.56.0",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=24.9.0 <25"
+  }
+}

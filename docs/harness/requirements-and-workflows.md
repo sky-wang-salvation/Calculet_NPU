@@ -14,14 +14,14 @@
 
 | 部分 | 责任 | 当前边界 |
 | --- | --- | --- |
-| DeepSeek Harness 插件 | 能力发现、工具调用、任务状态、产物与反馈的组织 | 尚未实现与实际安装验证 |
+| DeepSeek Harness 插件 | 能力发现、工具调用、任务状态、产物与反馈的组织 | 四项桥接工具已本机安装验证；模型服务、产物展示与反馈尚未接入 |
 | 本地文本模型 | 理解任务、规划工具使用、提炼候选经验 | 具体模型/接口、工具调用与效果要测试 |
 | 多模态生成模型 | 生成实际支持的图像、视频等结果 | 不从一个模型推断全部模态和任务都支持 |
 | NPU 后端 | 执行已适配核心子图/模型，提供可追溯执行证据 | 以当前版本、shape、精度和设备记录为准 |
 | Skills/配方/安装包 | 保存可重复方法、条件、步骤与检查 | 固定流程优先作为确定性组件；不能单独充当应用价值证明 |
 | CPU 工具 | 文件、分词、必要前后处理、排版与任务调度 | 如实列入端到端时间与处理器分工 |
 
-官方 Harness 提供模型适配器、工具与事件扩展的设计入口，参考[架构文档](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/architecture.md)、[模型适配手册](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-an-llm-adapter.zh.md)、[工具手册](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-tool.zh.md)。这些是已阅读的方案依据，最终开发须固定版本；本项目未证明接口已对接。
+官方 Harness 提供模型适配器、工具与事件扩展的设计入口。当前实现固定 `dsh-v0.2.2-rc.3`，采用原生工具与 bundle/profile；版本、官方参考和测试见 [本机开发交接](local-development.md)。NPU 服务合同仍待部署团队实现与联调。
 
 ## 3. 工作流 A：使用已部署模型
 

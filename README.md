@@ -45,6 +45,7 @@
 - [Cosmos 3 总入口](experiment/COSMOS%203/README.md)与[交接文档](experiment/COSMOS%203/HANDOFF.md)：区分 Nano 部署记录和 Edge 研究。
 - [Cosmos3-Edge 调研包](experiment/COSMOS%203/research/cosmos3_edge_npu_20261114/README.md)：报告、算子表、可独立复算的资源估算、来源与版本记录。
 - [DeepSeek Harness 方案章节](docs/harness/README.md)与[讨论和取舍](docs/harness/discussion-and-decisions.md)：需求、候选场景、已否定方向、当前结论与待办。
+- [Harness 本机插件](plugins/npu-bridge/README.md)与[开发交接](docs/harness/local-development.md)：已实现四项原生工具并完成本机安装验证，等待真实 NPU 服务接入。
 - [用户场景与 NPU 价值图](docs/research/13-scenarios-and-value.md)：从用户任务对应问题、方案、核心计算与验收。
 
-新增研究包尚未进行 NPU 编译、模型推理或真机测试；资源估算是公式计算。其他实验的状态以各自 schedule 快照为准。Harness 章节记录方案讨论，未宣称插件已经实现。
+新增研究包尚未进行 NPU 编译、模型推理或真机测试；资源估算是公式计算。其他实验的状态以各自 schedule 快照为准。Harness 新增插件基础实现与本机验证，没有完成 NPU 推理或自进化验收。
