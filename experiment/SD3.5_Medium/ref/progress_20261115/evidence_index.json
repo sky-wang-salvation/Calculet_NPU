@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "model-progress-evidence/v1",
+  "archiveDate": "2026-11-15",
+  "sourceObservationCutoffUtc": "2026-11-14T22:19:47.922823+00:00",
+  "generatedAtUtc": "2026-11-14T22:21:51.710564+00:00",
+  "officialBaseCommit": "db272f11639e9c6120331c2dc1289d4445cad775",
+  "archiveActivity": "read_existing_records_and_recompute_selected_file_hashes_only",
+  "newModelExecution": false,
+  "newDeviceAccess": false,
+  "rawRestrictedEvidencePublished": false,
+  "hashMeaning": "SHA-256 of frozen local file bytes; not numerical acceptance or proof of a fresh device run",
+  "reproductionLimit": "Public excerpts do not include the controlled executable project, raw device logs, credentials, weights or hardware access",
+  "project": "SD3.5 Medium",
+  "summaryType": "selected_fields_and_static_inspection_not_original_run_report",
+  "baseline": {
+    "recordedStatus": "HYBRID_IMAGE_GENERATED",
+    "completedAtUtc": "2026-11-14T19:13:11.325935+00:00",
+    "model": "stabilityai/stable-diffusion-3.5-medium",
+    "modelRevision": "b940f670f0eda2d07fbb75229e779da1ad11eb80",
+    "parameters": {
+      "prompt": "A red apple on a wooden table, soft natural window light, realistic photograph",
+      "seed": 20261115,
+      "height": 256,
+      "width": 256,
+      "batch": 1,
+      "num_inference_steps": 4,
+      "guidance_scale": 1.0,
+      "max_sequence_length": 64
+    },
+    "executionMode": "HYBRID_CPU_NPU",
+    "npuScope": "every row of block0 joint-attention to_q, on every real denoising step, tiled through the previously executed M16 kernel",
+    "cpuScope": "CLIP text encoding, all remaining DiT operations, scheduler, VAE decoding, BF16 boundary conversion and row assembly",
+    "t5": "official text_encoder_3=None/tokenizer_3=None mode; real CLIP encoders retained",
+    "coreMigrationComplete": false,
+    "endToEndPipelineCompleted": true,
+    "npuRequestCount": 4,
+    "tileCount": 64,
+    "allTileRowsCoveredPerRequest": true,
+    "computeFallbackCalls": 0,
+    "computeHostImplementationCalls": 0,
+    "allHistoricalDeviceSessionsClosed": true,
+    "closureScope": "attempt-02 sessions only; not current board or expanded attempt status",
+    "image": {
+      "shape": [
+        256,
+        256,
+        3
+      ],
+      "sha256": "40c42cc65c16dede5a84226692e0a983d68f948298bc0a5ba8dd603811f6258d",
+      "quality": "4-step smoke preview, not a quality benchmark",
+      "degenerate_constant_image": false
+    },
+    "imageAndExecutedSourceHashesRecomputedAndMatched": true,
+    "elapsedWallSeconds": 99.7984737969964,
+    "timingMeaning": "historical complete request wall clock; not isolated NPU kernel latency or speedup",
+    "numericalAcceptance": "NOT_EVALUATED_NO_APPROVED_TOLERANCE",
+    "imageQualityAcceptance": "SMOKE_PREVIEW_ONLY"
+  },
+  "oldQProjectionMetrics": {
+    "status": "METRICS_ONLY",
+    "shape": [
+      16,
+      1536
+    ],
+    "logical_dtype": "BF16",
+    "elements": 24576,
+    "bitwise_mismatched_elements": 3,
+    "max_absolute_error": 0.000244140625,
+    "mean_absolute_error": 9.945021398986379e-09,
+    "rmse": 1.557344391530825e-06,
+    "max_relative_error_nonzero_reference": 0.019230769230769232,
+    "max_bf16_ulp_distance": 4,
+    "all_finite": true,
+    "numerical_acceptance": "NOT_EVALUATED_NO_APPROVED_TOLERANCE",
+    "device_execution_verified": false,
+    "actual_file_origin": "not verified by this utility"
+  },
+  "expandedCandidate": {
+    "evidenceLevel": "static_source_only_plus_session_report",
+    "candidateLinearCount": 392,
+    "staticParameterByteBudget": 4486127744,
+    "staticPoolBytes": 8589934592,
+    "actualExecutedModuleCount": null,
+    "runtimeResidencyVerified": false,
+    "finalRunOutcome": "UNKNOWN",
+    "all392Executed": "NOT_VERIFIED",
+    "currentRemoteProcessOrDeviceRelease": "NOT_CHECKED",
+    "coveragePercentage": null,
+    "remainingCpuOperations": [
+      "Attention QK/softmax/PV",
+      "normalization_and_activation",
+      "convolution_and_position_processing",
+      "CLIP",
+      "VAE",
+      "scheduler"
+    ],
+    "countMeaning": "candidate modules and budget are not achieved coverage, FLOPs, speed or measured memory"
+  },
+  "handoffObservation": {
+    "materialsExist": true,
+    "distribution": "local_authorized_only_not_published_here",
+    "derivedPayloadDeviceRevalidation": "NOT_RUN",
+    "freshHarnessModelNpuEndToEndSuccessVerified": false,
+    "expandedCandidateIncludedInProvenBaseline": false
+  },
+  "sources": [
+    {
+      "id": "SD-RUN-01",
+      "logicalLocator": "sd35/attempt-02/generation-final.json",
+      "sha256": "cbf7bb6d9020af6acecdb46043f6f223264f9ce08c8e1514eab6ab7b6c2cea60",
+      "bytes": 50328,
+      "lineRanges": "1-59,126-1700,1817-1839",
+      "sourceType": "existing_local_record_not_a_new_experiment",
+      "rawPublished": false
+    },
+    {
+      "id": "SD-SRC-01",
+      "logicalLocator": "sd35/attempt-02/executed_generate_sd35.py",
+      "sha256": "9c4d6d51fcafa3d69a96b723f2fd56001ebcb8c1877f18b47862bd222bbc5d05",
+      "bytes": 13204,
+      "lineRanges": "82-105,143-152,187-224",
+      "sourceType": "existing_local_record_not_a_new_experiment",
+      "rawPublished": false
+    },
+    {
+      "id": "SD-SRC-02",
+      "logicalLocator": "sd35/attempt-02/executed_npu_q_worker.py",
+      "sha256": "d993ba6d5ab2c2621675a6253aeca5b035e91c4db526c848b645c6ee6ce2cb0e",
+      "bytes": 8777,
+      "lineRanges": "80-84,118-171",
+      "sourceType": "existing_local_record_not_a_new_experiment",
+      "rawPublished": false
+    },
+    {
+      "id": "SD-IMG-01",
+      "logicalLocator": "sd35/attempt-02/sd35-medium-hybrid.png",
+      "sha256": "40c42cc65c16dede5a84226692e0a983d68f948298bc0a5ba8dd603811f6258d",
+      "bytes": 86885,
+      "lineRanges": null,
+      "sourceType": "existing_local_record_not_a_new_experiment",
+      "rawPublished": false
+    },
+    {
+      "id": "SD-NUM-01",
+      "logicalLocator": "sd35/qproj/attempt-01-metrics.json",
+      "sha256": "7971dc7b5e1eee66065d0bccc5ff623f30308bb5c55b63a77080243cdb861025",
+      "bytes": 965,
+      "lineRanges": "1-25",
+      "sourceType": "existing_local_record_not_a_new_experiment",
+      "rawPublished": false
+    },
+    {
+      "id": "SD-CAND-01",
+      "logicalLocator": "sd35/expanded-candidate/generate_sd35.py",
+      "sha256": "155cb0efe841beb6c9d7c36f23c0946b6fefb3e9f700ff2d7de1b5608fc700d0",
+      "bytes": 21800,
+      "lineRanges": "19-23,311-372",
+      "sourceType": "existing_local_record_not_a_new_experiment",
+      "rawPublished": false
+    },
+    {
+      "id": "SD-CAND-02",
+      "logicalLocator": "sd35/expanded-candidate/npu_linear_worker.py",
+      "sha256": "7ee8c4bf5809968ce25446d31b4c152042227100b233089355ee912b21e75ba1",
+      "bytes": 42809,
+      "lineRanges": "20-28,431-463,533-566,611-633,650-685",
+      "sourceType": "existing_local_record_not_a_new_experiment",
+      "rawPublished": false
+    }
+  ]
+}
