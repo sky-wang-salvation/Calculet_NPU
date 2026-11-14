@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "calculet.deployment-config/v1",
+  "listen": { "host": "127.0.0.1", "port": 8766 },
+  "storageDir": "../.local/deployment",
+  "apiTokenEnv": "CALCULET_DEPLOY_TOKEN",
+  "planTtlMs": 300000,
+  "maxRequestBytes": 65536,
+  "maxResultBytes": 262144,
+  "maxArtifactBytes": 33554432,
+  "maxQueueDepth": 32,
+  "queueWaitTimeoutMs": 900000,
+  "artifactUrlTtlMs": 300000,
+  "adapter": null,
+  "operatorAuthorization": null,
+  "resourceLockPath": null
+}

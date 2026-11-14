@@ -1,0 +1,24 @@
+{
+  "spec": {
+    "schemaVersion": "calculet.task/v1",
+    "intent": "deploy-and-validate",
+    "modelId": "sd35-medium",
+    "profileId": "sd35-qproj-hybrid-smoke-v1",
+    "parameters": {
+      "prompt": "A red apple on a wooden table, soft natural window light, realistic photograph",
+      "seed": 20261115,
+      "width": 256,
+      "height": 256,
+      "batch": 1,
+      "steps": 4,
+      "guidanceScale": 1,
+      "enableT5": false
+    },
+    "constraints": {
+      "executionMode": "hybrid",
+      "requireFullNpu": false,
+      "allowNpuComputeFallback": false
+    },
+    "acceptance": { "level": "hybrid-smoke" }
+  }
+}

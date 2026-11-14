@@ -1,0 +1,384 @@
+TAP version 13
+# Subtest: artifact signature binds origin, GET path, content identity, media type, and expiry
+ok 1 - artifact signature binds origin, GET path, content identity, media type, and expiry
+  ---
+  duration_ms: 2.9239
+  type: 'test'
+  ...
+# Subtest: artifact signature rejects missing, extra, duplicate, malformed, and modified credentials
+ok 2 - artifact signature rejects missing, extra, duplicate, malformed, and modified credentials
+  ---
+  duration_ms: 1.7234
+  type: 'test'
+  ...
+# Subtest: signed URLs enable browser-style artifact GET without authorizing API access
+ok 3 - signed URLs enable browser-style artifact GET without authorizing API access
+  ---
+  duration_ms: 1614.1982
+  type: 'test'
+  ...
+# Subtest: PNG CRC uses the standard test vector and incomplete signatures fail
+ok 4 - PNG CRC uses the standard test vector and incomplete signatures fail
+  ---
+  duration_ms: 1.4732
+  type: 'test'
+  ...
+# Subtest: complete DSL normalizes prompt without mutating the input
+ok 5 - complete DSL normalizes prompt without mutating the input
+  ---
+  duration_ms: 0.8337
+  type: 'test'
+  ...
+# Subtest: DSL rejects unknown fields, missing fields, types, and unsupported recipe changes
+ok 6 - DSL rejects unknown fields, missing fields, types, and unsupported recipe changes
+  ---
+  duration_ms: 0.8552
+  type: 'test'
+  ...
+# Subtest: plan digest binds canonical DSL, recipe and private runtime identity
+ok 7 - plan digest binds canonical DSL, recipe and private runtime identity
+  ---
+  duration_ms: 5.8129
+  type: 'test'
+  ...
+# Subtest: generation compatibility only exposes literal prompt and seed
+ok 8 - generation compatibility only exposes literal prompt and seed
+  ---
+  duration_ms: 0.3398
+  type: 'test'
+  ...
+# Subtest: configuration rejects nonloopback bind, unknown keys, and dangerous path forms
+ok 9 - configuration rejects nonloopback bind, unknown keys, and dangerous path forms
+  ---
+  duration_ms: 0.8955
+  type: 'test'
+  ...
+# Subtest: simulation requests explicitly carry null controllerLockPath and do not acquire a configured hardware lock
+ok 10 - simulation requests explicitly carry null controllerLockPath and do not acquire a configured hardware lock
+  ---
+  duration_ms: 1572.0674
+  type: 'test'
+  ...
+# Subtest: hardware controllerLockPath comes from bound service configuration and is covered by both digests
+ok 11 - hardware controllerLockPath comes from bound service configuration and is covered by both digests
+  ---
+  duration_ms: 437.7926
+  type: 'test'
+  ...
+# Subtest: hardware request construction fails closed without an approved absolute controller lock path
+ok 12 - hardware request construction fails closed without an approved absolute controller lock path
+  ---
+  duration_ms: 95.8605
+  type: 'test'
+  ...
+# Subtest: the simulation fixture rejects missing or nonnull controllerLockPath before generating files
+ok 13 - the simulation fixture rejects missing or nonnull controllerLockPath before generating files
+  ---
+  duration_ms: 398.7191
+  type: 'test'
+  ...
+# Subtest: inputPolicy is optional, exact, normalized and strictly typed
+ok 14 - inputPolicy is optional, exact, normalized and strictly typed
+  ---
+  duration_ms: 3.8161
+  type: 'test'
+  ...
+# Subtest: fixed-input plans match exactly or block without launching the adapter
+ok 15 - fixed-input plans match exactly or block without launching the adapter
+  ---
+  duration_ms: 1071.3572
+  type: 'test'
+  ...
+# Subtest: fixed-input generation rejects unsupported inputs before persisting jobs or starting processes
+ok 16 - fixed-input generation rejects unsupported inputs before persisting jobs or starting processes
+  ---
+  duration_ms: 2385.5718
+  type: 'test'
+  ...
+# Subtest: adding, changing and removing inputPolicy changes the binding and blocks old ready plans
+ok 17 - adding, changing and removing inputPolicy changes the binding and blocks old ready plans
+  ---
+  duration_ms: 1427.521
+  type: 'test'
+  ...
+# Subtest: the immediate adapter launch guard independently rejects unsupported input
+ok 18 - the immediate adapter launch guard independently rejects unsupported input
+  ---
+  duration_ms: 113.9124
+  type: 'test'
+  ...
+# Subtest: no adapter is fail-closed; planning never launches a process
+ok 19 - no adapter is fail-closed; planning never launches a process
+  ---
+  duration_ms: 385.2251
+  type: 'test'
+  ...
+# Subtest: simulation deployment, evidence, PNG retrieval and generation v1 work end-to-end
+ok 20 - simulation deployment, evidence, PNG retrieval and generation v1 work end-to-end
+  ---
+  duration_ms: 2420.5403
+  type: 'test'
+  ...
+# Subtest: concurrent same-key requests persist one job; different requests conflict
+ok 21 - concurrent same-key requests persist one job; different requests conflict
+  ---
+  duration_ms: 1576.5446
+  type: 'test'
+  ...
+# Subtest: expired plans and digest mismatches cannot execute
+ok 22 - expired plans and digest mismatches cannot execute
+  ---
+  duration_ms: 104.4748
+  type: 'test'
+  ...
+# Subtest: runtime file identity changes block application of a ready plan
+ok 23 - runtime file identity changes block application of a ready plan
+  ---
+  duration_ms: 394.0555
+  type: 'test'
+  ...
+# Subtest: hardware requires operator window, coordination acknowledgment and cooperative lock
+ok 24 - hardware requires operator window, coordination acknowledgment and cooperative lock
+  ---
+  duration_ms: 805.7655
+  type: 'test'
+  ...
+# Subtest: authorization is checked after identity I/O and again immediately before launch
+ok 25 - authorization is checked after identity I/O and again immediately before launch
+  ---
+  duration_ms: 237.3607
+  type: 'test'
+  ...
+# Subtest: optional numeric metrics stay explicitly within simulation evidence
+ok 26 - optional numeric metrics stay explicitly within simulation evidence
+  ---
+  duration_ms: 1036.5285
+  type: 'test'
+  ...
+# Subtest: HTTP authentication, loopback host, Origin, media types, body size and JSON are enforced
+ok 27 - HTTP authentication, loopback host, Origin, media types, body size and JSON are enforced
+  ---
+  duration_ms: 177.722
+  type: 'test'
+  ...
+# Subtest: successful artifacts are rehashed at retrieval and capability publication
+ok 28 - successful artifacts are rehashed at retrieval and capability publication
+  ---
+  duration_ms: 1153.1045
+  type: 'test'
+  ...
+# Subtest: persistent storage has a single process owner and rejects corrupt state
+ok 29 - persistent storage has a single process owner and rejects corrupt state
+  ---
+  duration_ms: 164.9397
+  type: 'test'
+  ...
+# Subtest: shutdown and restart reconcile unfinished work without duplicate execution
+ok 30 - shutdown and restart reconcile unfinished work without duplicate execution
+  ---
+  duration_ms: 2570.5738
+  type: 'test'
+  ...
+# Subtest: cold load reconciles persisted queued/running records and preserves idempotency
+ok 31 - cold load reconciles persisted queued/running records and preserves idempotency
+  ---
+  duration_ms: 1923.1004
+  type: 'test'
+  ...
+# Subtest: successful capability and idempotency survive a clean restart with new origin
+ok 32 - successful capability and idempotency survive a clean restart with new origin
+  ---
+  duration_ms: 1242.1561
+  type: 'test'
+  ...
+# Subtest: serial queue executes one child at a time
+ok 33 - serial queue executes one child at a time
+  ---
+  duration_ms: 3537.3285
+  type: 'test'
+  ...
+# Subtest: queued jobs exhaust waiting budget without starting a second child
+ok 34 - queued jobs exhaust waiting budget without starting a second child
+  ---
+  duration_ms: 1429.8586
+  type: 'test'
+  ...
+# Subtest: adversarial simulation result fixtures never register a capability
+    # Subtest: nonzero
+    ok 1 - nonzero
+      ---
+      duration_ms: 887.7513
+      type: 'test'
+      ...
+    # Subtest: missing-result
+    ok 2 - missing-result
+      ---
+      duration_ms: 920.1546
+      type: 'test'
+      ...
+    # Subtest: malformed
+    ok 3 - malformed
+      ---
+      duration_ms: 915.0368
+      type: 'test'
+      ...
+    # Subtest: wrong-schema
+    ok 4 - wrong-schema
+      ---
+      duration_ms: 949.7099
+      type: 'test'
+      ...
+    # Subtest: wrong-request
+    ok 5 - wrong-request
+      ---
+      duration_ms: 928.2737
+      type: 'test'
+      ...
+    # Subtest: forged-digest
+    ok 6 - forged-digest
+      ---
+      duration_ms: 911.7591
+      type: 'test'
+      ...
+    # Subtest: mode-mismatch
+    ok 7 - mode-mismatch
+      ---
+      duration_ms: 901.8253
+      type: 'test'
+      ...
+    # Subtest: scope-mismatch
+    ok 8 - scope-mismatch
+      ---
+      duration_ms: 936.4867
+      type: 'test'
+      ...
+    # Subtest: device-mode-mismatch
+    ok 9 - device-mode-mismatch
+      ---
+      duration_ms: 939.2975
+      type: 'test'
+      ...
+    # Subtest: wrong-callcount
+    ok 10 - wrong-callcount
+      ---
+      duration_ms: 961.0955
+      type: 'test'
+      ...
+    # Subtest: fallback
+    ok 11 - fallback
+      ---
+      duration_ms: 967.4524
+      type: 'test'
+      ...
+    # Subtest: numeric-failed
+    ok 12 - numeric-failed
+      ---
+      duration_ms: 965.9023
+      type: 'test'
+      ...
+    # Subtest: missing-evidence
+    ok 13 - missing-evidence
+      ---
+      duration_ms: 948.5663
+      type: 'test'
+      ...
+    # Subtest: missing-trace
+    ok 14 - missing-trace
+      ---
+      duration_ms: 939.7939
+      type: 'test'
+      ...
+    # Subtest: empty-trace
+    ok 15 - empty-trace
+      ---
+      duration_ms: 1030.5388
+      type: 'test'
+      ...
+    # Subtest: traversal
+    ok 16 - traversal
+      ---
+      duration_ms: 918.4323
+      type: 'test'
+      ...
+    # Subtest: absolute-path
+    ok 17 - absolute-path
+      ---
+      duration_ms: 958.5842
+      type: 'test'
+      ...
+    # Subtest: symlink-escape
+    ok 18 - symlink-escape
+      ---
+      duration_ms: 938.0494
+      type: 'test'
+      ...
+    # Subtest: wrong-hash
+    ok 19 - wrong-hash
+      ---
+      duration_ms: 960.4181
+      type: 'test'
+      ...
+    # Subtest: invalid-png
+    ok 20 - invalid-png
+      ---
+      duration_ms: 963.1388
+      type: 'test'
+      ...
+    # Subtest: index-mismatch
+    ok 21 - index-mismatch
+      ---
+      duration_ms: 958.2599
+      type: 'test'
+      ...
+    # Subtest: missing-file
+    ok 22 - missing-file
+      ---
+      duration_ms: 1012.8827
+      type: 'test'
+      ...
+    # Subtest: request-tamper
+    ok 23 - request-tamper
+      ---
+      duration_ms: 977.3525
+      type: 'test'
+      ...
+    # Subtest: extra-field
+    ok 24 - extra-field
+      ---
+      duration_ms: 994.6979
+      type: 'test'
+      ...
+    1..24
+ok 35 - adversarial simulation result fixtures never register a capability
+  ---
+  duration_ms: 22798.0438
+  type: 'test'
+  ...
+# Subtest: process timeout and output budget are enforced and never retried
+    # Subtest: slow
+    ok 1 - slow
+      ---
+      duration_ms: 2989.5303
+      type: 'test'
+      ...
+    # Subtest: noisy
+    ok 2 - noisy
+      ---
+      duration_ms: 1169.9733
+      type: 'test'
+      ...
+    1..2
+ok 36 - process timeout and output budget are enforced and never retried
+  ---
+  duration_ms: 4160.7025
+  type: 'test'
+  ...
+1..36
+# tests 62
+# suites 0
+# pass 62
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 47322.103

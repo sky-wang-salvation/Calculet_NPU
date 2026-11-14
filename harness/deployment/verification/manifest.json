@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "calculet.offline-verification/v1",
+  "recordedAt": "2026-11-14T22:47:28.625Z",
+  "nodeVersion": "v24.15.0",
+  "platform": "win32",
+  "arch": "x64",
+  "branch": "feat/harness-deployment-closure",
+  "executionKind": "simulation",
+  "hardwareAccessed": false,
+  "command": "node --test --test-reporter=tap Calculet_NPU_integration/harness/deployment/test/contract.test.mjs Calculet_NPU_integration/harness/deployment/test/server.test.mjs Calculet_NPU_integration/harness/deployment/test/artifact-access.test.mjs Calculet_NPU_integration/harness/deployment/test/input-policy.test.mjs Calculet_NPU_integration/harness/deployment/test/controller-lock.test.mjs",
+  "exitCode": 0,
+  "results": {
+    "tests": 62,
+    "pass": 62,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 47322.103
+  },
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 21,
+      "sha256": "30ef8bb96656386bc8ae5cd2a987979d842073d2ce5e4670a5573145b34312b0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 18159,
+      "sha256": "e40cb44e41e559db473992830e3ecb0ab38ef31fbfed252ec2fc79060792c062"
+    },
+    {
+      "path": "adapter-contract.md",
+      "bytes": 11285,
+      "sha256": "2851beb9df160d361f2dbf016bcc3c833bee82bc4fde7003716790744f55fe9f"
+    },
+    {
+      "path": "adapter.mjs",
+      "bytes": 16277,
+      "sha256": "a62c4ba835a17eee09f1b40044300d8c2a52a0a12bec0a2727982aabfa807506"
+    },
+    {
+      "path": "artifact-access.mjs",
+      "bytes": 2074,
+      "sha256": "8f45bb4de7eaf0568d79d01c28afdd0ba0e6ab6d112aa9027ea6bf2825863187"
+    },
+    {
+      "path": "config.example.json",
+      "bytes": 464,
+      "sha256": "7161598ed6ee041ac1df3f5f8918e789be77f3b20c92ab082427753a3867f381"
+    },
+    {
+      "path": "config.mjs",
+      "bytes": 11893,
+      "sha256": "cedb6fd13349e1e0a8a250dc2fc061930272218a32c11feaa93d7a974cdd86c8"
+    },
+    {
+      "path": "contract.mjs",
+      "bytes": 7009,
+      "sha256": "7e54a8a3ad4a464c7e0b4c3cb1d6562ba996aa395e83fd206532c1b120f538f6"
+    },
+    {
+      "path": "io.mjs",
+      "bytes": 7292,
+      "sha256": "f97e558501d5a7af4f298bc3bc53c2f0a3326597e648842af25719923ddeeb17"
+    },
+    {
+      "path": "server.mjs",
+      "bytes": 24874,
+      "sha256": "2b530908eb3b1e846da739e2f7370f8da1ab901e169e66895e6d429630f5d829"
+    },
+    {
+      "path": "store.mjs",
+      "bytes": 5149,
+      "sha256": "7b7818d873e74997f8661b4215ae68bf1c6c2b91914fbe47f3de224a63587156"
+    },
+    {
+      "path": "task.example.json",
+      "bytes": 628,
+      "sha256": "9e878bfff86290108263d187c40a6ca6f17f9dd248e6119345546db408d1ad51"
+    },
+    {
+      "path": "test/artifact-access.test.mjs",
+      "bytes": 5955,
+      "sha256": "c392cfb5c80067b684b85557ac172367a242c2cffdf62022008914bd556e6b44"
+    },
+    {
+      "path": "test/contract.test.mjs",
+      "bytes": 4594,
+      "sha256": "532b2b5824b17cb2fc081e6757ead19033e8aa7de7bebc121891f50a463a6e0b"
+    },
+    {
+      "path": "test/controller-lock.test.mjs",
+      "bytes": 4931,
+      "sha256": "696dc8f132e3d4c17e6583f7c06b8f9285f8e6b344e5849129c3eef7b4af0665"
+    },
+    {
+      "path": "test/fixtures/simulation-adapter.mjs",
+      "bytes": 6144,
+      "sha256": "3172f50e10fb172ff64016db787eb076ee12eb1c80f81651c9fa3c2de8ae47eb"
+    },
+    {
+      "path": "test/helpers.mjs",
+      "bytes": 5063,
+      "sha256": "6aa77c51cc033942586adb7ebd80f6bc085e8e4f5acdd58fb7f72cfa9128ea39"
+    },
+    {
+      "path": "test/input-policy.test.mjs",
+      "bytes": 8517,
+      "sha256": "e20abb658b7cec998ccb77647e0cd3d02421af9533f08d51251d2418e948fe1a"
+    },
+    {
+      "path": "test/server.test.mjs",
+      "bytes": 20129,
+      "sha256": "18a74057cfb0282ca889ea482f18277bd221dbbeaf863d39aec59c3c47e3a7d9"
+    },
+    {
+      "path": "verification/offline-tests.tap",
+      "bytes": 11204,
+      "sha256": "0636bd83d2184602d0063b00bb753ae6e75788a85d2544447efea2e535f1bf5b"
+    }
+  ]
+}
