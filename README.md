@@ -39,3 +39,12 @@
 - [性能结果表头](templates/benchmark-results.csv)
 
 调研引用公开 SDK 文档，但不镜像 SDK 源码或二进制。链接到 GPU/通用框架的资料用于学习算法与验证方法，不代表这些框架已支持原粒 NPU。现场规则、接口、模型和工具链版本以比赛确认的组合为准。
+
+## 2026-11-14 新增：Cosmos 研究与 Harness 方案
+
+- [Cosmos 3 总入口](experiment/COSMOS%203/README.md)与[交接文档](experiment/COSMOS%203/HANDOFF.md)：区分 Nano 部署记录和 Edge 研究。
+- [Cosmos3-Edge 调研包](experiment/COSMOS%203/research/cosmos3_edge_npu_20261114/README.md)：报告、算子表、可独立复算的资源估算、来源与版本记录。
+- [DeepSeek Harness 方案章节](docs/harness/README.md)与[讨论和取舍](docs/harness/discussion-and-decisions.md)：需求、候选场景、已否定方向、当前结论与待办。
+- [用户场景与 NPU 价值图](docs/research/13-scenarios-and-value.md)：从用户任务对应问题、方案、核心计算与验收。
+
+新增研究包尚未进行 NPU 编译、模型推理或真机测试；资源估算是公式计算。其他实验的状态以各自 schedule 快照为准。Harness 章节记录方案讨论，未宣称插件已经实现。

@@ -1,0 +1,77 @@
+{
+  "result_kind": "estimate",
+  "npu_execution": "not_run",
+  "assumptions": [
+    "B=1; BF16 storage; frames=4k+1; spatial compression=16; spatial latent patch=2.",
+    "Attention-score sizes assume full materialization; tiled attention avoids that allocation.",
+    "FLOPs count one generator tower pass; no AR, vision, VAE, CFG, or scheduler overhead.",
+    "A multiply-add counts as two FLOPs. These are not TOPS-based speed predictions.",
+    "Individual tensor sizes are not runtime peak memory; allocator/liveness and copies are unknown."
+  ],
+  "transformer_weight_bytes_from_index": 6739314048,
+  "ideal_4B_weight_bytes": {
+    "BF16": 8000000000,
+    "INT8": 4000000000,
+    "INT4": 2000000000
+  },
+  "bf16_reasoner_KV_bytes": {
+    "2048": 234881024,
+    "8192": 939524096,
+    "32768": 3758096384,
+    "131072": 15032385536
+  },
+  "one_FFN_BF16_weight_bytes": 75497472,
+  "cases": [
+    {
+      "width": 320,
+      "height": 192,
+      "frames": 53,
+      "latent_shape_C_T_H_W": [
+        48,
+        14,
+        12,
+        20
+      ],
+      "visual_tokens": 840,
+      "one_hidden_tensor_bytes": 3440640,
+      "one_ffn_intermediate_bytes": 15482880,
+      "naive_gen_self_attention_scores_bytes": 22579200,
+      "naive_gen_attention_scores_with_128_AR_tokens_bytes": 26019840,
+      "one_gen_tower_step_approx_flops": 2529448427520
+    },
+    {
+      "width": 832,
+      "height": 480,
+      "frames": 53,
+      "latent_shape_C_T_H_W": [
+        48,
+        14,
+        30,
+        52
+      ],
+      "visual_tokens": 5460,
+      "one_hidden_tensor_bytes": 22364160,
+      "one_ffn_intermediate_bytes": 100638720,
+      "naive_gen_self_attention_scores_bytes": 953971200,
+      "naive_gen_attention_scores_with_128_AR_tokens_bytes": 976335360,
+      "one_gen_tower_step_approx_flops": 22227470254080
+    },
+    {
+      "width": 832,
+      "height": 480,
+      "frames": 149,
+      "latent_shape_C_T_H_W": [
+        48,
+        38,
+        30,
+        52
+      ],
+      "visual_tokens": 14820,
+      "one_hidden_tensor_bytes": 60702720,
+      "one_ffn_intermediate_bytes": 273162240,
+      "naive_gen_self_attention_scores_bytes": 7028236800,
+      "naive_gen_attention_scores_with_128_AR_tokens_bytes": 7088939520,
+      "one_gen_tower_step_approx_flops": 92149642690560
+    }
+  ]
+}

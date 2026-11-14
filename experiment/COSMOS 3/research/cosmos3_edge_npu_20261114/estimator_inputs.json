@@ -1,0 +1,47 @@
+{
+  "result_kind": "configuration_facts_for_estimation",
+  "model_id": "nvidia/Cosmos3-Edge",
+  "model_revision": "6afc1256321c3a8e623d89be3bc5117a1e90f96b",
+  "text_config": {
+    "num_hidden_layers": 28,
+    "num_key_value_heads": 8,
+    "head_dim": 128
+  },
+  "generator_config": {
+    "num_hidden_layers": 28,
+    "hidden_size": 2048,
+    "intermediate_size": 9216,
+    "num_attention_heads": 16,
+    "num_key_value_heads": 8,
+    "head_dim": 128,
+    "latent_patch_size": 2,
+    "latent_channel": 48
+  },
+  "vae_config": {
+    "scale_factor_spatial": 16,
+    "scale_factor_temporal": 4
+  },
+  "transformer_weight_bytes_from_index": 6739314048,
+  "provenance": [
+    {
+      "source_name": "edge-config.json",
+      "source_sha256": "ffb75b654e65d10e337ea07f20ac4eadc3775dd22c9a8194c87c3b68df5c8f5f",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/blob/6afc1256321c3a8e623d89be3bc5117a1e90f96b/config.json"
+    },
+    {
+      "source_name": "edge-transformer-config.json",
+      "source_sha256": "8c3c0945e7e66b2f59cbac80aace9db04edb4230fa0931bf64d4c12f51cbc81f",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/blob/6afc1256321c3a8e623d89be3bc5117a1e90f96b/transformer/config.json"
+    },
+    {
+      "source_name": "edge-vae-config.json",
+      "source_sha256": "2af4752d63e8b308b8bfd29798ec6663886583ab228d7c643f559612c54df1ca",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/blob/6afc1256321c3a8e623d89be3bc5117a1e90f96b/vae/config.json"
+    },
+    {
+      "source_name": "edge-weight-index.json",
+      "source_sha256": "13a947ce2f9e546fe5aee7e2303aa3e6f1bbf08ff7a44a61d959ee094d01f2dc",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/blob/6afc1256321c3a8e623d89be3bc5117a1e90f96b/transformer/diffusion_pytorch_model.safetensors.index.json"
+    }
+  ]
+}

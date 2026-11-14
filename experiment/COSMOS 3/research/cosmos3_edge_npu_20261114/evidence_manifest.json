@@ -1,0 +1,980 @@
+{
+  "schema_version": 2,
+  "date": "2026-11-14",
+  "timezone": "Asia/Shanghai",
+  "scope": "Research and resource estimates only; no SDK install, compile, model execution, or NPU execution.",
+  "upstream": {
+    "versions": {
+      "cosmos": "540106233a1a834f00fddd368dd6e3e818575696",
+      "diffusers": "43e30028af5120d8b0868cb6975b9fad39cc4fab",
+      "transformers": "0d7a6219179b24586089ae81b45cf725078e681f",
+      "hf_model": "6afc1256321c3a8e623d89be3bc5117a1e90f96b"
+    },
+    "files": {
+      "diffusers-transformer-cosmos3.py": {
+        "url": "https://github.com/huggingface/diffusers/blob/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/models/transformers/transformer_cosmos3.py",
+        "git_blob_sha": "0295e1c0567b30644038091b208829c2fcccb71b",
+        "url_at_research": "https://github.com/huggingface/diffusers/blob/main/src/diffusers/models/transformers/transformer_cosmos3.py"
+      },
+      "transformers-modeling-cosmos3-edge.py": {
+        "url": "https://github.com/huggingface/transformers/blob/0d7a6219179b24586089ae81b45cf725078e681f/src/transformers/models/cosmos3_edge/modeling_cosmos3_edge.py",
+        "git_blob_sha": "b3cd14e830ba314c030f3fda87834dc8fe70c269",
+        "url_at_research": "https://github.com/huggingface/transformers/blob/main/src/transformers/models/cosmos3_edge/modeling_cosmos3_edge.py"
+      },
+      "cosmos-model-reference.md": {
+        "url": "https://github.com/NVIDIA/cosmos/blob/540106233a1a834f00fddd368dd6e3e818575696/docs/reference/models.md",
+        "git_blob_sha": "87c1740ec18ae115ea3bd037d9dd4e78d4568131",
+        "url_at_research": "https://github.com/NVIDIA/cosmos/blob/main/docs/reference/models.md"
+      },
+      "cosmos-cookbook.md": {
+        "url": "https://github.com/NVIDIA/cosmos/blob/540106233a1a834f00fddd368dd6e3e818575696/COOKBOOK.md",
+        "git_blob_sha": "d8d82162e8ebbbff1b848f036130141eabdd9e2b",
+        "url_at_research": "https://github.com/NVIDIA/cosmos/blob/main/COOKBOOK.md"
+      },
+      "diffusers-pipeline-cosmos3-omni.py": {
+        "url": "https://github.com/huggingface/diffusers/blob/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py",
+        "git_blob_sha": "edd8f44409c230b918956a4b00b9d6e93a7b8334",
+        "url_at_research": "https://github.com/huggingface/diffusers/blob/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py"
+      }
+    }
+  },
+  "verification": {
+    "sdk_install": "not_run",
+    "npu_compile": "not_run",
+    "npu_hardware_execution": "not_run",
+    "model_inference": "not_run",
+    "resource_estimator": "executed; formula checks passed",
+    "sdk_source_audit": "targeted source inspection, not exhaustive",
+    "upstream_code_git_blobs": "five files verified byte-for-byte against reported Git blobs"
+  },
+  "publication": {
+    "date": "2026-11-14",
+    "original_bundle_name": "cosmos3_edge_npu_20261114",
+    "original_evidence_manifest_sha256": "a42b3cbf71dbbecd4267f2d39ef73d8438fe19c206953438b121f6e98c104a7a",
+    "source_cache_policy": "All third-party cached files excluded; links and metadata only. Redistribution permissions not determined by this publication.",
+    "hash_scope": "Historical input/cache hashes preserve the original research snapshot. published_files covers the transformed public files, excluding this manifest itself.",
+    "model_and_hardware_execution": "not_run",
+    "source_cache_integrity": {
+      "checked_files": 40,
+      "mismatches": 0
+    },
+    "link_policy": "Repository references made relative; excluded cache references point to upstream. Versioned access URLs use the recorded revisions, without claiming a fresh upstream content audit."
+  },
+  "original_deliverables": [
+    {
+      "path": "README.md",
+      "bytes": 1275,
+      "sha256": "de7b821b13f38a37d06b7f2494117d61cd62a61bea5af74c6c345e9a04cd1174",
+      "kind": "original_research_bundle_fingerprint"
+    },
+    {
+      "path": "调研报告.md",
+      "bytes": 35299,
+      "sha256": "bdded6ff1f9c6a237e30d7a0f907a0431720aa0dfc6c81c605e06828bfeb08e4",
+      "kind": "original_research_bundle_fingerprint"
+    },
+    {
+      "path": "operator_support.csv",
+      "bytes": 2880,
+      "sha256": "215a5f8a97199329f9ada7f9dbafb9e3156f823f524ef2b81eeeada86b8ec241",
+      "kind": "original_research_bundle_fingerprint"
+    },
+    {
+      "path": "estimate_resources.py",
+      "bytes": 3219,
+      "sha256": "043a476868840dd22327b5c04a4cf6fe7e11400bc847a6afd615ae5d51e1a8f9",
+      "kind": "original_research_bundle_fingerprint"
+    },
+    {
+      "path": "resource_estimates.json",
+      "bytes": 2300,
+      "sha256": "122578d28d79e4be7db732fb4dbad28f8fe866b6e43480ef0cdb48d7ada35649",
+      "kind": "original_research_bundle_fingerprint"
+    },
+    {
+      "path": "evidence_manifest.json",
+      "bytes": 26394,
+      "sha256": "a42b3cbf71dbbecd4267f2d39ef73d8438fe19c206953438b121f6e98c104a7a",
+      "kind": "original_research_bundle_fingerprint"
+    }
+  ],
+  "local_materials": [
+    {
+      "path": "BoHack 2026 赛道和赛题设置/BoHack 2026 赛道和赛题设置.md",
+      "bytes": 19342,
+      "sha256": "8fcc4be6773b67866d7c822d32ec424c9ccf82afb05055f49311113f564747b8",
+      "repository_link": "../../../../BoHack%202026%20%E8%B5%9B%E9%81%93%E5%92%8C%E8%B5%9B%E9%A2%98%E8%AE%BE%E7%BD%AE/BoHack%202026%20%E8%B5%9B%E9%81%93%E5%92%8C%E8%B5%9B%E9%A2%98%E8%AE%BE%E7%BD%AE.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "Calculet NPU 黑客松 · 选手快速开始.md",
+      "bytes": 1800,
+      "sha256": "c378474ad7b86510898ef9bdb52513c1f1075ba957280f5f58f1fa56339faf56",
+      "repository_link": "../../../../Calculet%20NPU%20%E9%BB%91%E5%AE%A2%E6%9D%BE%20%C2%B7%20%E9%80%89%E6%89%8B%E5%BF%AB%E9%80%9F%E5%BC%80%E5%A7%8B.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2597,
+      "sha256": "27d85d850d4101b8f6b2a2b38f843e11174261e434240a6425658c0daead6b29",
+      "repository_link": "../../../../README.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/assets/challenge.pdf",
+      "bytes": 220993,
+      "sha256": "882cf524f42d815f9f53fc31ab5b850191466579dcda047801bca70ab47b9e06",
+      "repository_link": "../../../../docs/assets/challenge.pdf",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/assets/edge-poster.png",
+      "bytes": 1836005,
+      "sha256": "fda6ba9c96fb762c8a61bdea486d21a83110d5e619b58619d0d34397823fe4c1",
+      "repository_link": "../../../../docs/assets/edge-poster.png",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/assets/edge-spec.png",
+      "bytes": 91761,
+      "sha256": "8ba36043728e26c8da7bc1d96b448ecc246760e932bf149f999a37221be5b3f2",
+      "repository_link": "../../../../docs/assets/edge-spec.png",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/assets/manifest.json",
+      "bytes": 1809,
+      "sha256": "0892011a0bc2bb3ad74bc74caee9be65ba35fcf84d061442003b57c4cd526b2e",
+      "repository_link": "../../../../docs/assets/manifest.json",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/assets/workstation-poster.jpg",
+      "bytes": 337482,
+      "sha256": "4a0d31c33c402ded8162cc465477a8b24e90f86086cf5171d946a70c6c0db6a6",
+      "repository_link": "../../../../docs/assets/workstation-poster.jpg",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/assets/workstation-spec.png",
+      "bytes": 88857,
+      "sha256": "ca1316914546f436dad03263152caac00fac48b8c77e2967555d8cb56fb086d0",
+      "repository_link": "../../../../docs/assets/workstation-spec.png",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/01-overview.md",
+      "bytes": 3189,
+      "sha256": "8f58266ea61c0b63d1952af1523f073f798f21cbfce8781dc569673179e51f2f",
+      "repository_link": "../../../../docs/research/01-overview.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/02-hardware.md",
+      "bytes": 3939,
+      "sha256": "9dba35ed5a8e50f62461608d774bf90ed158ae023239f58ceaf45a3bf1d5d42d",
+      "repository_link": "../../../../docs/research/02-hardware.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/03-sdk.md",
+      "bytes": 4551,
+      "sha256": "f5197b151c15137050a02ce78cfb631338641aa6ea2e85cf61f932212606ff1a",
+      "repository_link": "../../../../docs/research/03-sdk.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/04-track1-fusion.md",
+      "bytes": 2942,
+      "sha256": "3d1bc3c438713c474fd9b4a9bb63c15336b5671cc11eb7b2f1aba6ebd3ad8f8e",
+      "repository_link": "../../../../docs/research/04-track1-fusion.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/05-track2-sampling.md",
+      "bytes": 3276,
+      "sha256": "f63fc74b04fb9bd2f3885b9cae8c55023c45f4ca7ddea75c317c2e043a751f77",
+      "repository_link": "../../../../docs/research/05-track2-sampling.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/06-track3-adaptation.md",
+      "bytes": 2802,
+      "sha256": "aeef1828c91305cf48529d093ef9cc81b73908efe65ddb25832009d7ae5516aa",
+      "repository_link": "../../../../docs/research/06-track3-adaptation.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/07-track4-retrieval.md",
+      "bytes": 4437,
+      "sha256": "86e345fda3b58fe96eedd542dab0c12597cbde145cf65c3f91d8f27386c0dfce",
+      "repository_link": "../../../../docs/research/07-track4-retrieval.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/08-track5-open.md",
+      "bytes": 4198,
+      "sha256": "f40796266b47f4d1ff470fc547af992be2e1c0344adf642735f51752faadf1bd",
+      "repository_link": "../../../../docs/research/08-track5-open.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/09-selection.md",
+      "bytes": 3994,
+      "sha256": "3e98568b729638fca93991f83888d426498e6c22de641f54f7a9abf78c0807d1",
+      "repository_link": "../../../../docs/research/09-selection.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/10-evaluation.md",
+      "bytes": 4770,
+      "sha256": "7d3fe913eb0ea2e26a2317fedc2a2d0035a3aa66841dbcf62fe2e858c8b160af",
+      "repository_link": "../../../../docs/research/10-evaluation.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/11-questions.md",
+      "bytes": 2713,
+      "sha256": "67270398969950108ab2a9720e244acc1051191c870dbcbbb6167ba826a1a0b6",
+      "repository_link": "../../../../docs/research/11-questions.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/12-sources.md",
+      "bytes": 7020,
+      "sha256": "2e702e8e185eb3da429dc4af405fde0919bd2f7ef34d9df59a62c6c1a00f0149",
+      "repository_link": "../../../../docs/research/12-sources.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/README.md",
+      "bytes": 3041,
+      "sha256": "d0db879e8f630254bf5479af2dcd31b18269ca104520b3008d4962972e3113bf",
+      "repository_link": "../../../../docs/research/README.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "docs/research/public-source-manifest.json",
+      "bytes": 2065,
+      "sha256": "c7708272faa4d16b415fd246cd3aab35e0a36bddc00bc165313b111353a63223",
+      "repository_link": "../../../../docs/research/public-source-manifest.json",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "templates/benchmark-results.csv",
+      "bytes": 385,
+      "sha256": "417df99fa6819612a806aa0abc9b20e18e7c0fd13919f047363c6992fd7847a9",
+      "repository_link": "../../../../templates/benchmark-results.csv",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "templates/experiment-report.md",
+      "bytes": 1778,
+      "sha256": "bde6dbceb09e20910d7bf03968d7e3cdb58e59dcb9fa4ed73f47434ac23382a0",
+      "repository_link": "../../../../templates/experiment-report.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "templates/project-proposal.md",
+      "bytes": 693,
+      "sha256": "bb094c2b1c5cd99e4088604d0647194e758a1882f73867b72ec5f7f84088e60f",
+      "repository_link": "../../../../templates/project-proposal.md",
+      "hash_scope": "original_research_input_snapshot"
+    },
+    {
+      "path": "赛题选择.md",
+      "bytes": 4512,
+      "sha256": "79c250a1511603d2d765df7aa2da0a1bf88bd8351a61cf81aa269073fbbc62e0",
+      "repository_link": "../../../../%E8%B5%9B%E9%A2%98%E9%80%89%E6%8B%A9.md",
+      "hash_scope": "original_research_input_snapshot"
+    }
+  ],
+  "fetch_records": [
+    {
+      "path": "src/kernels/elementwise.rs",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/elementwise.rs",
+      "name": "calblas-src-kernels-elementwise.rs",
+      "bytes": 8045,
+      "sha256": "40e61967f0d0f0ccfe7c57466f1483fda0008795a4ffb3191f009ddca1b326f0",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/elementwise.rs",
+      "cache_distributed": false
+    },
+    {
+      "path": "src/kernels/vision.rs",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/vision.rs",
+      "name": "calblas-src-kernels-vision.rs",
+      "bytes": 44400,
+      "sha256": "218ca5a4295340451815e821ce737ca31fc6f328b4b28ddd3e7955ce41d41754",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/vision.rs",
+      "cache_distributed": false
+    },
+    {
+      "path": "src/kernels/encoder.rs",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/encoder.rs",
+      "name": "calblas-src-kernels-encoder.rs",
+      "bytes": 3035,
+      "sha256": "af37c4be13b25caf3c3912acaa99074d05486fbf3ca27c968a4c890e146321eb",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/encoder.rs",
+      "cache_distributed": false
+    },
+    {
+      "path": "src/kernels/conv.rs",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/conv.rs",
+      "name": "calblas-src-kernels-conv.rs",
+      "bytes": 6633,
+      "sha256": "ada20a2b98b7970ef5a15e92e6031dbf6390e75f81cd111aeca2104eee8f3ece",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/conv.rs",
+      "cache_distributed": false
+    },
+    {
+      "path": "src/kernels/attention.rs",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/attention.rs",
+      "name": "calblas-src-kernels-attention.rs",
+      "bytes": 43547,
+      "sha256": "85154942f94ae2d948dc8cf0de26554d3cc98b96f13477a0a015b3ebaece60f2",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/attention.rs",
+      "cache_distributed": false
+    },
+    {
+      "path": "examples/yolo26/deploy/DEPLOY.md",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/yolo26/deploy/DEPLOY.md",
+      "name": "calblas-examples-yolo26-deploy-DEPLOY.md",
+      "bytes": 3870,
+      "sha256": "58a38c131180acb8c4e57c069a07345fee3d27c74284660b9b13097846f76794",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/yolo26/deploy/DEPLOY.md",
+      "cache_distributed": false
+    },
+    {
+      "path": "examples/d3_turbo/README.md",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/d3_turbo/README.md",
+      "name": "calblas-examples-d3_turbo-README.md",
+      "bytes": 4796,
+      "sha256": "16691bb0b34c41ce7038de6e97aaa3ecf5e3416fab9aed9e4fd186bed83410b4",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/d3_turbo/README.md",
+      "cache_distributed": false
+    },
+    {
+      "path": "examples/tiny/src/step.rs",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/tiny/src/step.rs",
+      "name": "calblas-examples-tiny-src-step.rs",
+      "bytes": 6929,
+      "sha256": "dbdc7c9c8786d476f2bd90e1e9ea12ef8c91ba0bdd72edb93a8517e2a16f91d8",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/tiny/src/step.rs",
+      "cache_distributed": false
+    },
+    {
+      "name": "calblas-git-head.json",
+      "url": "http://115.159.82.89/git/api/v1/repos/calculet/calBLAS/commits/main",
+      "status": 200,
+      "bytes": 48885,
+      "sha256": "5186bbca3d729073a170934bb471770b6e34708501d90b6644c811cd1a30d385",
+      "url_at_research": "http://115.159.82.89/git/api/v1/repos/calculet/calBLAS/commits/main",
+      "cache_distributed": false
+    },
+    {
+      "name": "caldnn-git-head.json",
+      "url": "http://115.159.82.89/git/api/v1/repos/calculet/calDNN/commits/main",
+      "status": 200,
+      "bytes": 1508,
+      "sha256": "9443283ae9795d0dfc387674600d0425e4b6c45128b00d05167ea8529c18cebd",
+      "url_at_research": "http://115.159.82.89/git/api/v1/repos/calculet/calDNN/commits/main",
+      "cache_distributed": false
+    },
+    {
+      "name": "npu-git-head.json",
+      "url": "http://115.159.82.89/git/api/v1/repos/calculet/npu/commits/main",
+      "status": 200,
+      "bytes": 1493,
+      "sha256": "e3eacf7eda9a0926d916f8db9dfabb47e63c49fa49239a86a71a6713a8c2790e",
+      "url_at_research": "http://115.159.82.89/git/api/v1/repos/calculet/npu/commits/main",
+      "cache_distributed": false
+    },
+    {
+      "name": "edge-model-card.md",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/README.md",
+      "status": 200,
+      "bytes": 53118,
+      "sha256": "87f7e4d9ce9c1fcdbf4daac09dfebf1ca51409b4c11cbe80f85b7f41c0083b3a",
+      "url_at_research": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/README.md",
+      "cache_distributed": false
+    },
+    {
+      "name": "cosmos3-architecture.png",
+      "url": "https://raw.githubusercontent.com/NVIDIA/cosmos/540106233a1a834f00fddd368dd6e3e818575696/docs/assets/cosmos3-model-architecture.png",
+      "status": 200,
+      "bytes": 361515,
+      "sha256": "cda87a0c67c2549d4e4dd5586e5ac7efa45bf383a8ac4139c292f79a12a2a2db",
+      "url_at_research": "https://raw.githubusercontent.com/NVIDIA/cosmos/540106233a1a834f00fddd368dd6e3e818575696/docs/assets/cosmos3-model-architecture.png",
+      "cache_distributed": false
+    },
+    {
+      "name": "transformers-cosmos3-edge-doc.md",
+      "url": "https://raw.githubusercontent.com/huggingface/transformers/0d7a6219179b24586089ae81b45cf725078e681f/docs/source/en/model_doc/cosmos3_edge.md",
+      "status": 200,
+      "bytes": 3649,
+      "sha256": "e50cc949f337b92c942e28d0fcc2830d5fbc34cc16df928799b10e869438195e",
+      "url_at_research": "https://raw.githubusercontent.com/huggingface/transformers/0d7a6219179b24586089ae81b45cf725078e681f/docs/source/en/model_doc/cosmos3_edge.md",
+      "cache_distributed": false
+    },
+    {
+      "name": "diffusers-pipeline-cosmos3.py",
+      "url": "https://raw.githubusercontent.com/huggingface/diffusers/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/pipelines/cosmos3/pipeline_cosmos3.py",
+      "error": "HTTP Error 404: Not Found",
+      "url_at_research": "https://raw.githubusercontent.com/huggingface/diffusers/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/pipelines/cosmos3/pipeline_cosmos3.py",
+      "cache_distributed": false
+    },
+    {
+      "name": "diffusers-autoencoder-wan.py",
+      "url": "https://raw.githubusercontent.com/huggingface/diffusers/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/models/autoencoders/autoencoder_kl_wan.py",
+      "status": 200,
+      "bytes": 54677,
+      "sha256": "c769a689d47deed33b07bc19727185b238f31a978aec5f8301abcc3236222fb7",
+      "url_at_research": "https://raw.githubusercontent.com/huggingface/diffusers/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/models/autoencoders/autoencoder_kl_wan.py",
+      "cache_distributed": false
+    },
+    {
+      "name": "cosmos3-report.pdf",
+      "url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "status": 200,
+      "bytes": 26639859,
+      "sha256": "ab4f2613e594b7bcd5f72b8f315618fdc11402425232c6733e2e78fe7c000488",
+      "url_at_research": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf",
+      "cache_distributed": false
+    },
+    {
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/frag.rs",
+      "path": "src/frag.rs",
+      "name": "calblas-src-frag.rs",
+      "bytes": 7662,
+      "sha256": "3c5fce1f49d52e004c4de1586818a430ad914f2c913a9fdecb586d38b171f8e1",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/frag.rs",
+      "cache_distributed": false
+    },
+    {
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/linear.rs",
+      "path": "src/kernels/linear.rs",
+      "name": "calblas-src-kernels-linear.rs",
+      "bytes": 43537,
+      "sha256": "0935e02f00276bf666e78860ea2d5ea02778b97ecd61f3f3ef698d8bf9a99184",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/linear.rs",
+      "cache_distributed": false
+    },
+    {
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/dit.rs",
+      "path": "src/kernels/dit.rs",
+      "name": "calblas-src-kernels-dit.rs",
+      "bytes": 16115,
+      "sha256": "5d32dcf46a88bd8f1a6bb2617ab28d763a41739ee21ec286fda34ec4e54cbbef",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/dit.rs",
+      "cache_distributed": false
+    },
+    {
+      "name": "calculet-sdk-home.html",
+      "url": "http://115.159.82.89/",
+      "status": 200,
+      "bytes": 9018,
+      "sha256": "0240836eef0c198702dd4c583ff1b96b5da5220df9c456df084b53aadfab011d",
+      "url_at_research": "http://115.159.82.89/",
+      "cache_distributed": false
+    },
+    {
+      "name": "calblas-readme.md",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/README.md",
+      "status": 200,
+      "bytes": 16562,
+      "sha256": "3ebae7e6a8cd747374080cf89d55cf89d9a6af9ca4bfb21b6558e217cd75024c",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/branch/main/README.md",
+      "cache_distributed": false
+    },
+    {
+      "name": "calblas-status.md",
+      "url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/STATUS.md",
+      "status": 200,
+      "bytes": 5148,
+      "sha256": "d04bbb090d9a4fe7d71d9e19d3d8b8a0b87d01ec7bcf1d77f502329200f42290",
+      "url_at_research": "http://115.159.82.89/git/calculet/calBLAS/raw/branch/main/STATUS.md",
+      "cache_distributed": false
+    },
+    {
+      "name": "caldnn-readme.md",
+      "url": "http://115.159.82.89/git/calculet/calDNN/raw/commit/1e06c41c557a469a9acc7566acb9f7e2c7f7ca62/README.md",
+      "status": 200,
+      "bytes": 4000,
+      "sha256": "39ec15be70f272934a8c2c5da6b5a0bba20de3ed2bd58ecd12dbaa32a310a0d7",
+      "url_at_research": "http://115.159.82.89/git/calculet/calDNN/raw/branch/main/README.md",
+      "cache_distributed": false
+    },
+    {
+      "name": "npu-syntax.md",
+      "url": "http://115.159.82.89/git/calculet/npu/raw/commit/172aad2611c86ead4071356fbaca3cf6facd2917/SYNTAX.md",
+      "status": 200,
+      "bytes": 10560,
+      "sha256": "3e7118c5a644039cda0dcdc83cb2e5bf8f82573aeceb64b837b19561b7a35edb",
+      "url_at_research": "http://115.159.82.89/git/calculet/npu/raw/branch/main/SYNTAX.md",
+      "cache_distributed": false
+    },
+    {
+      "name": "edge-config.json",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/config.json",
+      "status": 200,
+      "bytes": 1679,
+      "sha256": "ffb75b654e65d10e337ea07f20ac4eadc3775dd22c9a8194c87c3b68df5c8f5f",
+      "url_at_research": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/main/config.json",
+      "cache_distributed": false
+    },
+    {
+      "name": "edge-transformer-config.json",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/transformer/config.json",
+      "status": 200,
+      "bytes": 1075,
+      "sha256": "8c3c0945e7e66b2f59cbac80aace9db04edb4230fa0931bf64d4c12f51cbc81f",
+      "url_at_research": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/main/transformer/config.json",
+      "cache_distributed": false
+    },
+    {
+      "name": "edge-vae-config.json",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/vae/config.json",
+      "status": 200,
+      "bytes": 1755,
+      "sha256": "2af4752d63e8b308b8bfd29798ec6663886583ab228d7c643f559612c54df1ca",
+      "url_at_research": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/main/vae/config.json",
+      "cache_distributed": false
+    },
+    {
+      "name": "edge-model-index.json",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/model_index.json",
+      "status": 200,
+      "bytes": 555,
+      "sha256": "6e0a5c43411271246ee0446dc644ac38eaf72958ca4dc2fb59c2fb3e3893420e",
+      "url_at_research": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/main/model_index.json",
+      "cache_distributed": false
+    },
+    {
+      "name": "edge-weight-index.json",
+      "url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/transformer/diffusion_pytorch_model.safetensors.index.json",
+      "status": 200,
+      "bytes": 53623,
+      "sha256": "13a947ce2f9e546fe5aee7e2303aa3e6f1bbf08ff7a44a61d959ee094d01f2dc",
+      "url_at_research": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/main/transformer/diffusion_pytorch_model.safetensors.index.json",
+      "cache_distributed": false
+    },
+    {
+      "name": "edge-hf-metadata.json",
+      "url": "https://huggingface.co/api/models/nvidia/Cosmos3-Edge",
+      "status": 200,
+      "bytes": 16500,
+      "sha256": "6c16f524a58c9aeb2e980e7175d2cf779da9122ed2f8dbae9362579b5030d4fb",
+      "url_at_research": "https://huggingface.co/api/models/nvidia/Cosmos3-Edge",
+      "cache_distributed": false
+    }
+  ],
+  "cached_sources": [
+    {
+      "path": "sources/calblas-examples-d3_turbo-README.md",
+      "bytes": 4796,
+      "sha256": "16691bb0b34c41ce7038de6e97aaa3ecf5e3416fab9aed9e4fd186bed83410b4",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/d3_turbo/README.md"
+    },
+    {
+      "path": "sources/calblas-examples-tiny-src-step.rs",
+      "bytes": 6929,
+      "sha256": "dbdc7c9c8786d476f2bd90e1e9ea12ef8c91ba0bdd72edb93a8517e2a16f91d8",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/tiny/src/step.rs"
+    },
+    {
+      "path": "sources/calblas-examples-yolo26-deploy-DEPLOY.md",
+      "bytes": 3870,
+      "sha256": "58a38c131180acb8c4e57c069a07345fee3d27c74284660b9b13097846f76794",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/examples/yolo26/deploy/DEPLOY.md"
+    },
+    {
+      "path": "sources/calblas-git-head.json",
+      "bytes": 48885,
+      "sha256": "5186bbca3d729073a170934bb471770b6e34708501d90b6644c811cd1a30d385",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/api/v1/repos/calculet/calBLAS/commits/main"
+    },
+    {
+      "path": "sources/calblas-readme.md",
+      "bytes": 16562,
+      "sha256": "3ebae7e6a8cd747374080cf89d55cf89d9a6af9ca4bfb21b6558e217cd75024c",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/README.md"
+    },
+    {
+      "path": "sources/calblas-src-frag.rs",
+      "bytes": 7662,
+      "sha256": "3c5fce1f49d52e004c4de1586818a430ad914f2c913a9fdecb586d38b171f8e1",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/frag.rs"
+    },
+    {
+      "path": "sources/calblas-src-kernels-attention.rs",
+      "bytes": 43547,
+      "sha256": "85154942f94ae2d948dc8cf0de26554d3cc98b96f13477a0a015b3ebaece60f2",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/attention.rs"
+    },
+    {
+      "path": "sources/calblas-src-kernels-conv.rs",
+      "bytes": 6633,
+      "sha256": "ada20a2b98b7970ef5a15e92e6031dbf6390e75f81cd111aeca2104eee8f3ece",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/conv.rs"
+    },
+    {
+      "path": "sources/calblas-src-kernels-dit.rs",
+      "bytes": 16115,
+      "sha256": "5d32dcf46a88bd8f1a6bb2617ab28d763a41739ee21ec286fda34ec4e54cbbef",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/dit.rs"
+    },
+    {
+      "path": "sources/calblas-src-kernels-elementwise.rs",
+      "bytes": 8045,
+      "sha256": "40e61967f0d0f0ccfe7c57466f1483fda0008795a4ffb3191f009ddca1b326f0",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/elementwise.rs"
+    },
+    {
+      "path": "sources/calblas-src-kernels-encoder.rs",
+      "bytes": 3035,
+      "sha256": "af37c4be13b25caf3c3912acaa99074d05486fbf3ca27c968a4c890e146321eb",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/encoder.rs"
+    },
+    {
+      "path": "sources/calblas-src-kernels-linear.rs",
+      "bytes": 43537,
+      "sha256": "0935e02f00276bf666e78860ea2d5ea02778b97ecd61f3f3ef698d8bf9a99184",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/linear.rs"
+    },
+    {
+      "path": "sources/calblas-src-kernels-vision.rs",
+      "bytes": 44400,
+      "sha256": "218ca5a4295340451815e821ce737ca31fc6f328b4b28ddd3e7955ce41d41754",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/src/kernels/vision.rs"
+    },
+    {
+      "path": "sources/calblas-status.md",
+      "bytes": 5148,
+      "sha256": "d04bbb090d9a4fe7d71d9e19d3d8b8a0b87d01ec7bcf1d77f502329200f42290",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calBLAS/raw/commit/32d2bb83d7160a593eaab67aa02e5dddbc8706cf/STATUS.md"
+    },
+    {
+      "path": "sources/calculet-sdk-home.html",
+      "bytes": 9018,
+      "sha256": "0240836eef0c198702dd4c583ff1b96b5da5220df9c456df084b53aadfab011d",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/"
+    },
+    {
+      "path": "sources/caldnn-git-head.json",
+      "bytes": 1508,
+      "sha256": "9443283ae9795d0dfc387674600d0425e4b6c45128b00d05167ea8529c18cebd",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/api/v1/repos/calculet/calDNN/commits/main"
+    },
+    {
+      "path": "sources/caldnn-readme.md",
+      "bytes": 4000,
+      "sha256": "39ec15be70f272934a8c2c5da6b5a0bba20de3ed2bd58ecd12dbaa32a310a0d7",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/calDNN/raw/commit/1e06c41c557a469a9acc7566acb9f7e2c7f7ca62/README.md"
+    },
+    {
+      "path": "sources/cosmos-cookbook.md",
+      "bytes": 6655,
+      "sha256": "d54811367565e8bfd9b1cd240e2536747bedefe2d4f2333f7d7e9c2eb65faa93",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://github.com/NVIDIA/cosmos/blob/540106233a1a834f00fddd368dd6e3e818575696/COOKBOOK.md"
+    },
+    {
+      "path": "sources/cosmos-model-reference.md",
+      "bytes": 11668,
+      "sha256": "1859a4677f08b462382eb1179fa3b0a6bea73dd63a3191df612c1f1591aefddc",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://github.com/NVIDIA/cosmos/blob/540106233a1a834f00fddd368dd6e3e818575696/docs/reference/models.md"
+    },
+    {
+      "path": "sources/cosmos3-architecture.png",
+      "bytes": 361515,
+      "sha256": "cda87a0c67c2549d4e4dd5586e5ac7efa45bf383a8ac4139c292f79a12a2a2db",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://raw.githubusercontent.com/NVIDIA/cosmos/540106233a1a834f00fddd368dd6e3e818575696/docs/assets/cosmos3-model-architecture.png"
+    },
+    {
+      "path": "sources/cosmos3-report.pdf",
+      "bytes": 26639859,
+      "sha256": "ab4f2613e594b7bcd5f72b8f315618fdc11402425232c6733e2e78fe7c000488",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf"
+    },
+    {
+      "path": "sources/diffusers-autoencoder-wan.py",
+      "bytes": 54677,
+      "sha256": "c769a689d47deed33b07bc19727185b238f31a978aec5f8301abcc3236222fb7",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://raw.githubusercontent.com/huggingface/diffusers/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/models/autoencoders/autoencoder_kl_wan.py"
+    },
+    {
+      "path": "sources/diffusers-pipeline-cosmos3-omni.py",
+      "bytes": 100178,
+      "sha256": "5e7a25971a15be3cb07cb8154e1024f55cf69773d21af2f8ca18f30de43743ba",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://github.com/huggingface/diffusers/blob/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/pipelines/cosmos/pipeline_cosmos3_omni.py"
+    },
+    {
+      "path": "sources/diffusers-transformer-cosmos3.py",
+      "bytes": 43038,
+      "sha256": "8b84854085c72a788374f1edf48018bb5ff5af8170fd273d131dc67a7766346e",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://github.com/huggingface/diffusers/blob/43e30028af5120d8b0868cb6975b9fad39cc4fab/src/diffusers/models/transformers/transformer_cosmos3.py"
+    },
+    {
+      "path": "sources/edge-config.json",
+      "bytes": 1679,
+      "sha256": "ffb75b654e65d10e337ea07f20ac4eadc3775dd22c9a8194c87c3b68df5c8f5f",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/config.json"
+    },
+    {
+      "path": "sources/edge-hf-metadata.json",
+      "bytes": 16500,
+      "sha256": "6c16f524a58c9aeb2e980e7175d2cf779da9122ed2f8dbae9362579b5030d4fb",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://huggingface.co/api/models/nvidia/Cosmos3-Edge"
+    },
+    {
+      "path": "sources/edge-model-card.md",
+      "bytes": 53118,
+      "sha256": "87f7e4d9ce9c1fcdbf4daac09dfebf1ca51409b4c11cbe80f85b7f41c0083b3a",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/README.md"
+    },
+    {
+      "path": "sources/edge-model-index.json",
+      "bytes": 555,
+      "sha256": "6e0a5c43411271246ee0446dc644ac38eaf72958ca4dc2fb59c2fb3e3893420e",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/model_index.json"
+    },
+    {
+      "path": "sources/edge-transformer-config.json",
+      "bytes": 1075,
+      "sha256": "8c3c0945e7e66b2f59cbac80aace9db04edb4230fa0931bf64d4c12f51cbc81f",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/transformer/config.json"
+    },
+    {
+      "path": "sources/edge-vae-config.json",
+      "bytes": 1755,
+      "sha256": "2af4752d63e8b308b8bfd29798ec6663886583ab228d7c643f559612c54df1ca",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/vae/config.json"
+    },
+    {
+      "path": "sources/edge-weight-index.json",
+      "bytes": 53623,
+      "sha256": "13a947ce2f9e546fe5aee7e2303aa3e6f1bbf08ff7a44a61d959ee094d01f2dc",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://huggingface.co/nvidia/Cosmos3-Edge/resolve/6afc1256321c3a8e623d89be3bc5117a1e90f96b/transformer/diffusion_pytorch_model.safetensors.index.json"
+    },
+    {
+      "path": "sources/fetch-manifest-extra-kernels.json",
+      "bytes": 2656,
+      "sha256": "2580d8e016dd9a5e5dc7a0c75cd50f0bbc348e8cd32a7137ad2a458c9490b853",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "note": "Original research retrieval/version metadata; source URLs retained in this manifest."
+    },
+    {
+      "path": "sources/fetch-manifest-extra.json",
+      "bytes": 2511,
+      "sha256": "024f79374b864b0b0b86fb2bf6daf325a021dc79bd659f2bd6d99f0c47e10a92",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "note": "Original research retrieval/version metadata; source URLs retained in this manifest."
+    },
+    {
+      "path": "sources/fetch-manifest-kernels.json",
+      "bytes": 928,
+      "sha256": "e91da5c229256cdb692f20c132eb11d6458a9da2273a850619c4f4a20fc10c07",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "note": "Original research retrieval/version metadata; source URLs retained in this manifest."
+    },
+    {
+      "path": "sources/fetch-manifest.json",
+      "bytes": 2707,
+      "sha256": "5aa0ba3c087f03ec12e35ad64694cedaa4d9a45c478130aa8b2938806d16a703",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "note": "Original research retrieval/version metadata; source URLs retained in this manifest."
+    },
+    {
+      "path": "sources/npu-git-head.json",
+      "bytes": 1493,
+      "sha256": "e3eacf7eda9a0926d916f8db9dfabb47e63c49fa49239a86a71a6713a8c2790e",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/api/v1/repos/calculet/npu/commits/main"
+    },
+    {
+      "path": "sources/npu-syntax.md",
+      "bytes": 10560,
+      "sha256": "3e7118c5a644039cda0dcdc83cb2e5bf8f82573aeceb64b837b19561b7a35edb",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "http://115.159.82.89/git/calculet/npu/raw/commit/172aad2611c86ead4071356fbaca3cf6facd2917/SYNTAX.md"
+    },
+    {
+      "path": "sources/transformers-cosmos3-edge-doc.md",
+      "bytes": 3649,
+      "sha256": "e50cc949f337b92c942e28d0fcc2830d5fbc34cc16df928799b10e869438195e",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://raw.githubusercontent.com/huggingface/transformers/0d7a6219179b24586089ae81b45cf725078e681f/docs/source/en/model_doc/cosmos3_edge.md"
+    },
+    {
+      "path": "sources/transformers-modeling-cosmos3-edge.py",
+      "bytes": 60411,
+      "sha256": "4978a297564d2cb2689bddb77c8e8f596ddc2e328c3bcd128db475ee74083163",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "upstream_url": "https://github.com/huggingface/transformers/blob/0d7a6219179b24586089ae81b45cf725078e681f/src/transformers/models/cosmos3_edge/modeling_cosmos3_edge.py"
+    },
+    {
+      "path": "sources/upstream-versions.json",
+      "bytes": 1409,
+      "sha256": "7ec50b1fa769a6824c844c3faf8acc9d0cf81870155979c25b272406cd071eaf",
+      "included": false,
+      "path_scope": "original_cache_only",
+      "redistribution": "excluded_pending_license_review",
+      "note": "Original research retrieval/version metadata; source URLs retained in this manifest."
+    }
+  ],
+  "published_files": [
+    {
+      "path": ".gitignore",
+      "bytes": 38,
+      "sha256": "12830313252ffb4d437a8d6ebbeb59d4577ca8b01904aff7b40362f8f7ece3a7"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2623,
+      "sha256": "ae35e23bca5fd0610d96c22055605719afe39bc103049ba6bf1acda766356e6f"
+    },
+    {
+      "path": "SOURCE_REFERENCES.md",
+      "bytes": 9780,
+      "sha256": "e88f57eac418e1fc46bf89834345842e6442b54ca1a1a50af70a96bed6becb74"
+    },
+    {
+      "path": "estimate_resources.py",
+      "bytes": 3301,
+      "sha256": "38863dc9e99e90803110b4879f5bb08477553033d566fc11a288dce71a4a4d90"
+    },
+    {
+      "path": "estimator_inputs.json",
+      "bytes": 1801,
+      "sha256": "9a51f159c7ddb6c0052e00800f489cc2cc7541e85d0182dcced1e6875b14756e"
+    },
+    {
+      "path": "operator_support.csv",
+      "bytes": 2880,
+      "sha256": "215a5f8a97199329f9ada7f9dbafb9e3156f823f524ef2b81eeeada86b8ec241"
+    },
+    {
+      "path": "resource_estimates.json",
+      "bytes": 2300,
+      "sha256": "122578d28d79e4be7db732fb4dbad28f8fe866b6e43480ef0cdb48d7ada35649"
+    },
+    {
+      "path": "validation_report.json",
+      "bytes": 692,
+      "sha256": "044e4e5eb2ffc18e8d264a8315a70885c3243e4abe58db16dad4eb90d01a3604"
+    },
+    {
+      "path": "调研报告.md",
+      "bytes": 35830,
+      "sha256": "0ea5bac242ef84936070e9e241f79115e95a1d386992a144bef719172a88134d"
+    }
+  ]
+}

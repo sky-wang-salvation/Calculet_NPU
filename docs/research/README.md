@@ -22,6 +22,7 @@
 | [10 验收方法](10-evaluation.md) | 怎样测正确性、性能、能耗与 NPU 贡献？ |
 | [11 确认问题](11-questions.md) | 哪些未知会改变方案？ |
 | [12 来源记录](12-sources.md) | 每项判断能追溯到哪里？ |
+| [13 用户场景与 NPU 价值](13-scenarios-and-value.md) | 谁在用、解决什么问题、NPU 算哪里、怎样证明收益？（2026-11-14 新增） |
 
 ## 三个重要发现
 
@@ -37,3 +38,10 @@
 - **待验证**：需要当前 SDK、现场答复或真机实验才能确定。
 
 本次仅进行了资料读取、版本记录与文档整理，没有安装 SDK、执行设备程序或获得 NPU 实测结果。可填写[选题卡](../../templates/project-proposal.md)和[实验报告](../../templates/experiment-report.md)继续推进。
+
+## 2026-11-14 补充资料
+
+- [Cosmos3-Edge 调研包](../../experiment/COSMOS%203/research/cosmos3_edge_npu_20261114/README.md)与[Cosmos 交接](../../experiment/COSMOS%203/HANDOFF.md)。
+- [DeepSeek Harness 需求与方案](../harness/README.md)及[方案取舍记录](../harness/discussion-and-decisions.md)。
+
+上述资料的研究日期和执行状态在各自文件中说明，与原始 2026-11-13 调研分开。

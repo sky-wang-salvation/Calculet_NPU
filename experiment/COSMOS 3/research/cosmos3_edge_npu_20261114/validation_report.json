@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-14",
+  "scope": "Publication validation only; no SDK/model/NPU execution",
+  "estimator": {
+    "interpreter": "Python 3 isolated mode; standard library only",
+    "third_party_cache_present": false,
+    "launch_working_directory": "outside the research directory",
+    "matches_original_json_field_for_field": true,
+    "formula_spot_checks": "passed",
+    "result_kind": "estimate"
+  },
+  "operator_table": {
+    "rows": 12,
+    "verification_status": "all not_run"
+  },
+  "source_cache": {
+    "files_checked": 40,
+    "mismatches": 0,
+    "files_distributed": 0
+  },
+  "model_inference": "not_run",
+  "npu_compile": "not_run",
+  "npu_hardware_execution": "not_run"
+}
