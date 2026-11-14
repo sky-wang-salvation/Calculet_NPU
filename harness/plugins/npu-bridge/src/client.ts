@@ -1,5 +1,15 @@
 import { BridgeError, identifier, parseCapabilities, parseJob } from './protocol.js'
 import type { Capabilities, GenerateRequest, Job } from './protocol.js'
+import { setTimeout as delay } from 'node:timers/promises'
+
+export interface WaitResult {
+  jobId: string
+  completed: boolean
+  timedOut: boolean
+  elapsedMs: number
+  job?: Job
+  queryError?: { code: string; message: string }
+}
 
 export interface BackendConfig {
   backendURL: string
@@ -67,6 +77,44 @@ export class NpuClient {
     const job = parseJob(await this.request(`v1/jobs/${encodeURIComponent(identifier(jobId))}`, signal), this.requireBase())
     if (job.id !== jobId) throw new BridgeError('INVALID_BACKEND_RESPONSE', 'The requested and returned job identifiers differ.')
     return job
+  }
+
+  /** Only polls GET: a stopped wait never cancels or resubmits a model job. */
+  async waitJob(jobId: string, signal: AbortSignal, maxWaitMs = 30000, pollIntervalMs = 1000): Promise<WaitResult> {
+    identifier(jobId)
+    if (!Number.isSafeInteger(maxWaitMs) || maxWaitMs < 1 || maxWaitMs > 60000
+      || !Number.isSafeInteger(pollIntervalMs) || pollIntervalMs < 10 || pollIntervalMs > 10000) {
+      throw new BridgeError('INVALID_REQUEST', 'maxWaitMs must be 1–60000; pollIntervalMs must be 10–10000 milliseconds.')
+    }
+    signal.throwIfAborted()
+    this.requireBase()
+    const started = performance.now()
+    const deadline = AbortSignal.timeout(maxWaitMs)
+    const combined = AbortSignal.any([signal, deadline])
+    let job: Job | undefined
+    const result = (completed: boolean, timedOut: boolean): WaitResult => ({
+      jobId, completed, timedOut, elapsedMs: Math.round(performance.now() - started),
+      ...(job ? { job } : {}),
+    })
+    try {
+      while (true) {
+        const next = await this.getJob(jobId, combined)
+        if (job && (next.modelId !== job.modelId || next.task !== job.task
+          || (job.executionKind !== 'not_run' && next.executionKind !== job.executionKind))) {
+          throw new BridgeError('INVALID_BACKEND_RESPONSE', 'The job identity or execution mode changed while polling.')
+        }
+        job = next
+        if (['succeeded', 'failed', 'cancelled'].includes(job.status)) return result(true, false)
+        await delay(pollIntervalMs, undefined, { signal: combined })
+      }
+    } catch (cause) {
+      signal.throwIfAborted()
+      if (deadline.aborted) return result(false, true)
+      if (cause instanceof BridgeError) return {
+        ...result(false, false), queryError: { code: cause.code, message: cause.message },
+      }
+      throw cause
+    }
   }
 
   private requireBase(): URL {

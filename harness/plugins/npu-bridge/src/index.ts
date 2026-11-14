@@ -5,6 +5,8 @@ import { HarnessError } from '@deepseek-ai/dsh-llm'
 import { NpuClient } from './client.js'
 import type { BackendConfig } from './client.js'
 import { BridgeError, PROTOCOL_VERSION, TASKS } from './protocol.js'
+import { jobMarkdown, waitMarkdown } from './presentation.js'
+import type { Job } from './protocol.js'
 
 export const name = 'calculet-npu'
 export const inject = ['tools']
@@ -33,10 +35,10 @@ const jobSchema = {
   type: 'object', additionalProperties: false,
   properties: {
     id: { type: 'string', required: true },
-    status: { type: 'string', required: true },
+    status: { type: 'string', enum: ['queued', 'running', 'succeeded', 'failed', 'cancelled'], required: true },
     modelId: { type: 'string', required: true },
-    task: { type: 'string', required: true },
-    executionKind: { type: 'string', required: true },
+    task: { type: 'string', enum: TASKS, required: true },
+    executionKind: { type: 'string', enum: ['hardware', 'simulation', 'not_run'], required: true },
     artifacts: {
       type: 'array', required: true,
       items: { type: 'object', additionalProperties: false, properties: {
@@ -57,8 +59,8 @@ async function toolCall<T>(run: () => Promise<T>): Promise<T> {
   }
 }
 
-function renderJob(job: unknown) {
-  return [{ type: 'text' as const, text: JSON.stringify(job) }]
+function renderJob(job: Job) {
+  return [{ type: 'text' as const, text: jobMarkdown(job) }]
 }
 
 /** Register tools using the official registry and effect-owned plugin lifetime. */
@@ -131,5 +133,29 @@ export function apply(ctx: Context, config: Config): void {
     parameters: { jobId: { type: 'string', required: true } },
     output: { schema: jobSchema, render: (_args, value) => renderJob(value) },
     async execute(args, exec) { return toolCall(() => client.getJob(args.jobId, exec.signal)) },
+  }))
+
+  ctx.tools.register(defineTool({
+    name: 'npu_wait_job',
+    description: '有时限地轮询已有任务，直到成功、失败、取消或等待到时。到时或查询中断会保留任务 ID；不会取消后台任务，也不会重新提交生成。',
+    parameters: {
+      jobId: { type: 'string', required: true },
+      maxWaitMs: { type: 'integer', description: '本次等待上限 1–60000 毫秒，默认 30000。到时可继续调用。' },
+      pollIntervalMs: { type: 'integer', description: '查询间隔 10–10000 毫秒，默认 1000。' },
+    },
+    output: {
+      schema: { type: 'object', additionalProperties: false, properties: {
+        jobId: { type: 'string', required: true }, completed: { type: 'boolean', required: true },
+        timedOut: { type: 'boolean', required: true }, elapsedMs: { type: 'integer', required: true },
+        job: jobSchema,
+        queryError: { type: 'object', additionalProperties: false, properties: {
+          code: { type: 'string', required: true }, message: { type: 'string', required: true },
+        } },
+      } },
+      render: (_args, value) => [{ type: 'text', text: waitMarkdown(value) }],
+    },
+    async execute(args, exec) {
+      return toolCall(() => client.waitJob(args.jobId, exec.signal, args.maxWaitMs, args.pollIntervalMs))
+    },
   }))
 }

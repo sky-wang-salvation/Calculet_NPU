@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Calculet · 插件联调台</title><link rel="stylesheet" href="/workbench.css"><script type="module" src="/workbench.js"></script></head>
+<body>
+<header><div class="brand"><span class="mark">C</span><span>CALCULET <small>HARNESS BRIDGE</small></span></div><span class="pill">SIMULATION · 测试模式</span></header>
+<main>
+  <div class="intro"><span class="eyebrow">LOCAL INTEGRATION LAB</span><h1>从任务，到可检查的产物。</h1><p>通过真实注册的插件工具，验证异步任务与结果交付。</p></div>
+  <aside class="notice"><strong>仅联调，不执行模型或 NPU。</strong> 图片为带 TEST 标记的固定测试图。此页面不是 Harness 聊天页；无需模型账号即可检查工具链路。</aside>
+  <div class="grid">
+    <section class="panel"><h2><span>01</span> 提交测试任务</h2>
+      <div id="connection" role="status">正在查询插件和模型…</div>
+      <form id="generate-form">
+        <label for="model">测试场景</label><select id="model" required></select>
+        <label for="prompt">提示词 <small>只验证传递，不据此生成图片</small></label><textarea id="prompt" required maxlength="8000" rows="4">验证从 Harness 插件到异步任务，再到图片产物的完整流程。</textarea>
+        <div class="fields"><div><label for="seed">Seed</label><input id="seed" type="number" min="0" max="4294967295" step="1" value="42"></div><div><label for="budget">本次跟踪上限</label><select id="budget"><option value="5000">5 秒</option><option value="30000">30 秒</option><option value="60000">60 秒</option></select></div></div>
+        <button id="submit" type="submit" disabled>提交并跟踪</button>
+      </form>
+      <hr><label for="job-id">已有任务 ID</label><input id="job-id" autocomplete="off" placeholder="提交后自动保留；也可粘贴任务 ID">
+      <div class="actions"><button id="resume" type="button" class="secondary">继续跟踪</button><button id="stop" type="button" class="secondary" disabled>停止等待</button></div>
+      <p class="hint">停止或到时仅结束本次等待，后台任务继续运行。刷新页面后可恢复查询；重启测试服务会清空任务。</p>
+    </section>
+    <section class="panel result"><div class="result-heading"><h2><span>02</span> 任务与产物</h2><span id="status" class="pill neutral">尚无任务</span></div>
+      <p id="message" role="status" aria-live="polite">选择一个测试场景开始。成功后会在这里展示图片和下载入口。</p>
+      <dl id="metadata"></dl><div id="artifacts" class="artifacts"><div class="empty">产物将在任务完成后出现</div></div>
+      <details><summary>插件返回的展示文本</summary><pre id="tool-output">尚未调用</pre></details>
+      <details><summary>本次状态记录</summary><ol id="history"></ol></details>
+    </section>
+  </div>
+  <footer>原生工具：npu_status · npu_list_models · npu_generate · npu_get_job · npu_wait_job<br>正式模型接入时更换后端配置；本测试服务始终声明 simulation。</footer>
+</main>
+</body></html>
