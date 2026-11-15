@@ -16,7 +16,13 @@ dsh --profile web --dump-config
 
 [Release 下载](https://github.com/sky-wang-salvation/Calculet_NPU/releases/tag/v0.2.0) · [完整安装与升级说明](docs/plugin-installation.md) · [功能、配置与安全](plugins/npu-bridge/README.md)
 
-本轮仅发布 GitHub Release，未发布 npm；源码位于子目录，不使用仓库根的 `github:owner/repo#tag` 作为安装入口。MIT 仅覆盖原创插件与随包原创通用代码，第三方资料和 SDK 权利不变。
+`dsh-sn4ck@0.2.0` 已于2026-11-15发布到 [npm](https://www.npmjs.com/package/dsh-sn4ck)，并已通过官方 DSH 按包名安装。也可使用 GitHub Release 资产；两个渠道的发行归档字节一致。
+
+```bash
+dsh plugin --profile web add dsh-sn4ck@0.2.0 --ignore-scripts
+```
+
+源码位于子目录，不使用仓库根的 `github:owner/repo#tag` 作为安装入口。MIT 仅覆盖原创插件与随包原创通用代码，第三方资料和 SDK 权利不变。
 
 更新日期：2026-11-15（Asia/Shanghai）。参赛方向为原粒第五题的开发工具：在 SDK 已配置、材料与设备已获授权的前提下，将自然语言部署目标组织为任务契约、受控计划、执行与验收。
 

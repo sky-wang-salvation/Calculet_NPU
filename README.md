@@ -37,7 +37,7 @@ dsh plugin --profile web add ./dsh-sn4ck-0.2.0.tgz --ignore-scripts
 
 ### npm 安装状态
 
-本轮只发布 GitHub Release，**没有执行 npm publish**。以下命令仅在团队另行获准并完成对应 npm 版本发布后才可使用，不是当前可用的下载入口：
+`dsh-sn4ck@0.2.0` 已于 **2026-11-15** 发布到 [npm](https://www.npmjs.com/package/dsh-sn4ck)，`latest` 指向 `0.2.0`。已验证 npm 归档与 GitHub Release 字节一致，并通过官方 DSH 按包名安装：
 
 ```bash
 dsh plugin --profile web add dsh-sn4ck@0.2.0 --ignore-scripts
