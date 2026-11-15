@@ -104,7 +104,7 @@ async function main() {
   assert(!/skipped|incompatible|unreadable/i.test(dump), 'Official dump skipped a bundle');
   report.checks.officialPluginAdd = 'passed: unmodified official runCli with installation-owned local pnpm, local tgz, fresh DSH_HOME';
   report.checks.officialBundleActivation = 'passed: dsh.profile.bundles includes dsh-sn4ck';
-  report.checks.officialDumpConfig = 'passed: calculet-npu entry present';
+  report.checks.officialDumpConfig = 'passed: id sn4ck and dsh-sn4ck bundle present';
   report.checks.globalEnvironment = 'unchanged: isolated HOME, DSH_HOME, npmrc and local pnpm';
   assert.equal(sha256(await readFile(archive)), release.archive.sha256, 'Archive changed while installation tests were running; rebuild and rerun.');
   assert.equal((await readJSON(path.join(root, 'dist', `${basename}.manifest.json`))).archive.sha256, release.archive.sha256, 'Release manifest changed during installation testing.');
