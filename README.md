@@ -1,10 +1,11 @@
-# Calculet_NPU
+# 日新 · NPU 部署翻译官
 
-原粒 NPU 开发者生态挑战的赛题资料与技术调研，帮助团队理解五个选题的实际技术目标，并制定可复现的工程方案。
+> 将部署意图转为受约束、可追踪的 NPU 任务。
 
-**[进入完整调研 →](docs/research/README.md)**
+日新是基于 **DeepSeek Harness** 的原粒 NPU 部署助手，面向希望使用本地 NPU、但不熟悉完整工具链的模型开发者。项目将部署目标整理为结构化任务契约，结合已验证配方组织执行、跟踪状态并交付产物与证据，减少用户反复判断和持续盯守。
 
-调研部分的基线日期为 **2026-11-13（北京时间）**，区分材料事实、公开文档事实、分析推断和待验证事项；当日尚未进行 SDK 安装、编译或 NPU 真机测试。后续插件发行状态见下节，模型实验状态以各自 schedule 为准，不能把安装验证当作实测性能结论。
+**快速阅读：** [项目说明](项目说明.md) · [项目展示与答辩说明](PPT%E2%80%94guide.md) · [模型部署经验](experiment/SD3.5_Medium/model_deploy_experience.md) · [运行与开发](#运行与开发)
+
 
 ## DSH-SN4CK：可直接安装的 DSH 插件
 
@@ -52,46 +53,152 @@ dsh plugin --profile web add dsh-sn4ck@0.2.0 --ignore-scripts
 
 MIT 仅适用于本项目原创插件及随包原创通用运行时代码，详见 [LICENSE](harness/plugins/npu-bridge/LICENSE) 和 [许可范围说明](harness/plugins/npu-bridge/NOTICE.md)。赛题资料、厂商文档、第三方依赖、SDK、权重和私有交接材料不因此被重新许可。
 
-## 五题的技术主线
+## 为什么做这个项目
 
-| 选题 | 主要解决什么 | 深入阅读 |
+“把模型部署到 NPU”背后，往往还有许多需要人来判断的问题：
+
+- 环境、组件和 SDK 是否匹配，哪些已有材料可以复用？
+- 哪些计算真正进入 NPU，哪些仍由 CPU 承担？
+- 任务中断后该继续查询、重新执行，还是先确认设备状态？
+- 有了输出，是否就满足数值、质量和交付要求？
+
+日新希望把这些判断中可以明确的部分，沉淀为任务约束、可复用配方和检查规则，让系统在约定范围内推进任务。
+
+## 怎样工作
+
+以下是项目的总体设计，完整自然语言与真实硬件闭环仍待联调验收。
+
+```mermaid
+flowchart LR
+    A["用户部署目标"] --> B["结构化任务契约"]
+    B --> C["能力与约束检查"]
+    C --> D["配方与执行计划"]
+    D --> E["受控工具与模型适配器"]
+    E --> F["状态、产物与执行证据"]
+```
+
+**任务契约**明确模型、参数、CPU/NPU 计算范围与验收等级；**配方**记录已经验证的方法及其适用条件；**执行与证据机制**负责说明任务做到哪一步、结果来自哪里，以及哪些项目仍未通过验收。运行环境、资源与授权由可信配置和规则检查，规划模型提出的内容需要经过校验。
+
+一个目标交互示例：
+
+> 按已有 SD3.5 烟雾配方准备并验证一张预览图，允许 CPU/NPU 混合执行，但不能影响共享任务。
+
+系统应先确认配方和执行条件，交付时同时给出任务状态、产物、CPU/NPU 分工和验收证据。这个例子表达目标体验，不代表当前已支持任意自然语言、模型或参数。
+
+## 当前成果与完成度
+
+截至 **2026-11-15**，模型真机记录、公开主线代码和开发版记录分别如下：
+
+| 工作项 | 已有成果 | 当前范围 |
 | --- | --- | --- |
-| 融合算子 | 减少中间读写与调度开销，让图采用高效实现 | [题一](docs/research/04-track1-fusion.md) |
-| 选择与采样 | 补齐生成循环中的选择、概率过滤与抽样 | [题二](docs/research/05-track2-sampling.md) |
-| 模型特性适配 | 保持位置编码、mask、归一化等模型语义 | [题三](docs/research/06-track3-adaptation.md) |
-| 本地检索与重排 | 用质量和端到端指标验证应用价值 | [题四](docs/research/07-track4-retrieval.md) |
-| 开放题 | 新模型、视觉/多模态、前端桥接和开发工具 | [题五](docs/research/08-track5-open.md) |
+| SD3.5 真实 NPU 子图 | 首层 Q 投影返回 `[16,1536]` BF16 输出，并与 CPU 参考比较 | 单个 Linear 子图；正式数值容差尚未验收 |
+| SD3.5 混合生图 | 已记录 256×256、4 步预览；每步首层 Q 投影全部 256 行使用 NPU 返回值，共 4 次请求、64 个 tile | Q-only HYBRID；其余主要计算在 CPU，正式画质与完整核心迁移未验收 |
+| DSH-SN4CK `0.2.0` 插件 | 9 项原生工具、任务契约、计划绑定、幂等提交和持久作业；103 项离线/模拟测试通过，并完成新装与旧包更名替换验证 | Release 提供预编译归档；测试不等于自然语言规划或真实硬件联调通过 |
+| 实际模型接入 | 默认不绑定真实适配器，缺少配置时明确 blocked；通用协议与原始模型交接分开 | 私有 SDK、权重、历史 PNG 和模型交接材料不随插件发布 |
+| Cosmos Nano / Edge | Nano 有历史基础探针与方形因果注意力适配报告；Edge 有架构研究和资源估算 | 完整 rolling 与视频生成未验收，Edge 设备验证未执行 |
+| RSI 自进化 | 已有反馈、对照评价与回退的设计方向 | 尚无经验证的学习收益 |
 
-## 优先阅读
+**当前没有可发布的整模型全 NPU 迁移、同条件加速比或能耗结论。** Q 投影计算段的零 CPU 回退，仅说明该计算段，不能外推为整条生成管线都在 NPU。
 
-- [SDK 现状](docs/research/03-sdk.md)：Rust、CalVX、docc、dort；原有模板与真实缺口；公开页面和 PDF 的路线差异。
-- [硬件核查](docs/research/02-hardware.md)：TOPS 口径、主机与设备内存、树莓派 PCIe、单/双芯粒比较。
-- [选题决策](docs/research/09-selection.md)：按团队能力和已验证基线收敛目标。
-- [验收方法](docs/research/10-evaluation.md)：正确性、计时边界、随机性测试、NPU 贡献与能耗。
-- [工程师确认清单](docs/research/11-questions.md)与[全部来源](docs/research/12-sources.md)。
+核对成果可从这些入口开始：
 
-## 原有赛题资料
+- [SD3.5 运行配置、精度与 CPU/NPU 分工](experiment/SD3.5_Medium/model_deploy_experience.md)。
+- [SD3.5 最新模型归档](https://github.com/sky-wang-salvation/Calculet_NPU/blob/c3ac86f8a3e79baa4b4fe5466790e7b090d9776b/experiment/SD3.5_Medium/schedule_07.md)及[脱敏证据索引](https://github.com/sky-wang-salvation/Calculet_NPU/blob/c3ac86f8a3e79baa4b4fe5466790e7b090d9776b/experiment/SD3.5_Medium/ref/progress_20261115/evidence_index.json)：位于独立模型进度分支；扩大 Linear 覆盖仍为候选，完成结果未确认。
+- [Cosmos 最新模型归档](https://github.com/sky-wang-salvation/Calculet_NPU/blob/c3ac86f8a3e79baa4b4fe5466790e7b090d9776b/experiment/COSMOS%203/schedule_03.md)：位于同一进度分支。
+- [公开插件联调记录](harness/docs/schedule_01.md)与[开发版测试统计及交付范围](项目说明.md)。
 
-- [赛题选择](赛题选择.md)
-- [选手快速开始](Calculet%20NPU%20黑客松%20·%20选手快速开始.md)
-- [BoHack 2026 赛道和赛题设置](BoHack%202026%20赛道和赛题设置/BoHack%202026%20赛道和赛题设置.md)
-- [用户提供的原粒赛题 PDF](docs/assets/challenge.pdf)
-- [附件清单与 SHA-256](docs/assets/manifest.json)
+## 运行与开发
 
-## 可直接填写的模板
+### 1. 安装发行插件，或从源码开发
 
-- [选题卡](templates/project-proposal.md)
-- [实验报告](templates/experiment-report.md)
-- [性能结果表头](templates/benchmark-results.csv)
+只安装插件时使用上文 Release 命令，无需克隆仓库。源码开发需要 Node.js **24.9 及以上的 24.x 版本**；以下命令针对本仓库的 Harness 工作区：
 
-调研引用公开 SDK 文档，但不镜像 SDK 源码或二进制。链接到 GPU/通用框架的资料用于学习算法与验证方法，不代表这些框架已支持原粒 NPU。现场规则、接口、模型和工具链版本以比赛确认的组合为准。
+```bash
+git clone https://github.com/sky-wang-salvation/Calculet_NPU.git
+```
 
-## 2026-11-14 新增：Cosmos 研究与 Harness 方案
+```bash
+cd Calculet_NPU/harness
+```
 
-- [Cosmos 3 总入口](experiment/COSMOS%203/README.md)与[交接文档](experiment/COSMOS%203/HANDOFF.md)：区分 Nano 部署记录和 Edge 研究。
-- [Cosmos3-Edge 调研包](experiment/COSMOS%203/research/cosmos3_edge_npu_20261114/README.md)：报告、算子表、可独立复算的资源估算、来源与版本记录。
-- [DeepSeek Harness 方案章节](harness/README.md)与[讨论和取舍](harness/docs/discussion-and-decisions.md)：需求、候选场景、已否定方向、当前结论与待办。
-- [DSH-SN4CK 插件](harness/plugins/npu-bridge/README.md)与[发行安装说明](harness/docs/plugin-installation.md)：九项原生工具，提供预编译 Release 归档和可复核的安装证据；真实 NPU 服务及适配器授权另行配置。
-- [用户场景与 NPU 价值图](docs/research/13-scenarios-and-value.md)：从用户任务对应问题、方案、核心计算与验收。
+```bash
+npm ci --ignore-scripts --cache .local/npm-cache --maxsockets=1
+```
 
-新增研究包尚未进行 NPU 编译、模型推理或真机测试；资源估算是公式计算。其他实验的状态以各自 schedule 快照为准。Harness 新增插件基础实现与本机验证，没有完成 NPU 推理或自进化验收。
+```bash
+npm run build
+```
+
+```bash
+npm run typecheck
+```
+
+```bash
+npm test
+```
+
+```bash
+npm run test:integration
+```
+
+```bash
+npm run test:deployment
+```
+
+```bash
+npm run test:deployment-bridge
+```
+
+```bash
+npm run test:package:guards
+```
+
+这些检查验证公开插件与测试服务，不连接 NPU，也不运行生成模型。
+
+### 2. 体验本地任务联调
+
+在同一 `harness/` 目录执行：
+
+```bash
+npm run harness:test-service
+```
+
+打开 [本地联调台](http://127.0.0.1:3081/)，可查看任务提交、等待、失败、刷新恢复，以及测试图片的预览和下载。
+
+该服务始终为 **simulation**：返回带 TEST 标记的固定 PNG，不加载模型。任务保存在内存中，服务重启后清空；停止等待不会取消后台任务。
+
+### 3. 接入官方 Harness 或真实模型
+
+- **安装宿主插件：** 按[本机开发指南](harness/docs/local-development.md)或[Windows 联调指南](harness/docs/windows-integration.md)初始化专用 profile。现有指南采用 pnpm 11.28.5；`--from-default-profile` 仅用于首次初始化。
+- **启动宿主：** 初始化后在 `harness/` 下执行 `npm run harness`。自然语言工具选择还需要配置规划模型，并单独验证。
+- **对接模型服务：** 按[后端接口合同](harness/docs/backend-contract.md)实现能力查询、提交、状态查询与产物访问，再配置本地后端地址。真实任务需要模型材料、适配器和设备使用条件就绪。
+- **模型复现：** 阅读[模型部署经验](experiment/SD3.5_Medium/model_deploy_experience.md)。公共仓库不包含完整模型接入程序、权重、厂商 SDK 或原始设备材料，克隆仓库不能直接复现真机生图。
+
+服务地址与令牌放在本地配置中，不提交到仓库。更换模型或参数时，重新核对组件、shape、精度和支持范围。
+
+## 文档导航
+
+| 你想了解什么 | 阅读入口 |
+| --- | --- |
+| 项目定位、贡献与交付范围 | [项目说明](项目说明.md) |
+| 总体架构、展示方式与答辩依据 | [项目展示指南](PPT%E2%80%94guide.md) |
+| DSH-SN4CK 工具、配置与源码 | [插件 README](harness/plugins/npu-bridge/README.md) |
+| 安装、升级与可复核检查 | [发行安装说明](harness/docs/plugin-installation.md)、[历史进度快照](harness/docs/schedule_01.md) |
+| 模型服务如何对接插件 | [后端接口合同](harness/docs/backend-contract.md) |
+| 下载、环境隔离、适配、数值比较与模型复现 | [模型部署经验](experiment/SD3.5_Medium/model_deploy_experience.md) |
+| 实验执行方法与工具链操作 | [实验指南](experiment/02-guide.md)、[NPU 操作手册](experiment/03-NPU-guide.md) |
+| Cosmos 型号、研究和历史部署记录 | [Cosmos 入口](experiment/COSMOS%203/README.md) |
+
+历史文档保留各自记录时点；当前定位以本页及最新展示指南为准，功能是否可运行以对应分支代码和同版本验收记录为准。
+
+## “日新”的下一步
+
+- **能力日新：** 扩大经过验证的 NPU 计算范围，逐步让兼容 Agent 发现并复用新能力。
+- **流程日新：** 将部署经验变为带条件的配方，完成真实模型与 Harness 的统一调用链验收。
+- **体验日新：** 用固定标准和保留任务对比新旧策略，验证反馈能否减少重复纠错，并支持版本回退。
+
+这些是后续方向。项目当前优先完成一个固定配置、可追踪、可验收的真实部署任务。
+
+## 基础平台与贡献
+
+项目基于 DeepSeek Harness、原粒 NPU 工具链及 SD3.5 / Cosmos 等上游模型。团队工作集中在原生插件、任务与接口合同、执行状态机制、模型专用接入和证据化验证；模型、SDK 与硬件的原有贡献归各自上游。
