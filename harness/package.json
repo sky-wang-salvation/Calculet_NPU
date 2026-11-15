@@ -1,17 +1,23 @@
 {
-  "name": "calculet-npu-workspace",
-  "version": "0.1.0",
+  "name": "dsh-sn4ck-workspace",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "workspaces": ["plugins/npu-bridge"],
   "scripts": {
-    "build": "npm run build --workspace dsh-calculet-npu",
-    "typecheck": "npm run typecheck --workspace dsh-calculet-npu",
-    "test": "npm run test --workspace dsh-calculet-npu",
+    "build": "npm run build --workspace dsh-sn4ck",
+    "typecheck": "npm run typecheck --workspace dsh-sn4ck",
+    "test": "npm run test --workspace dsh-sn4ck",
     "harness": "node scripts/launch.mjs",
     "harness:config": "node scripts/launch.mjs --dump-config",
     "harness:test-service": "node scripts/test-service.mjs",
-    "test:integration": "node --test scripts/test-service.test.mjs"
+    "test:integration": "node --test scripts/test-service.test.mjs",
+    "test:deployment": "node --test deployment/test/*.test.mjs",
+    "test:deployment-bridge": "node --test scripts/deployment-service.test.mjs",
+    "harness:deployment": "node deployment/server.mjs",
+    "package:plugin": "node scripts/package-plugin.mjs",
+    "test:package": "node scripts/test-package.mjs",
+    "test:package:guards": "node --test scripts/package-support.test.mjs"
   },
   "dependencies": {
     "@deepseek-ai/dsh": "0.2.2-rc.3"

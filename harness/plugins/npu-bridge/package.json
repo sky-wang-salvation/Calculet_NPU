@@ -1,28 +1,44 @@
 {
-  "name": "dsh-calculet-npu",
-  "version": "0.1.0",
+  "name": "dsh-sn4ck",
+  "version": "0.2.0",
   "type": "module",
-  "description": "Calculet NPU capabilities and generation jobs for DeepSeek Harness.",
+  "description": "DSH-SN4CK: native DeepSeek Harness tools for controlled Calculet NPU deployment and generation.",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "exports": {
     ".": {
       "types": "./lib/index.d.ts",
       "import": "./lib/index.js"
     }
   },
-  "files": ["lib", "cordis.patch.yml", "README.md"],
+  "bin": {
+    "sn4ck-npu-service": "./bin/sn4ck-npu-service.mjs"
+  },
+  "files": ["lib", "bin", "runtime", "cordis.patch.yml", "README.md", "LICENSE", "NOTICE.md"],
   "dsh": {
-    "bundle": {"patch": "./cordis.patch.yml"}
+    "bundle": { "patch": "./cordis.patch.yml" }
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "prepare": "tsc -p tsconfig.json",
+    "prepublishOnly": "pnpm run build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "node --test test/*.test.mjs"
   },
+  "keywords": ["dsh-plugin", "deepseek-harness", "dsh-bundle", "cordis"],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sky-wang-salvation/Calculet_NPU.git",
+    "directory": "harness/plugins/npu-bridge"
+  },
+  "homepage": "https://github.com/sky-wang-salvation/Calculet_NPU/tree/main/harness",
+  "bugs": { "url": "https://github.com/sky-wang-salvation/Calculet_NPU/issues" },
   "peerDependencies": {
-    "@deepseek-ai/cordis": "~4.1.0",
-    "@deepseek-ai/dsh-tools": "0.2.2-rc.3",
-    "@deepseek-ai/dsh-llm": "0.2.2-rc.3",
-    "@deepseek-ai/schemastery": "~3.19.0"
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-tools": "*",
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/schemastery": "*"
   },
   "devDependencies": {
     "@deepseek-ai/cordis": "~4.1.0",
@@ -31,7 +47,6 @@
     "@deepseek-ai/schemastery": "~3.19.0"
   },
   "engines": {
-    "node": ">=24.9.0 <25",
-    "dsh": "0.2.2-rc.3"
+    "node": ">=24.9.0 <25"
   }
 }

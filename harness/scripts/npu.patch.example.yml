@@ -1,6 +1,6 @@
 # Copy to .local/npu.patch.yml after the NPU service passes its own validation.
 # This is the team's proposed HTTP service, not a direct SDK device address.
-- id: calculet-npu
+- id: sn4ck
   config:
     backendURL: ''
     apiToken: ''

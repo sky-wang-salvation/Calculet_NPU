@@ -1,4 +1,22 @@
-# DeepSeek Harness × Calculet NPU：部署与生成工具
+# DSH-SN4CK — DeepSeek Harness × Calculet NPU
+
+## Release 插件安装
+
+包名 `dsh-sn4ck`，品牌 **DSH-SN4CK**，版本 `0.2.0`。已有 DSH 时直接安装预编译 Release 资产，不需要运行本目录的源码构建命令：
+
+```bash
+dsh plugin --profile web add https://github.com/sky-wang-salvation/Calculet_NPU/releases/download/v0.2.0/dsh-sn4ck-0.2.0.tgz --ignore-scripts
+```
+
+```bash
+dsh --profile web --dump-config
+```
+
+应看到 `# == dsh-sn4ck`、`id: sn4ck`、`name: dsh-sn4ck`。从旧名称升级时，在目标 profile 先移除 `dsh-calculet-npu`，并把本地私有覆盖层组件 ID 改为 `sn4ck`；不要重置已有 profile 或泄露令牌。
+
+[Release 下载](https://github.com/sky-wang-salvation/Calculet_NPU/releases/tag/v0.2.0) · [完整安装与升级说明](docs/plugin-installation.md) · [功能、配置与安全](plugins/npu-bridge/README.md)
+
+本轮仅发布 GitHub Release，未发布 npm；源码位于子目录，不使用仓库根的 `github:owner/repo#tag` 作为安装入口。MIT 仅覆盖原创插件与随包原创通用代码，第三方资料和 SDK 权利不变。
 
 更新日期：2026-11-15（Asia/Shanghai）。参赛方向为原粒第五题的开发工具：在 SDK 已配置、材料与设备已获授权的前提下，将自然语言部署目标组织为任务契约、受控计划、执行与验收。
 
@@ -33,7 +51,7 @@
 
 项目依赖固定为 `@deepseek-ai/dsh@0.2.2-rc.3`，使用官方 `defineTool`、Cordis 注册和 bundle/profile，不修改上游 Agent 循环。命令均在 `harness/` 下执行；依赖、配置、凭据与运行数据放 `node_modules/` 或 `.local/`，不提交。
 
-## 安装与已有自动化检查
+## 源码开发与自动化检查
 
 前提是 Node `>=24.9.0 <25` 和 npm。首次安装依赖时避免自动运行未知生命周期脚本；官方宿主的 spawn-helper 如需使用，应按[本机开发说明](docs/local-development.md)单独审阅和准备。
 

@@ -10,7 +10,7 @@ import { deploymentPlanMarkdown, deploymentJobMarkdown, deploymentWaitMarkdown }
 import { deploymentPlanSchema, deploymentJobSchema, deploymentWaitSchema } from './deployment-tool-schemas.js'
 import type { Job } from './protocol.js'
 
-export const name = 'calculet-npu'
+export const name = 'sn4ck'
 export const inject = ['tools']
 
 export interface Config extends BackendConfig {}
