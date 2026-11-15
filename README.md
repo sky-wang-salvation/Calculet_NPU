@@ -1,10 +1,10 @@
-# 日新 · Calculet NPU
+# 日新 · NPU 部署翻译官
 
 > 将部署意图转为受约束、可追踪的 NPU 任务。
 
 日新是基于 **DeepSeek Harness** 的原粒 NPU 部署助手，面向希望使用本地 NPU、但不熟悉完整工具链的模型开发者。项目将部署目标整理为结构化任务契约，结合已验证配方组织执行、跟踪状态并交付产物与证据，减少用户反复判断和持续盯守。
 
-**快速阅读：** [项目展示与答辩说明](PPT%E2%80%94guide.md) · [模型部署经验](experiment/SD3.5_Medium/model_deploy_experience.md) · [运行与开发](#运行与开发)
+**快速阅读：** [项目说明](项目说明.md) · [项目展示与答辩说明](PPT%E2%80%94guide.md) · [模型部署经验](experiment/SD3.5_Medium/model_deploy_experience.md) · [运行与开发](#运行与开发)
 
 ## 为什么做这个项目
 
@@ -47,7 +47,7 @@ flowchart LR
 | SD3.5 真实 NPU 子图 | 首层 Q 投影返回 `[16,1536]` BF16 输出，并与 CPU 参考比较 | 单个 Linear 子图；正式数值容差尚未验收 |
 | SD3.5 混合生图 | 已记录 256×256、4 步预览；每步首层 Q 投影全部 256 行使用 NPU 返回值，共 4 次请求、64 个 tile | Q-only HYBRID；其余主要计算在 CPU，正式画质与完整核心迁移未验收 |
 | `main` 中的 Harness 插件 | 5 项原生工具，支持生成提交、状态查询、异步等待与恢复查询；已有 19 项插件测试和 3 项联调测试通过记录 | 使用 simulation 测试服务完成产物预览与下载，真实模型服务待接入 |
-| 展示指南记录的开发版 | 9 项工具、任务契约、计划绑定、幂等提交和持久作业；记录了 62 项部署服务离线测试通过及候选包安装验证 | 源码与候选包未随当前 `main` 发布；记录不等于自然语言规划或真实硬件联调通过 |
+| 项目说明记录的开发版 | 9 项工具、任务契约、计划绑定、幂等提交和持久作业；记录了合计 103 项离线/模拟测试通过（含 62 项部署服务测试）及候选包安装验证 | 源码与候选包未随当前 `main` 发布；记录不等于自然语言规划或真实硬件联调通过 |
 | Cosmos Nano / Edge | Nano 有历史基础探针与方形因果注意力适配报告；Edge 有架构研究和资源估算 | 完整 rolling 与视频生成未验收，Edge 设备验证未执行 |
 | RSI 自进化 | 已有反馈、对照评价与回退的设计方向 | 尚无经验证的学习收益 |
 
@@ -58,7 +58,7 @@ flowchart LR
 - [SD3.5 运行配置、精度与 CPU/NPU 分工](experiment/SD3.5_Medium/model_deploy_experience.md)。
 - [SD3.5 最新模型归档](https://github.com/sky-wang-salvation/Calculet_NPU/blob/c3ac86f8a3e79baa4b4fe5466790e7b090d9776b/experiment/SD3.5_Medium/schedule_07.md)及[脱敏证据索引](https://github.com/sky-wang-salvation/Calculet_NPU/blob/c3ac86f8a3e79baa4b4fe5466790e7b090d9776b/experiment/SD3.5_Medium/ref/progress_20261115/evidence_index.json)：位于独立模型进度分支；扩大 Linear 覆盖仍为候选，完成结果未确认。
 - [Cosmos 最新模型归档](https://github.com/sky-wang-salvation/Calculet_NPU/blob/c3ac86f8a3e79baa4b4fe5466790e7b090d9776b/experiment/COSMOS%203/schedule_03.md)：位于同一进度分支。
-- [公开插件联调记录](harness/docs/schedule_01.md)与[开发版说明及版本依据](PPT%E2%80%94guide.md#123-本次核对后的软件事实表)。
+- [公开插件联调记录](harness/docs/schedule_01.md)与[开发版测试统计及交付范围](项目说明.md)。
 
 ## 运行与开发
 
@@ -103,7 +103,8 @@ npm run harness:test-service
 
 | 你想了解什么 | 阅读入口 |
 | --- | --- |
-| 项目定位、总体架构、展示方式与答辩依据 | [项目展示指南](PPT%E2%80%94guide.md) |
+| 项目定位、贡献与交付范围 | [项目说明](项目说明.md) |
+| 总体架构、展示方式与答辩依据 | [项目展示指南](PPT%E2%80%94guide.md) |
 | 原生插件工具、配置与源码 | [NPU Bridge](harness/plugins/npu-bridge/README.md) |
 | 当前公开插件的实现与联调进度 | [Harness 进度](harness/docs/schedule_01.md) |
 | 模型服务如何对接插件 | [后端接口合同](harness/docs/backend-contract.md) |
