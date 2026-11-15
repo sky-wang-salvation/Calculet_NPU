@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "calculet.adapter-result/v1",
+  "requestId": "request-example",
+  "jobId": "job-example",
+  "requestDigest": "<copied-from-the-validated-new-request>",
+  "profileId": "sd35-qproj-hybrid-smoke-v1",
+  "status": "succeeded",
+  "executionKind": "hardware",
+  "executionMode": "hybrid",
+  "scope": {
+    "npuModules": ["transformer_blocks[0].attn.to_q"],
+    "cpuModules": ["text_encoders", "transformer_except_npu_modules", "scheduler", "vae_decoder"],
+    "coreMigrationComplete": false
+  },
+  "validation": {
+    "level": "hybrid-smoke",
+    "deviceExecution": {"status": "passed", "npuCallCount": 4, "npuFallbackCount": 0, "traceArtifactId": "trace"},
+    "numericValidation": {"status": "not_run"},
+    "imageValidation": {"status": "passed", "artifactId": "image", "width": 256, "height": 256}
+  },
+  "artifacts": [
+    {"id": "image", "role": "image", "path": "artifacts/image.png", "mimeType": "image/png", "sha256": "<sha256-of-the-new-task-image-only>"},
+    {"id": "trace", "role": "device_trace", "path": "artifacts/device-trace.json", "mimeType": "application/json", "sha256": "<sha256-of-this-task-redacted-trace>"},
+    {"id": "evidence", "role": "evidence_index", "path": "artifacts/evidence-index.json", "mimeType": "application/json", "sha256": "<sha256-of-this-task-evidence-index>"}
+  ]
+}

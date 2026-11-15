@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "calculet.public-experiment-summary/v1",
+  "experiment": "joint_attention_CPU_graph_and_boundary_tests",
+  "classification": "CPU_ONLY_NOT_HARDWARE_ACCEPTANCE",
+  "tests": {
+    "run": 32,
+    "passed": 32,
+    "elapsedSeconds": 0.453,
+    "source": "Archived unit-reviewed.log; not rerun for this publication"
+  },
+  "coverage": [
+    "BF16 RMS cast-before-gamma ordering",
+    "image-before-context packing and heads",
+    "SDPA split and both output projections",
+    "tensor-header and byte-length boundaries",
+    "Q source identity and comparison completeness"
+  ],
+  "recordedWarning": "Archived test environment reported NumPy unavailable; these tests passed, but this log is not evidence that the full pipeline was ready in that environment",
+  "npuHardwareExecutionVerified": false,
+  "cpuResourceMeasurementsAvailable": false,
+  "rawLogPublished": false,
+  "source": {
+    "logicalLocator": "joint-attention-v1/evidence/unit-reviewed.log",
+    "bytes": 4654,
+    "sha256": "c641eb1c617ee4d184a69b4d3bd52385305d95a9bd2e8befe99d0ba7686806c5",
+    "rawPublished": false
+  }
+}

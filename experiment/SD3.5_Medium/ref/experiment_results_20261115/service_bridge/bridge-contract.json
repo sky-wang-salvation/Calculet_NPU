@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "calculet.sd35-service-bridge/v1",
+  "entrypoint": "service_bridge.py",
+  "fileProtocol": {
+    "request": "calculet.adapter-request/v1",
+    "result": "calculet.adapter-result/v1",
+    "controllerLockPath": "required service-owned paths field, covered by requestDigest",
+    "httpApiChanged": false
+  },
+  "contents": "New generic team-owned Python standard-library protocol glue, examples and offline tests only; no SDK code/binary, model parameters, historical PNG, restricted payload, private host address, authentication material or copied local-references",
+  "distributionBoundary": "Separate auxiliary protocol package; integration/distribution follows the controlling project's authorization and license. No public license for referenced SDK/model/restricted adapter is implied.",
+  "controlledDependency": "Operator-supplied absolute local handoff directory, verified by fixed bundle-manifest SHA256 and every declared dependency before importing its standard-library adapter facade",
+  "fixedArgsTemplate": [
+    "--handoff-dir", "<operator-authorized-local-adapter-directory>",
+    "--handoff-manifest-sha256", "<operator-pinned-lowercase-sha256>",
+    "--runtime-config", "<operator-private-runtime-config>",
+    "--private-work-root", "<existing-private-native-linux-directory>",
+    "--lock-topology", "<operator-private-approved-topology-file>",
+    "--lock-topology-sha256", "<operator-pinned-topology-sha256>"
+  ],
+  "appendedByService": ["--request", "<job/request.json>", "--result", "<job/result.json>"],
+  "hardwareGate": "The fixed invocation must additionally contain --approved-device-window only for an actual approved window; request authorization, full timeout coverage, deadline and positive operator-pinned lock-topology binding must also hold. SDK setup is not approval.",
+  "offlineMode": "--validate-only performs supported request checks, never invokes the model, exits 3 and never writes a successful result",
+  "supportedInputPolicy": {
+    "prompt": "A red apple on a wooden table, soft natural window light, realistic photograph",
+    "seed": 20261115
+  },
+  "fixedProfile": {
+    "modelId": "sd35-medium",
+    "profileId": "sd35-qproj-hybrid-smoke-v1",
+    "recipeVersion": "sd35-qproj-hybrid-smoke-v1.0",
+    "width": 256,
+    "height": 256,
+    "batch": 1,
+    "steps": 4,
+    "guidanceScale": 1,
+    "enableT5": false,
+    "executionMode": "hybrid",
+    "npuModules": ["transformer_blocks[0].attn.to_q"],
+    "cpuModules": ["text_encoders", "transformer_except_npu_modules", "scheduler", "vae_decoder"],
+    "coreMigrationComplete": false
+  },
+  "unsupportedInputs": "Every other complete spec, prompt or seed is rejected before any generator subprocess, rather than running the fixed apple request and echoing a different request",
+  "lockBoundary": {
+    "controllerLock": "Existing exclusive-create cooperation lock owned and released/reconciled only by the outer service; bridge reads it but never acquires/deletes it",
+    "boardLock": "Actual target worker obtains the canonical SDK board flock and closes it for each Q request; no external or alternate lock domain",
+    "differentPathStringsAreNotProof": true,
+    "requiredTopology": "Private fixed-arg config pinned by SHA, bound to operator authorization, original runtime-config SHA, controller kernel-boot identity, worker identity/board-lock inventory, and an explicit reviewed separation of lock domains and shared filesystem aliases",
+    "sameHost": "Actual board-lock identity must be locally available and match the approved inventory; same path, aliases or same inode are rejected",
+    "remoteTopology": "Operator-pinned evidence only; no remote probe is performed by offline checks and no live topology verification is claimed",
+    "missingProof": "Reject before model/SDK/worker launch"
+  },
+  "executionBoundary": {
+    "simulation": "Not implemented by this real-model bridge; no historical replay or synthetic success mode",
+    "freshness": "New private per-task output/control paths, adapter fresh-invocation receipt, original runtime verification and exact requested fixed parameters; historical bundle preview is never used as output",
+    "privacy": "Runtime config and raw logs stay outside public job artifacts; only whitelisted trace fields are published; no raw process/device addresses, private paths, auth objects or raw SDK source",
+    "timeout": "Outer controlled service owns the watchdog and process group; bridge and children do not detach or create new sessions",
+    "publication": "Complete trace validation precedes artifact publication. Same-directory fsynced temporary files use atomic non-overwriting hard-link publication and immediate temporary unlink. Native job storage must support hard links; no replace fallback is used.",
+    "requestComponents": "Declarations are syntax checked and bound by requestDigest; controlled service remains responsible for actual model/component manifest validation and completeness"
+  },
+  "artifacts": ["artifacts/image.png", "artifacts/device-trace.json", "artifacts/evidence-index.json"],
+  "resultTemplate": "examples/result.success.template.json is non-runnable future shape only: placeholder hashes, no image, no device execution and no completed-result claim",
+  "exitCodes": {"0": "New verified invocation and complete standard result only", "2": "Request/spec/digest/path mismatch", "3": "Validation-only or missing/invalid execution window/topology", "4": "Authorized adapter subprocess failed", "5": "Local, artifact or new-run evidence failure"},
+  "offlineTests": {
+    "command": ["python", "-I", "-B", "tests/test_service_bridge.py", "-v"],
+    "default": "30 portable checks; one optional production-validator interoperability test is skipped unless its local source and Node are supplied",
+    "optionalInterop": {
+      "environmentVariable": "CALCULET_SERVICE_VALIDATOR_FILE",
+      "value": "<operator-local-absolute-path-to-harness/deployment/adapter.mjs>",
+      "classification": "Temporary synthetic simulation file-contract fixture only; no model, device, SDK or generator subprocess",
+      "doesNotEnableBridgeSimulation": true
+    }
+  },
+  "offlineValidationIsNotHardwareAcceptance": true
+}

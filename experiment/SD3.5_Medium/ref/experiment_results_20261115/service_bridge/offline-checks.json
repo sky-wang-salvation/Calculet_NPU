@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "calculet.sd35-bridge-offline-checks/v1",
+  "runDate": "2026-11-15",
+  "classification": "OFFLINE_PROTOCOL_ONLY_NOT_HARDWARE_ACCEPTANCE",
+  "tests": {
+    "status": "passed",
+    "run": 31,
+    "passed": 31,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "elapsedSeconds": 2.540,
+    "runnerOutput": "offline-tests.log",
+    "command": ["python", "-I", "-B", "tests/test_service_bridge.py", "-v"],
+    "environment": {"CALCULET_SERVICE_VALIDATOR_FILE": "<operator-local-absolute-path-to-harness/deployment/adapter.mjs>"},
+    "testedSources": {
+      "service_bridge.py": "a8867a2befe3da10716b8b8f5878732e4284ddd8297cb40474ec3381e33df0b9",
+      "tests/test_service_bridge.py": "a5ce5f8d780ea7593a427fdbb0e6526c7d46d7c99e9b2484ef74c14ccfd13fbc"
+    }
+  },
+  "environment": {"python": "3.12.9", "node": "24.15.0", "platform": "Windows 11 10.0.26300 AMD64"},
+  "canonicalDigestInterop": {"status": "passed", "implementation": "Actual Node recursive canonicalizer compared against Python output"},
+  "productionValidatorInterop": {
+    "status": "passed",
+    "entrypoint": "harness/deployment/adapter.mjs:validateResult",
+    "validatorSourceSha256": "a62c4ba835a17eee09f1b40044300d8c2a52a0a12bec0a2727982aabfa807506",
+    "fixture": "Temporary synthetic simulation PNG/trace/evidence/result, deleted after test",
+    "executionKind": "simulation",
+    "actualHardwareCalls": 0,
+    "productionSourceModified": false,
+    "bridgeSimulationImplemented": false,
+    "scope": "File-contract and artifact validation only, not model correctness, hardware attestation or service end-to-end acceptance"
+  },
+  "additionalChecks": {"pythonSyntax": "passed", "jsonTemplates": "passed", "cliHelp": "passed"},
+  "codeReviewDisposition": {
+    "invalidTracePartialPublication": "Fixed: validate and serialize the complete trace before any artifact publication; regression passed",
+    "competingPublicationOverwrite": "Fixed: same-directory fsynced temporary file, atomic non-replacing hard link, then temporary unlink; regression passed",
+    "deadlineCanExtendApprovedWindow": "Not confirmed: frozen service makeAdapterRequest sets deadlineAt=now+configured timeout at adapter.mjs:76; runAdapter watchdog uses min(configured timeout, remaining deadline) at :132 and :159. The bridge preserves that outer-service ownership."
+  },
+  "execution": {
+    "modelSubprocessStarted": false,
+    "sdkImported": false,
+    "deviceConnected": false,
+    "sshConnected": false,
+    "dockerRecovered": false,
+    "newModelImageGenerated": false,
+    "realLockTopologyVerified": false,
+    "parameterizedControlledPayloadRevalidatedOnDevice": false,
+    "hardwareAcceptance": "NOT_RUN"
+  },
+  "distribution": {
+    "separateAuxiliaryPackage": true,
+    "restrictedHandoffIncluded": false,
+    "historicalImageIncluded": false,
+    "modelOrSdkIncluded": false,
+    "privateConfigurationOrLocalReferencesIncluded": false,
+    "newPublicLicenseForReferencedDependenciesImplied": false
+  }
+}

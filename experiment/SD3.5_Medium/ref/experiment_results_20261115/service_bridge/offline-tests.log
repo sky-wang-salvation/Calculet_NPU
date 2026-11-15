@@ -1,0 +1,36 @@
+test_atomic_publication_race_preserves_competing_output (__main__.BridgeTests.test_atomic_publication_race_preserves_competing_output) ... ok
+test_atomic_result_never_replaces_an_existing_file (__main__.BridgeTests.test_atomic_result_never_replaces_an_existing_file) ... ok
+test_authorization_missing_unacknowledged_and_short_windows (__main__.BridgeTests.test_authorization_missing_unacknowledged_and_short_windows) ... ok
+test_canonical_json_matches_stringify_integral_and_unicode_rules (__main__.BridgeTests.test_canonical_json_matches_stringify_integral_and_unicode_rules) ... ok
+test_complete_request_and_controller_lock_field_are_accepted (__main__.BridgeTests.test_complete_request_and_controller_lock_field_are_accepted) ... ok
+test_controller_path_change_is_covered_by_digest (__main__.BridgeTests.test_controller_path_change_is_covered_by_digest) ... ok
+test_different_host_approved_separation_is_config_binding_only (__main__.BridgeTests.test_different_host_approved_separation_is_config_binding_only) ... ok
+test_different_strings_without_positive_topology_are_not_proof (__main__.BridgeTests.test_different_strings_without_positive_topology_are_not_proof) ... ok
+test_existing_result_is_not_overwritten (__main__.BridgeTests.test_existing_result_is_not_overwritten) ... ok
+test_expired_deadline_and_unknown_request_fields (__main__.BridgeTests.test_expired_deadline_and_unknown_request_fields) ... ok
+test_historical_or_any_existing_artifact_prevents_new_result (__main__.BridgeTests.test_historical_or_any_existing_artifact_prevents_new_result) ... ok
+test_invalid_trace_leaves_no_published_artifact (__main__.BridgeTests.test_invalid_trace_leaves_no_published_artifact) ... ok
+test_missing_controller_lock_field_is_rejected (__main__.BridgeTests.test_missing_controller_lock_field_is_rejected) ... ok
+test_no_fixed_window_flag_blocks_before_adapter_or_model (__main__.BridgeTests.test_no_fixed_window_flag_blocks_before_adapter_or_model) ... ok
+test_other_prompt_seed_and_complete_spec_changes_are_rejected_before_child (__main__.BridgeTests.test_other_prompt_seed_and_complete_spec_changes_are_rejected_before_child) ... ok
+test_png_format_crc_dimensions_and_bounded_decompression (__main__.BridgeTests.test_png_format_crc_dimensions_and_bounded_decompression) ... ok
+test_private_adapter_pin_is_checked_before_code_import (__main__.BridgeTests.test_private_adapter_pin_is_checked_before_code_import) ... ok
+test_production_validator_accepts_only_a_synthetic_simulation_contract_fixture (__main__.BridgeTests.test_production_validator_accepts_only_a_synthetic_simulation_contract_fixture) ... ok
+test_request_digest_matches_actual_node_recursive_canonicalization (__main__.BridgeTests.test_request_digest_matches_actual_node_recursive_canonicalization) ... ok
+test_request_digest_tamper_is_rejected (__main__.BridgeTests.test_request_digest_tamper_is_rejected) ... ok
+test_same_host_distinct_actual_inodes_can_be_checked_offline_fixture (__main__.BridgeTests.test_same_host_distinct_actual_inodes_can_be_checked_offline_fixture) ... ok
+test_same_inode_alias_is_rejected_without_unlock_or_delete (__main__.BridgeTests.test_same_inode_alias_is_rejected_without_unlock_or_delete) ... ok
+test_same_path_is_rejected_and_never_deleted (__main__.BridgeTests.test_same_path_is_rejected_and_never_deleted) ... ok
+test_simulation_and_replay_not_implemented_by_real_bridge (__main__.BridgeTests.test_simulation_and_replay_not_implemented_by_real_bridge) ... ok
+test_standard_result_mapping_uses_synthetic_protocol_fixture_only (__main__.BridgeTests.test_standard_result_mapping_uses_synthetic_protocol_fixture_only) ... ok
+test_topology_pin_approval_runtime_and_host_identity_must_match (__main__.BridgeTests.test_topology_pin_approval_runtime_and_host_identity_must_match) ... ok
+test_trace_redacts_private_runtime_fields (__main__.BridgeTests.test_trace_redacts_private_runtime_fields) ... ok
+test_trace_rejects_non_digest_fingerprint (__main__.BridgeTests.test_trace_rejects_non_digest_fingerprint) ... ok
+test_unknown_nested_spec_and_scope_fields_are_rejected (__main__.BridgeTests.test_unknown_nested_spec_and_scope_fields_are_rejected) ... ok
+test_unsafe_component_paths_are_rejected (__main__.BridgeTests.test_unsafe_component_paths_are_rejected) ... ok
+test_validation_only_never_imports_adapter_spawns_or_writes_success (__main__.BridgeTests.test_validation_only_never_imports_adapter_spawns_or_writes_success) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 2.540s
+
+OK

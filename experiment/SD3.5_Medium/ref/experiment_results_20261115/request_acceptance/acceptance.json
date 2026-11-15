@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "calculet.sd35-production-request-acceptance/v1",
+  "classification": "OFFLINE_PROTOCOL_ONLY_NOT_HARDWARE_ACCEPTANCE",
+  "status": "passed",
+  "producer": "Frozen harness/deployment/adapter.mjs:makeAdapterRequest",
+  "bridgeSha256": "a8867a2befe3da10716b8b8f5878732e4284ddd8297cb40474ec3381e33df0b9",
+  "serviceSourceSha256": "a62c4ba835a17eee09f1b40044300d8c2a52a0a12bec0a2727982aabfa807506",
+  "verifierSourceSha256": "863ef252cba98220016acbb30cec4b3bd3dcc96a4338428fa8b1d1452b3c11b7",
+  "caseCount": 17,
+  "passedCount": 17,
+  "cases": [
+    {
+      "name": "production_deployment_request_validate_only",
+      "passed": true,
+      "exitCode": 3,
+      "diagnosticCode": "VALIDATED_ONLY_NO_DEVICE_EXECUTION",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "production_generation_request_validate_only",
+      "passed": true,
+      "exitCode": 3,
+      "diagnosticCode": "VALIDATED_ONLY_NO_DEVICE_EXECUTION",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "missing_controller_lock_field",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "INVALID_REQUEST",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "invalid_controller_lock_null",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "INVALID_LOCK",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "invalid_controller_lock_boolean",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "INVALID_LOCK",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "invalid_controller_lock_number",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "INVALID_LOCK",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "invalid_controller_lock_array",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "INVALID_LOCK",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "invalid_controller_lock_object",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "INVALID_LOCK",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "invalid_controller_lock_empty",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "INVALID_LOCK",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "invalid_controller_lock_relative",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "INVALID_LOCK",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "unsupported_prompt",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "ADAPTER_INPUT_NOT_SUPPORTED",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "unsupported_seed",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "ADAPTER_INPUT_NOT_SUPPORTED",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "controller_lock_tamper_without_resigning",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "REQUEST_DIGEST_MISMATCH",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "no_device_window_flag_no_model_launch",
+      "passed": true,
+      "exitCode": 3,
+      "diagnosticCode": "DEVICE_WINDOW_REQUIRED",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "real_bridge_refuses_simulation",
+      "passed": true,
+      "exitCode": 2,
+      "diagnosticCode": "UNSUPPORTED_EXECUTION_KIND",
+      "requestUnchanged": true,
+      "resultOrArtifactsCreated": false
+    },
+    {
+      "name": "same_lock_overlap_is_rejected_without_deletion",
+      "passed": true,
+      "diagnosticCode": "DOUBLE_BOARD_LOCK_UNSUPPORTED",
+      "syntheticLockFilesPreserved": true
+    },
+    {
+      "name": "different_paths_without_topology_are_rejected",
+      "passed": true,
+      "diagnosticCode": "LOCK_TOPOLOGY_REQUIRED",
+      "syntheticLockFilesPreserved": true
+    }
+  ],
+  "fixedApprovalFlagSupplied": false,
+  "syntheticAuthorizationIsRealApproval": false,
+  "sdkImported": false,
+  "modelSubprocessStarted": false,
+  "actualHardwareCalls": 0,
+  "realTopologyVerified": false,
+  "httpServiceOrWatchdogExercised": false,
+  "temporaryFixturesDeleted": true,
+  "existingBridgeBundleModified": false
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "calculet.adapter-request/v1",
+  "requestId": "request-example",
+  "jobId": "job-example",
+  "jobKind": "deployment",
+  "planId": "plan-example",
+  "planDigest": "<service-generated-plan-sha256>",
+  "recipeVersion": "sd35-qproj-hybrid-smoke-v1.0",
+  "profileId": "sd35-qproj-hybrid-smoke-v1",
+  "executionKind": "hardware",
+  "spec": {
+    "schemaVersion": "calculet.task/v1",
+    "intent": "deploy-and-validate",
+    "modelId": "sd35-medium",
+    "profileId": "sd35-qproj-hybrid-smoke-v1",
+    "parameters": {
+      "prompt": "A red apple on a wooden table, soft natural window light, realistic photograph",
+      "seed": 20261115,
+      "width": 256,
+      "height": 256,
+      "batch": 1,
+      "steps": 4,
+      "guidanceScale": 1,
+      "enableT5": false
+    },
+    "constraints": {"executionMode": "hybrid", "requireFullNpu": false, "allowNpuComputeFallback": false},
+    "acceptance": {"level": "hybrid-smoke"}
+  },
+  "scope": {
+    "executionMode": "hybrid",
+    "npuModules": ["transformer_blocks[0].attn.to_q"],
+    "cpuModules": ["text_encoders", "transformer_except_npu_modules", "scheduler", "vae_decoder"],
+    "coreMigrationComplete": false,
+    "validationLevel": "hybrid-smoke"
+  },
+  "paths": {
+    "jobDir": "/operator/private/jobs/job-example",
+    "artifactsDir": "/operator/private/jobs/job-example/artifacts",
+    "modelRoot": "/operator/authorized/sd35-medium",
+    "components": [{"path": "manifest.json", "sha256": "<operator-approved-component-sha256>"}],
+    "controllerLockPath": "/operator/controller-locks/board0-cooperation.lock"
+  },
+  "limits": {"timeoutMs": 120000, "deadlineAt": "<service-generated-future-ISO-deadline>"},
+  "authorization": null,
+  "requestDigest": "<service-generated-recursive-canonical-sha256>"
+}

@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "calculet.sd35-bridge-bundle/v1",
+  "classification": "AUXILIARY_PROTOCOL_CODE_AND_OFFLINE_CHECKS_ONLY",
+  "hardwareAcceptance": "NOT_RUN",
+  "manifestExcludesItself": true,
+  "files": {
+    "bridge-contract.json": {
+      "bytes": 6220,
+      "sha256": "cf9eda1593f70cecab738380762d789bb68e1ce129b72062ee9c5912c535b6a1"
+    },
+    "examples/lock-topology.example.json": {
+      "bytes": 792,
+      "sha256": "4b24e7a5102e062c131517ab93e4d60014eae78df58581e10a63a6d4949f9977"
+    },
+    "examples/request.template.json": {
+      "bytes": 1775,
+      "sha256": "006f28838af67605272ffe128184f450c73c3ef378cb83869bddb01bf520d7a1"
+    },
+    "examples/result.success.template.json": {
+      "bytes": 1325,
+      "sha256": "12268d2a9d785190b2a83b62fddc13e00ef7cde05d7c6c182e90202bc74d5e15"
+    },
+    "offline-checks.json": {
+      "bytes": 2994,
+      "sha256": "f7687084150ecdb66280359ae0ad863c7ba3cae3b4862c320271f6d58e089128"
+    },
+    "offline-tests.log": {
+      "bytes": 4531,
+      "sha256": "6180d7b8c7d1267a2bd5d818530fedcc2ca4207ce750f9c769f5f5bb2d270d3e"
+    },
+    "service_bridge.py": {
+      "bytes": 28339,
+      "sha256": "a8867a2befe3da10716b8b8f5878732e4284ddd8297cb40474ec3381e33df0b9"
+    },
+    "tests/test_service_bridge.py": {
+      "bytes": 23107,
+      "sha256": "a5ce5f8d780ea7593a427fdbb0e6526c7d46d7c99e9b2484ef74c14ccfd13fbc"
+    }
+  }
+}

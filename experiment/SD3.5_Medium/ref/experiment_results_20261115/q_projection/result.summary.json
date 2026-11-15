@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "calculet.public-experiment-summary/v1",
+  "experiment": "single_real_Q_projection",
+  "status": "REAL_NPU_QPROJ_OUTPUT_CAPTURED",
+  "scope": "FIRST_SUBGRAPH_ONLY",
+  "model": "stabilityai/stable-diffusion-3.5-medium",
+  "modelRevision": "b940f670f0eda2d07fbb75229e779da1ad11eb80",
+  "layer": "transformer_blocks.0.attn.to_q",
+  "operation": "Y = X @ W.T + b",
+  "dimensions": {
+    "m": 16,
+    "k": 1536,
+    "n": 1536
+  },
+  "dtype": "BF16",
+  "execution": {
+    "route": "independent TorchDope eager, not native calbin execution",
+    "backend": "dort",
+    "output_device": "dope:0",
+    "allow_pending": false,
+    "compute_policy": "strict, exclusive, empty allowlist",
+    "compute_cpu_fallback_calls": 0,
+    "compute_host_implementation_calls": 0,
+    "device_closed": true
+  },
+  "output": {
+    "shape": [
+      16,
+      1536
+    ],
+    "elements": 24576,
+    "bytes": 49152,
+    "all_finite": true,
+    "sha256": "231c6188b0cae01dfb2d7d48c503aa9d73bca31fd9a0af966da807e0c8276908"
+  },
+  "comparison": {
+    "bitwise_equal_elements": 24573,
+    "bitwise_mismatched_elements": 3,
+    "max_absolute_error": 0.000244140625,
+    "mean_absolute_error": 9.945021398986379e-09,
+    "rmse": 1.557344391530825e-06,
+    "max_relative_error_nonzero_reference": 0.019230769230769232,
+    "max_bf16_ulp_distance": 4,
+    "numerical_acceptance": "NOT_EVALUATED_NO_APPROVED_TOLERANCE"
+  },
+  "comparisonScope": "Saved PyTorch BF16 reference, not a new reference run; device origin requires the separate execution record and matching actual-output SHA, not the metrics utility alone",
+  "imageGenerated": false,
+  "performanceBenchmarkPerformed": false,
+  "source": {
+    "logicalLocator": "qproj-direct-probe.dhrjFD/first-npu-result.json",
+    "bytes": 2667,
+    "sha256": "7e8cdaadf6d8f7e4420ce1fef66bd56ed63d89ac49de8989313928e16f200266",
+    "rawPublished": false
+  }
+}
