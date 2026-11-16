@@ -1,0 +1,28 @@
+{
+  "recorded_at_utc": "2026-11-15T01:47:52.236994+00:00",
+  "evidence_kind": "redacted derivative of a previously retrieved server record; not a new query",
+  "original_record_sha256": "58217d90af31da6690efe778e58c4e75ed08bf45636cc7a07e93dc3fc3d6019f",
+  "original_record_distributed": false,
+  "redactions": [
+    "process IDs",
+    "user IDs",
+    "process command names",
+    "device and shared-lock paths"
+  ],
+  "transfer": {
+    "archive_bytes": 1617920,
+    "archive_sha256": "a62005e0dfae315cc22c5eb1f4f663f286bf69d21c6af939186a4b376206d7ac",
+    "files_verified": 6,
+    "transfer_integrity": "PASS",
+    "npu_execution": "not_run",
+    "model_inference": "not_run",
+    "video_generation": "not_run"
+  },
+  "process_query_exit": 0,
+  "board_lock_query_exit": 0,
+  "shared_board_lock_held": true,
+  "blocker": "another existing service held the agreed shared board lock",
+  "device_computation_started": false,
+  "other_services_modified": false,
+  "npu_execution": "not_run"
+}

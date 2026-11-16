@@ -1,0 +1,111 @@
+{
+  "model": "nvidia/Cosmos3-Nano-Sim-Auto",
+  "modelscope_repo": "nv-community/Cosmos3-Nano-Sim-Auto",
+  "modelscope_revision": "81a5ec3bf5e7c8250aef14f0ca2eea726c8af1f4",
+  "unit": "proj_in",
+  "formula": "Y = X @ W.T + b",
+  "source_shard": {
+    "path": "transformer/diffusion_pytorch_model-00006-of-00006.safetensors",
+    "bytes": 3799304904,
+    "declared_sha256": "d2aa9f6bd75be77137c889fb5354b243d11b78f412365cebc8632fe626051c76",
+    "full_shard_downloaded": false,
+    "full_shard_sha256_verified": false
+  },
+  "header_bytes": 13376,
+  "header_sha256": "8689e034db6c5df11f31c29e5b1bb6b0957bdd1c2e926bb500d64ed0a47674cb",
+  "download_budget_bytes": 268435456,
+  "response_body_bytes_received": 1719676,
+  "requests": [
+    {
+      "path": "README.md",
+      "range": null,
+      "http_status": 200,
+      "bytes": 40599,
+      "sha256": "76777ac83b4062527612069ea2d404a9a7064788e927fa552c6df41009d4e626",
+      "final_host": "modelscope.cn"
+    },
+    {
+      "path": "transformer/config.json",
+      "range": null,
+      "http_status": 200,
+      "bytes": 6215,
+      "sha256": "2eb16f4b7314ec0df7f6a548c398ec2a2ff53f790b6eb4cced92f6602713d3b6",
+      "final_host": "modelscope.cn"
+    },
+    {
+      "path": "transformer/diffusion_pytorch_model.safetensors.index.json",
+      "range": null,
+      "http_status": 200,
+      "bytes": 78422,
+      "sha256": "9a54ab7e9311b7384c622e55be52bfc1b234947e7a1e3121daa0fb850cf971b2",
+      "final_host": "modelscope.cn"
+    },
+    {
+      "path": "transformer/diffusion_pytorch_model-00006-of-00006.safetensors",
+      "range": [
+        0,
+        7
+      ],
+      "http_status": 206,
+      "bytes": 8,
+      "sha256": "c807250f76a0c47b927c768ec4899422847918c0b5eecf9605a28b6e321c92cf",
+      "final_host": "cdn-lfs-cn-1.modelscope.cn"
+    },
+    {
+      "path": "transformer/diffusion_pytorch_model-00006-of-00006.safetensors",
+      "range": [
+        8,
+        13383
+      ],
+      "http_status": 206,
+      "bytes": 13376,
+      "sha256": "8689e034db6c5df11f31c29e5b1bb6b0957bdd1c2e926bb500d64ed0a47674cb",
+      "final_host": "cdn-lfs-cn-1.modelscope.cn"
+    },
+    {
+      "path": "transformer/diffusion_pytorch_model-00006-of-00006.safetensors",
+      "range": [
+        3760384328,
+        3761965383
+      ],
+      "http_status": 206,
+      "bytes": 1581056,
+      "sha256": "b0a99a043a2b3696f790990b54fb9427c68f2691861febc29d79a2fcd252000e",
+      "final_host": "cdn-lfs-cn-1.modelscope.cn"
+    }
+  ],
+  "tensors": {
+    "proj_in.weight": {
+      "dtype": "BF16",
+      "shape": [
+        4096,
+        192
+      ],
+      "data_offsets": [
+        3760379136,
+        3761952000
+      ],
+      "file": "weight.bf16",
+      "bytes": 1572864,
+      "sha256": "109ad7de0fd02ce27489e8a965418aa9b3e3eb631f005d723ab5622d5b51a8f0"
+    },
+    "proj_in.bias": {
+      "dtype": "BF16",
+      "shape": [
+        4096
+      ],
+      "data_offsets": [
+        3760370944,
+        3760379136
+      ],
+      "file": "bias.bf16",
+      "bytes": 8192,
+      "sha256": "c648b09378d79d4cc4539383ac7ca20adc2a5d531ea77f32402ebc07133500ad"
+    }
+  },
+  "license_declared": "OpenMDW1.1",
+  "mirror_publisher_independently_authenticated": false,
+  "model_inference": "not_run",
+  "npu_execution": "not_run",
+  "video_generation": "not_run"
+}

@@ -1,0 +1,7 @@
+{
+  "unit": "proj_in",
+  "modelscope_revision": "81a5ec3bf5e7c8250aef14f0ca2eea726c8af1f4",
+  "parameter_bytes": 1581056,
+  "response_body_bytes_received": 1719676,
+  "full_shard_downloaded": false
+}

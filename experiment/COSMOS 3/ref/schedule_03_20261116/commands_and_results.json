@@ -1,0 +1,45 @@
+{
+  "scope": "Normalized records of previously observed commands and exit codes; no command in this file was executed during this documentation turn.",
+  "path_redaction": "PROJECT, SOURCE_UNIT and REFERENCE_RUN replace controlled local paths. No SSH target, account, control socket or authentication material is included.",
+  "literal_full_terminal_transcript": false,
+  "records": [
+    {
+      "stage": "small_parameter_fetch",
+      "command": "python -I -B <PROJECT>/src/fetch_unit.py --output <SOURCE_UNIT>",
+      "exit_code": 0,
+      "evidence": "download-summary.txt",
+      "initial_executed_source_sha256": null,
+      "source_identity_note": "The initial fetch preceded redirect-body hardening. The exact initial script copy was not separately archived; source_fingerprints.json describes the current local code, not the initial fetch version."
+    },
+    {
+      "stage": "cpu_reference",
+      "execution_platform": "Linux x86_64, Python 3.10.12",
+      "command": "python3 -I -B <PROJECT>/src/reference.py --unit <SOURCE_UNIT> --output <REFERENCE_RUN>",
+      "exit_code": 0,
+      "evidence": "cpu-reference-summary.txt",
+      "executed_source_sha256": "7e4c6dce06673580e78375b17ec6807d76867bea112bcc375b4da1c90ef928fe"
+    },
+    {
+      "stage": "final_local_tests",
+      "execution_platform": "Linux x86_64, Python 3.10.12",
+      "command": "python3 -I -B -m unittest discover -s <PROJECT>/tests -p test_*.py -v",
+      "exit_code": 0,
+      "tests": 42,
+      "evidence": "local-tests-42.txt",
+      "result_scope": "local software guards and numerical helpers; not NPU execution"
+    },
+    {
+      "stage": "historical_server_preflight",
+      "normalized_command_fragments": [
+        "<VENDOR_DORT> -i <ASSIGNED_BOARD> -j processes",
+        "lslocks --noheadings --output PID,COMMAND,TYPE,MODE,PATH"
+      ],
+      "process_query_exit": 0,
+      "board_lock_query_exit": 0,
+      "recorded_at_utc": "2026-11-15T01:47:52.236994+00:00",
+      "evidence": "remote-preflight-redacted.json",
+      "original_full_record_distributed": false,
+      "npu_execution": "not_run"
+    }
+  ]
+}

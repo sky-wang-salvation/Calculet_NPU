@@ -1,0 +1,81 @@
+{
+  "code_distributed_in_this_snapshot": false,
+  "scope": "local code fingerprints for future reproducibility; not proof of device execution",
+  "files": [
+    {
+      "path": "src/compare.py",
+      "bytes": 8272,
+      "sha256": "3519937aff99db12c816a3f823ac959d6ad9c412be011542eedb361b6ae075db"
+    },
+    {
+      "path": "src/fetch_unit.py",
+      "bytes": 10044,
+      "sha256": "012a583c88d9897ec6d911e75c11a44240fea5391f0290b31eb3649a988d3bce"
+    },
+    {
+      "path": "src/npu_worker.py",
+      "bytes": 10081,
+      "sha256": "287a5d84c9d3143f6b2cff82fdf1a165f5f9bd67c756813feb1b471757223d2b"
+    },
+    {
+      "path": "src/reference.py",
+      "bytes": 6635,
+      "sha256": "7e4c6dce06673580e78375b17ec6807d76867bea112bcc375b4da1c90ef928fe"
+    },
+    {
+      "path": "tests/test_compare.py",
+      "bytes": 1677,
+      "sha256": "8d1ce9d42b439ce0e84ef546bf3abf2caeb86ec3a3aea73c50796fe145798ed8"
+    },
+    {
+      "path": "tests/test_fetch_unit.py",
+      "bytes": 4753,
+      "sha256": "69d67fbd53dcdfd399da4576358d1ea34b510f4afca86dcee35092f8160fc72c"
+    },
+    {
+      "path": "tests/test_reference.py",
+      "bytes": 2419,
+      "sha256": "2dfc705c8c9fc1681bd954ddea767dbc479e3b6823d30b050ec8a0af7b6a1d5c"
+    },
+    {
+      "path": "tests/test_regressions.py",
+      "bytes": 3570,
+      "sha256": "7696a47a2d51f6efe14b7846e8078b2393bea26196d7817b22c167d92d20b793"
+    },
+    {
+      "path": "tests/test_worker.py",
+      "bytes": 1917,
+      "sha256": "d356c86b2fcb0a0ecb79bd0d68e9643ddaab38ad994d1cac3dd46272bf2eb2d6"
+    }
+  ],
+  "local_test_history": [
+    {
+      "file": "all-local-tests-01.txt",
+      "bytes": 1966,
+      "sha256": "a2ba677106cc5fada30b4953bf427af34ac9eb2fa9c13a8907533ccc76c77334",
+      "result": "passed",
+      "distributed": false
+    },
+    {
+      "file": "all-local-tests-02.txt",
+      "bytes": 2949,
+      "sha256": "3f57a89d94789c2cee6b1a0d9057fca58786d82b34f5784ade60e1c7fc5021f9",
+      "result": "passed",
+      "distributed": false
+    },
+    {
+      "file": "all-local-tests-03.txt",
+      "bytes": 4676,
+      "sha256": "873df27b21ab4f5ed0011b978f961a4ad357d8790917b3aeed6af3cba85b8456",
+      "result": "failed: Python 3.10 HTTP 308 compatibility",
+      "distributed": false
+    },
+    {
+      "file": "all-local-tests-04.txt",
+      "bytes": 3323,
+      "sha256": "5bd2c44468902a325dcba4bcd5f2e1ef98bf5eb8e1725edd298e0763e085fcc8",
+      "result": "passed",
+      "distributed": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "unit": "proj_in",
+  "input_shape": [
+    16,
+    192
+  ],
+  "output_shape": [
+    16,
+    4096
+  ],
+  "reference_elapsed_seconds": 0.9456018500000001,
+  "platform": "Linux",
+  "npu_execution": "not_run"
+}

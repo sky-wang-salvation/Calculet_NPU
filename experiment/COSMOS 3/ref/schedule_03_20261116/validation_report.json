@@ -1,0 +1,65 @@
+{
+  "snapshot_date": "2026-11-16",
+  "assembled_at_utc": "2026-11-16T08:09:27.473401+00:00",
+  "model": "nvidia/Cosmos3-Nano-Sim-Auto",
+  "modelscope_repo": "nv-community/Cosmos3-Nano-Sim-Auto",
+  "modelscope_revision": "81a5ec3bf5e7c8250aef14f0ca2eea726c8af1f4",
+  "unit": "proj_in",
+  "operation": "Y = X @ W.T + b",
+  "parameter_bytes": 1581056,
+  "downloader_response_body_bytes_received": 1719676,
+  "download_budget_bytes": 268435456,
+  "download_count_scope": "accepted final response bodies in the recorded initial fetch; excludes earlier metadata exploration, HTTP headers and intermediate redirect bodies; redirect-body hardening was subsequently tested offline without repeating the parameter download",
+  "full_shard_downloaded": false,
+  "full_shard_sha256_verified": false,
+  "cpu_reference": {
+    "status": "generated",
+    "platform": "Linux",
+    "python": "3.10.12",
+    "input_shape": [
+      16,
+      192
+    ],
+    "output_shape": [
+      16,
+      4096
+    ],
+    "input_kind": "deterministic synthetic fixture, not an actual full-model activation",
+    "numerics": "BF16 operands widened exactly; Python float64 products and math.fsum, bias added before final FP32/BF16 rounding"
+  },
+  "local_manifest_revalidation": {
+    "data/modelscope-proj-in-81a5ec3b": {
+      "checked_files": 7,
+      "all_match": true
+    },
+    "reference/run-01": {
+      "checked_files": 5,
+      "all_match": true
+    }
+  },
+  "local_tests": {
+    "status": "passed",
+    "count": 42,
+    "evidence": "local-tests-42.txt",
+    "test_log_sha256": "5bd2c44468902a325dcba4bcd5f2e1ef98bf5eb8e1725edd298e0763e085fcc8",
+    "executed_during_this_documentation_turn": false
+  },
+  "transfer": {
+    "status": "historical_PASS",
+    "files_verified": 6,
+    "archive_bytes": 1617920,
+    "archive_sha256": "a62005e0dfae315cc22c5eb1f4f663f286bf69d21c6af939186a4b376206d7ac",
+    "current_local_files_still_match_uploaded_package": true
+  },
+  "last_server_record_at_utc": "2026-11-15T01:47:52.236994+00:00",
+  "last_server_blocker": "agreed shared board lock held by another existing service",
+  "current_server_connection": "user_reported_unavailable; not independently retried this turn",
+  "remote_contact_performed_this_turn": false,
+  "npu_compile": "not_run",
+  "npu_execution": "not_run",
+  "npu_numerical_comparison": "not_run",
+  "model_inference": "not_run",
+  "video_generation": "not_run",
+  "core_migration_complete": false,
+  "weights_and_sdk_source_distributed": false
+}

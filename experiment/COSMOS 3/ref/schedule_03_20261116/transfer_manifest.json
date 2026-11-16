@@ -1,0 +1,37 @@
+{
+  "purpose": "Cosmos3 real proj_in unit test; no full model",
+  "files": [
+    {
+      "path": "src/npu_worker.py",
+      "bytes": 10081,
+      "sha256": "287a5d84c9d3143f6b2cff82fdf1a165f5f9bd67c756813feb1b471757223d2b"
+    },
+    {
+      "path": "data/modelscope-proj-in-81a5ec3b/weight.bf16",
+      "bytes": 1572864,
+      "sha256": "109ad7de0fd02ce27489e8a965418aa9b3e3eb631f005d723ab5622d5b51a8f0"
+    },
+    {
+      "path": "data/modelscope-proj-in-81a5ec3b/bias.bf16",
+      "bytes": 8192,
+      "sha256": "c648b09378d79d4cc4539383ac7ca20adc2a5d531ea77f32402ebc07133500ad"
+    },
+    {
+      "path": "data/modelscope-proj-in-81a5ec3b/source_manifest.json",
+      "bytes": 3393,
+      "sha256": "be82cfbaf6915a75af189024ee6c097ac16f6ed856f891f3d5427523d35d12ba"
+    },
+    {
+      "path": "reference/run-01/input.bf16",
+      "bytes": 6144,
+      "sha256": "72dee9b832f8e718f09cab75108b5150da7996324a569ec13e09663f8282b6f2"
+    },
+    {
+      "path": "reference/run-01/reference_manifest.json",
+      "bytes": 2102,
+      "sha256": "722e931dcafbf0a9e57c4b6c583b7c4eb045dbcb4a90a277af7ecf57af486291"
+    }
+  ],
+  "npu_execution": "not_run",
+  "worker_revision": "timeout-cleanup fix; not yet executed on NPU"
+}

@@ -1,0 +1,61 @@
+{
+  "model": "nvidia/Cosmos3-Nano-Sim-Auto",
+  "modelscope_revision": "81a5ec3bf5e7c8250aef14f0ca2eea726c8af1f4",
+  "unit": "proj_in",
+  "operation": "X @ W.T + b",
+  "seed": 20261115,
+  "input_kind": "deterministic synthetic fixture, not an actual full-model activation",
+  "input_shape": [
+    16,
+    192
+  ],
+  "weight_shape": [
+    4096,
+    192
+  ],
+  "output_shape": [
+    16,
+    4096
+  ],
+  "input_dtype": "BF16",
+  "source_manifest_sha256": "be82cfbaf6915a75af189024ee6c097ac16f6ed856f891f3d5427523d35d12ba",
+  "tensor_sha256": {
+    "proj_in.weight": "109ad7de0fd02ce27489e8a965418aa9b3e3eb631f005d723ab5622d5b51a8f0",
+    "proj_in.bias": "c648b09378d79d4cc4539383ac7ca20adc2a5d531ea77f32402ebc07133500ad"
+  },
+  "reference_numerics": "BF16 operands widened exactly; Python float64 products and math.fsum, bias added before final FP32/BF16 rounding",
+  "bf16_rounding": "round to nearest, ties to even from FP32",
+  "reference_elapsed_seconds": 0.9456018500000001,
+  "timing_kind": "CPU reference wall time, not NPU kernel time",
+  "python": "3.10.12",
+  "platform": "Linux",
+  "machine": "x86_64",
+  "files": {
+    "input.bf16": {
+      "bytes": 6144,
+      "sha256": "72dee9b832f8e718f09cab75108b5150da7996324a569ec13e09663f8282b6f2"
+    },
+    "reference.fp64.bin": {
+      "bytes": 524288,
+      "sha256": "8512eb03a35f89ff2669a2a46d1c451e44adb157de643bea85abd0f9815a5669"
+    },
+    "reference.fp32.bin": {
+      "bytes": 262144,
+      "sha256": "2d7a49e5c3938c5701bda414f6bb4f7055ceb32e6b120cbc2896a5f3f16b58ac"
+    },
+    "reference.bf16": {
+      "bytes": 131072,
+      "sha256": "820eebf4521f1dbbfd2f2f24eea85d4edc45e9d5979407082965ded47edb6678"
+    }
+  },
+  "engineering_smoke_criteria": {
+    "max_absolute_error": 0.01,
+    "max_normalized_rmse": 0.01,
+    "min_cosine": 0.999,
+    "scope": "this fixed BF16 projection fixture only; not a contest or whole-model accuracy contract"
+  },
+  "reference_source_sha256": "7e4c6dce06673580e78375b17ec6807d76867bea112bcc375b4da1c90ef928fe",
+  "npu_execution": "not_run",
+  "model_inference": "not_run",
+  "video_generation": "not_run"
+}
