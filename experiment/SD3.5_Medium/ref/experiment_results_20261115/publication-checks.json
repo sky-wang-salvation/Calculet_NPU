@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "calculet.publication-checks/v1",
+  "date": "2026-11-15",
+  "classification": "OFFLINE_PUBLICATION_VERIFICATION_NOT_MODEL_OR_HARDWARE_EXECUTION",
+  "publishedBridgeTestRun": {
+    "suite": "service_bridge/tests/test_service_bridge.py",
+    "pythonIsolationFlags": ["-I", "-B"],
+    "discovered": 31,
+    "passed": 30,
+    "skipped": 1,
+    "failures": 0,
+    "errors": 0,
+    "elapsedSeconds": 2.265,
+    "skipReason": "Optional controlled-service production validator was not supplied; actual Node canonicalization test ran and passed",
+    "historicalFull31TestRecordChanged": false
+  },
+  "originalImage": {
+    "relativePath": "hybrid_generation/sd35-medium-hybrid.png",
+    "bytes": 86885,
+    "sha256": "40c42cc65c16dede5a84226692e0a983d68f948298bc0a5ba8dd603811f6258d",
+    "copiedByteForByte": true,
+    "newInference": false
+  },
+  "frozenAuxiliaryArchive": {
+    "relativePath": "sd35-service-bridge.zip",
+    "bytes": 23757,
+    "sha256": "298dd9573237a1ca04d423960dc54cdde86ef82f9d2386af524de749a1b5a0be",
+    "copiedByteForByte": true
+  },
+  "modelOrSdkImported": false,
+  "newModelSubprocessStarted": false,
+  "deviceOrSshConnected": false,
+  "realTopologyVerified": false,
+  "restrictedHandoffOrExecutionPayloadPublished": false,
+  "modelWeightsOrVendorSdkPublished": false,
+  "privateConfigurationOrRawDeviceLogsPublished": false
+}

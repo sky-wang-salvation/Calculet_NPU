@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "calculet.sd35-lock-topology/v1",
+  "approved": false,
+  "operatorId": "<operator-id-matching-request-authorization>",
+  "authorizationId": "<authorization-id-matching-request>",
+  "resourceId": "<resource-id-matching-request>",
+  "runtimeConfigSha256": "<sha256-of-the-original-private-runtime-config>",
+  "controllerHostIdentitySha256": "<sha256-of-calculet-kernel-boot/v1:-plus-local-kernel-boot-id>",
+  "workerHostIdentitySha256": "<operator-verified-target-kernel-boot-identity-from-approved-inventory>",
+  "controllerLockPath": "<normalized-service-resourceLockPath>",
+  "workerBoardLockPath": "/opt/data/locks/board.lock",
+  "lockDomainsReviewedSeparate": false,
+  "sharedFilesystemAliasesExcluded": false,
+  "workerBoardLockIdentity": {"device": 0, "inode": 0}
+}

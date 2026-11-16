@@ -1,0 +1,104 @@
+{
+  "schemaVersion": "model-progress-evidence/v1",
+  "archiveDate": "2026-11-15",
+  "sourceObservationCutoffUtc": "2026-11-14T22:19:47.922823+00:00",
+  "generatedAtUtc": "2026-11-14T22:21:51.710564+00:00",
+  "officialBaseCommit": "db272f11639e9c6120331c2dc1289d4445cad775",
+  "archiveActivity": "read_existing_records_and_recompute_selected_file_hashes_only",
+  "newModelExecution": false,
+  "newDeviceAccess": false,
+  "rawRestrictedEvidencePublished": false,
+  "hashMeaning": "SHA-256 of frozen local file bytes; not numerical acceptance or proof of a fresh device run",
+  "reproductionLimit": "Public excerpts do not include the controlled executable project, raw device logs, credentials, weights or hardware access",
+  "project": "Cosmos3",
+  "summaryType": "published_document_review_and_conversation_observation_not_hardware_retest",
+  "nanoSimAuto": {
+    "target": "NVIDIA Cosmos3-Nano-Sim-Auto",
+    "targetChangedToEdge": false,
+    "historicalReport": {
+      "source": "schedule_02.md lines 42-79",
+      "independentRetestInThisArchive": false,
+      "bf16RoundtripBytes": 2048,
+      "originalProbePasses": 6,
+      "originalProbeFailures": 1,
+      "originalFailure": "causal attention: aten::tril.out missing",
+      "subsequentAdaptation": "project-specific square causal attention, separate test",
+      "reportedMaxAbsoluteError": 0.0014,
+      "reportedDeviceLaunches": 84,
+      "reportedComputeCpuFallbackCalls": 0,
+      "numericToleranceApprovedForWholeModel": false
+    },
+    "completeRollingBackendAccepted": "NOT_EVIDENCED",
+    "completeModelOrVideoAccepted": "NOT_EVIDENCED",
+    "missingRawHistoricalDeviceEvidenceInArchive": true
+  },
+  "edgeResearch": {
+    "operatorRows": 12,
+    "verificationStatuses": [
+      "not_run"
+    ],
+    "modelInference": "not_run",
+    "npuCompile": "not_run",
+    "npuHardwareExecution": "not_run",
+    "resourceResultKind": "estimate",
+    "validationScope": "Publication validation only; no SDK/model/NPU execution",
+    "probeTableIsImplementedProbeCode": false
+  },
+  "latestConversationObservation": {
+    "sourceKind": "conversation_records_not_execution_logs",
+    "requestedGoal": "reference SD3.5 deployment experience and generate real Cosmos test material",
+    "proposedFirstPath": "HYBRID CPU/NPU tensor bridge with model-specific adaptation",
+    "offlineReferenceImplementation": "PLAN_ONLY_NO_COMPLETION_EVIDENCE_IN_CAPTURE",
+    "linuxBuildCompletion": "NO_NEW_COMPLETION_EVIDENCE_IN_CAPTURE",
+    "hybridMaterialGenerationCompletion": "UNKNOWN_NO_NEW_RESULT_OR_VIDEO_EVIDENCE",
+    "localSearchLimit": "specified Cosmos workspace; absence there does not prove absence on remote devices or other workspaces",
+    "newDeviceAuthorizationIssuedByArchiving": false
+  },
+  "sources": [
+    {
+      "id": "CO-BASE-01",
+      "repositoryRelativeReferenceFromThisFile": "../../schedule_02.md",
+      "capturedLocalBytesSha256": "07bd2a5686677528780b457c2ebb6bf48269dc8394eceb839c0f657831d81bd9",
+      "capturedBytes": 9766,
+      "hashScope": "local checkout bytes; existing Markdown may use CRLF",
+      "sourceType": "previously_published_document",
+      "newHardwareEvidence": false
+    },
+    {
+      "id": "CO-SCOPE-01",
+      "repositoryRelativeReferenceFromThisFile": "../../HANDOFF.md",
+      "capturedLocalBytesSha256": "a6164f4a7b50c61b4dce08144076244280451c806641850a652ab8a6538b5506",
+      "capturedBytes": 5718,
+      "hashScope": "local checkout bytes; existing Markdown may use CRLF",
+      "sourceType": "previously_published_document",
+      "newHardwareEvidence": false
+    },
+    {
+      "id": "CO-EDGE-01",
+      "repositoryRelativeReferenceFromThisFile": "../../research/cosmos3_edge_npu_20261114/operator_support.csv",
+      "capturedLocalBytesSha256": "215a5f8a97199329f9ada7f9dbafb9e3156f823f524ef2b81eeeada86b8ec241",
+      "capturedBytes": 2880,
+      "hashScope": "local checkout bytes; existing Markdown may use CRLF",
+      "sourceType": "previously_published_document",
+      "newHardwareEvidence": false
+    },
+    {
+      "id": "CO-EDGE-02",
+      "repositoryRelativeReferenceFromThisFile": "../../research/cosmos3_edge_npu_20261114/validation_report.json",
+      "capturedLocalBytesSha256": "5d36ecf55292922f89db8d841500abfb0b892ed8e4a25f6769f6954a42c58c9d",
+      "capturedBytes": 716,
+      "hashScope": "local checkout bytes; existing Markdown may use CRLF",
+      "sourceType": "previously_published_document",
+      "newHardwareEvidence": false
+    },
+    {
+      "id": "CO-EDGE-03",
+      "repositoryRelativeReferenceFromThisFile": "../../research/cosmos3_edge_npu_20261114/resource_estimates.json",
+      "capturedLocalBytesSha256": "a292a78f03e64de3b12507ca1ccad2d9cb1f54f992f7a6f9c8f4cbd3c2d87d1e",
+      "capturedBytes": 2377,
+      "hashScope": "local checkout bytes; existing Markdown may use CRLF",
+      "sourceType": "previously_published_document",
+      "newHardwareEvidence": false
+    }
+  ]
+}

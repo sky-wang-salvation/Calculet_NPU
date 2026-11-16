@@ -1,0 +1,26 @@
+{
+  "status": "METRICS_ONLY",
+  "logical_dtype": "BF16",
+  "endianness": "little",
+  "shape": [
+    16,
+    1536
+  ],
+  "elements": 24576,
+  "bitwise_mismatched_elements": 3,
+  "numerically_mismatched_elements": 3,
+  "max_absolute_error": 0.000244140625,
+  "mean_absolute_error": 9.945021398986379e-09,
+  "rmse": 1.557344391530825e-06,
+  "max_relative_error_nonzero_reference": 0.019230769230769232,
+  "zero_reference_elements": 0,
+  "zero_reference_nonzero_actual_elements": 0,
+  "max_bf16_ulp_distance": 4,
+  "ulp_definition": "ordered finite BF16 values; positive and negative zero have distance zero",
+  "all_finite": true,
+  "reference_sha256": "c9c18d5735ce280a93d713dcf51864302ad320595278f60245e947b7c5dc516d",
+  "actual_sha256": "231c6188b0cae01dfb2d7d48c503aa9d73bca31fd9a0af966da807e0c8276908",
+  "numerical_acceptance": "NOT_EVALUATED_NO_APPROVED_TOLERANCE",
+  "device_execution_verified": false,
+  "actual_file_origin": "not verified by this utility"
+}

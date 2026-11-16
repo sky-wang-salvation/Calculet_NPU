@@ -1,0 +1,154 @@
+{
+  "schemaVersion": "calculet.public-experiment-summary/v1",
+  "experiment": "historical_attempt_02_Q_only_hybrid_generation",
+  "newInferenceForThisPublication": false,
+  "status": "HYBRID_IMAGE_GENERATED",
+  "executionMode": "HYBRID_CPU_NPU",
+  "model": "stabilityai/stable-diffusion-3.5-medium",
+  "modelRevision": "b940f670f0eda2d07fbb75229e779da1ad11eb80",
+  "parameters": {
+    "prompt": "A red apple on a wooden table, soft natural window light, realistic photograph",
+    "seed": 20261115,
+    "height": 256,
+    "width": 256,
+    "batch": 1,
+    "num_inference_steps": 4,
+    "guidance_scale": 1.0,
+    "max_sequence_length": 64
+  },
+  "t5": "official text_encoder_3=None/tokenizer_3=None mode; real CLIP encoders retained",
+  "coreMigrationComplete": false,
+  "endToEndPipelineCompleted": true,
+  "completedAtUtc": "2026-11-14T19:13:11.325935+00:00",
+  "image": {
+    "file": "sd35-medium-hybrid.png",
+    "shape": [
+      256,
+      256,
+      3
+    ],
+    "sha256": "40c42cc65c16dede5a84226692e0a983d68f948298bc0a5ba8dd603811f6258d",
+    "pixel_min": 12,
+    "pixel_max": 236,
+    "pixel_std": 52.69027474848635,
+    "degenerate_constant_image": false,
+    "quality": "4-step smoke preview, not a quality benchmark"
+  },
+  "cpu": {
+    "peakRssKiB": 18814324,
+    "peakRssBytes": 19265867776,
+    "peakRssGiB": 17.942737579345703,
+    "measurement": "Linux resource.getrusage(resource.RUSAGE_SELF).ru_maxrss",
+    "measurementScope": "Historical generator main-process lifetime peak RSS; not system RAM, NPU memory, child processes or remote-worker sum",
+    "torchIntraOpThreadsConfigured": 8,
+    "threadCountMeaning": "Source configuration, not measured physical-core occupancy or total process threads",
+    "operations": "CLIP text encoding, all remaining DiT operations, scheduler, VAE decoding, BF16 boundary conversion and row assembly",
+    "utilizationPercent": null,
+    "cpuTimeSeconds": null,
+    "latencySharePercent": null,
+    "flopsSharePercent": null,
+    "missingMetricMeaning": "Not measured or not recorded; no CPU/NPU percentage is inferred"
+  },
+  "totalRequestWallSeconds": 99.7984737969964,
+  "wallClockMeaning": "Complete generator request including loading, CPU, NPU, transfers and finalization; not CPU-only time, kernel latency or speedup",
+  "npu": {
+    "module": "transformer_blocks[0].attn.to_q",
+    "requestCount": 4,
+    "tileCount": 64,
+    "everyReturnedQRowUsedInRealDenoising": true,
+    "steps": [
+      {
+        "request_id": 1,
+        "input_shape": [
+          1,
+          256,
+          1536
+        ],
+        "input_sha256": "ae22b04b844b8fffeda6828faa428e4c564a3d981dac7073ed5f4a28245ef148",
+        "output_sha256": "8ab47c8858f7433086dcff093c0740395252ed8c657f1eaf4070f0cd3df07e09",
+        "tile_count": 16,
+        "compute_cpu_fallback_calls": 0,
+        "compute_host_implementation_calls": 0,
+        "device_closed": true,
+        "step": 0,
+        "latentsAfterStepSha256": "6d289ee83542729a55fd1b2a0625df7d85dd28d48b638140bd4ca28eaa5ec207"
+      },
+      {
+        "request_id": 2,
+        "input_shape": [
+          1,
+          256,
+          1536
+        ],
+        "input_sha256": "be2eb60015869f8007d3e35270e17dedeb2a2571e5b069cbc09c00e1e3e40328",
+        "output_sha256": "243817c17ed0449fbe524f899fe4fb1e6697a3c9cb1268653475a0dbca7c9e8d",
+        "tile_count": 16,
+        "compute_cpu_fallback_calls": 0,
+        "compute_host_implementation_calls": 0,
+        "device_closed": true,
+        "step": 1,
+        "latentsAfterStepSha256": "ba0dd3adfa9dd09b710c9eea4bcb729d1931acf1976e19d93981329f107af565"
+      },
+      {
+        "request_id": 3,
+        "input_shape": [
+          1,
+          256,
+          1536
+        ],
+        "input_sha256": "101caa5696ebd2dc87281308f91a2e95a5ebf0e8ed4ac50a32e9419c3d10f225",
+        "output_sha256": "af7af5bb04b5e1c94bb8486e367408427c3a7676c0de1b32562fa000c34a0916",
+        "tile_count": 16,
+        "compute_cpu_fallback_calls": 0,
+        "compute_host_implementation_calls": 0,
+        "device_closed": true,
+        "step": 2,
+        "latentsAfterStepSha256": "e4fa6c673005fb36999e1f0c87a93426dd889013888e5d58edd6d6cb2b59a009"
+      },
+      {
+        "request_id": 4,
+        "input_shape": [
+          1,
+          256,
+          1536
+        ],
+        "input_sha256": "9b066cc448933dd507db073047cc4143fb228634f3ee4a4393b85765d418b2db",
+        "output_sha256": "64732243f0d840d9ed08d7255242ce1e9b910a30c4c17e2f6c55c50e1b5f0a70",
+        "tile_count": 16,
+        "compute_cpu_fallback_calls": 0,
+        "compute_host_implementation_calls": 0,
+        "device_closed": true,
+        "step": 3,
+        "latentsAfterStepSha256": "6e9caf5fb992ab67d509bfba9735b485736e297f313659099afdddd888bd98a4"
+      }
+    ],
+    "logicalGemmWork": {
+      "macs": 2415919104,
+      "flopsAtTwoPerMac": 4831838208,
+      "classification": "Derived logical GEMM count, not measured throughput; excludes bias and overhead; not a fraction of the full model"
+    }
+  },
+  "qualityAcceptance": "4-step smoke preview only; no approved perceptual benchmark or full-image numerical tolerance",
+  "sources": [
+    {
+      "logicalLocator": "sd35-generation-v1/runs/attempt-02/generation-final.json",
+      "bytes": 50328,
+      "sha256": "cbf7bb6d9020af6acecdb46043f6f223264f9ce08c8e1514eab6ab7b6c2cea60",
+      "rawPublished": false
+    },
+    {
+      "logicalLocator": "sd35-generation-v1/runs/attempt-02/executed_generate_sd35.py",
+      "bytes": 13204,
+      "sha256": "9c4d6d51fcafa3d69a96b723f2fd56001ebcb8c1877f18b47862bd222bbc5d05",
+      "rawPublished": false,
+      "lineRanges": "82-105,186-187,199-224,245-246"
+    },
+    {
+      "logicalLocator": "sd35-generation-v1/runs/attempt-02/executed_npu_q_worker.py",
+      "bytes": 8777,
+      "sha256": "d993ba6d5ab2c2621675a6253aeca5b035e91c4db526c848b645c6ee6ce2cb0e",
+      "rawPublished": false,
+      "lineRanges": "118-171"
+    }
+  ]
+}
